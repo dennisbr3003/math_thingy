@@ -4,3 +4,5 @@ node_modules/
 .npm
 # dotenv environment variables file
 .env
+# workspace config
+math_thingy.code-workspace
