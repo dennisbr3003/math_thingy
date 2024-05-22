@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+/* https://daily.dev/blog/how-to-use-tailwindcss-with-node-js-express-and-pug */
+
 ._fontsize {
     @apply text-[24pt] text-red-600;
 }
