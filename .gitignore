@@ -1,5 +1,6 @@
 # Dependency directories
 node_modules/
+logs/
 # Optional npm cache directory
 .npm
 # dotenv environment variables file
