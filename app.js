@@ -1,12 +1,14 @@
 const express = require('express')
 const path = require('path') 
 const Log = require('./objects/Log')
+const PageData = require('./objects/PageData')
 
 require('dotenv').config()
 
 const app = express()
 
 const log = new Log(__dirname)
+const pageData = new PageData()
 
 app.set('view engine', 'ejs')
 app.set('views', 'views') 
@@ -26,5 +28,5 @@ app.use((req, res, next)=> {
 })
 
 app.get('/', (req, res) => {   
-    res.render('index', {})
+    res.render('index', pageData.getPageData())
 })

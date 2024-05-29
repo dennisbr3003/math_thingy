@@ -653,11 +653,10 @@ ul {
 }
 
 ._page-content {
-    /* style="display: flex; flex-direction: column; align-items: center;" class="pt-[18vh] md:pt-[25vh]" */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 18vh
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 18vh;
 }
 
 @media (min-width: 768px) {
