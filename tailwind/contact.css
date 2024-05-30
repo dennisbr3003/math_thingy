@@ -1,0 +1,21 @@
+/* https://daily.dev/blog/how-to-use-tailwindcss-with-node-js-express-and-pug */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* https://dev.to/derick1530/how-to-create-scrollable-element-in-tailwind-without-a-scrollbar-4mbd */
+
+@layer utilities {
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;  
+        scrollbar-width: none; 
+    } 
+}
+
+._fontsize {
+    @apply text-[24pt] text-red-600;
+}

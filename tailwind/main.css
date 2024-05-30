@@ -25,7 +25,7 @@ button{
 }
 
 ul{
-    @apply list-none p-0 m-0 h-[500px] overflow-y-auto no-scrollbar; 
+    @apply list-none p-0 m-0 h-[65vh] overflow-y-auto no-scrollbar; 
 }
 
 ._img {
@@ -37,13 +37,13 @@ ul{
 }
 
 ._toolbar{
-    @apply w-full h-[20%] fixed;
+    @apply w-full h-[20vh] md:h-[25vh] fixed;
     ._image-container{
-        @apply w-[45%] md:w-[20%] h-[100%] mx-auto;
+        @apply w-[70vw] md:w-[20vw] h-[100%] mx-auto;
         ._image-background{
             @apply h-full w-full bg-[url('/img/circle-gradient-white-trans.png')];
             ._book{
-                @apply w-[100%] md:w-[100%] mx-auto;
+                @apply w-[100%] mx-auto;
             }
             ._subtitle{
                 @apply text-white text-center font-bold text-[24pt] md:text-[32pt] mt-[-15px] md:mt-[-20px];
@@ -54,8 +54,14 @@ ul{
 
 ._page-content {
     @apply flex flex-col items-center pt-[18vh] md:pt-[25vh];
-    ._img-festive {
-        @apply w-[80%] md:w-[60%] mt-[20px];
+    ._list-item{
+        @apply flex flex-col items-center;
+        ._img-festive {
+            @apply w-[80%] md:w-[60%] mt-[20px];
+        }
+        ._buttonbar{
+            @apply flex flex-col items-center md:flex-row md:align-middle justify-evenly w-[90%] bg-white
+        }        
     }
 }
 
@@ -65,10 +71,3 @@ ul{
         @apply flex flex-col items-center justify-center h-[40px] md:h-[50px] text-white;
     }
 }
-
-._list-item{
-    @apply flex flex-col items-center;
-    ._buttonbar{
-        @apply flex flex-col items-center md:flex-row md:align-middle justify-evenly w-[90%] bg-white
-    }
-}   

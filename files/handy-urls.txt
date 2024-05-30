@@ -1,0 +1,2 @@
+multiple separate css files to be build at once
+https://github.com/postcss/postcss-cli/blob/master/README.md

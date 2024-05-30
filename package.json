@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js --ext ejs,js,mjs,cjs,json,css",
-    "tailwind:css": "postcss tailwind/tailwind.css -o public/css/runtime.css"
+    "tailwind:css": "postcss tailwind --dir public/css"
   },
   "author": "Dennis Brink",
   "license": "ISC",
