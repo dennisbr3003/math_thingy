@@ -1,5 +1,5 @@
 {
     "events": {
-        "restart": "npm run tailwind:css"
+        "start": "npm run tailwind:css"
     }
 }
