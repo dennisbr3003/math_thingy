@@ -506,6 +506,9 @@ video {
   --tw-contain-paint:  ;
   --tw-contain-style:  ;
 }
+.text-\[9pt\] {
+  font-size: 9pt;
+}
 
 /* https://dev.to/derick1530/how-to-create-scrollable-element-in-tailwind-without-a-scrollbar-4mbd */
 
@@ -709,7 +712,7 @@ ul {
     height: 40px;
   }
     ._container {
-    flex-direction: row;
+    flex-direction: column;
   }
     ._container {
     align-items: center;

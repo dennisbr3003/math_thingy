@@ -62,7 +62,7 @@ ul{
 ._footer{
     @apply fixed bottom-0 left-0 right-0 h-[40px] md:h-[50px] bg-[#0CAFFF] shadow-inner;
     ._container{
-        @apply flex flex-row items-center justify-center h-[40px] md:h-[50px] text-white;
+        @apply flex flex-col items-center justify-center h-[40px] md:h-[50px] text-white;
     }
 }
 
