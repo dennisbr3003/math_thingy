@@ -1,0 +1,51 @@
+<html lang="en">
+    <%- include('./partials/header.ejs') %>
+    <body class="_background m-0">        
+        <div class="_container-body">
+            <div class="_background-body"></div>          
+            <div style="background-size:100% 100%;" class="_title-container">
+                <div>
+                    <img src="/img/math-book.png" width="100vw" class="_book"/>   
+                </div>
+                <div class="_subtitle">THINGY</div>
+            </div>    
+        </div>    
+        <%- include('./partials/footer.ejs') %>
+    </body>
+</html>
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* https://daily.dev/blog/how-to-use-tailwindcss-with-node-js-express-and-pug */
+
+._fontsize {
+    @apply text-[24pt] text-red-600;
+}
+
+._background{
+    @apply w-[100vw] h-[100vh] bg-cover bg-bottom bg-[url('/img/background.webp')];
+    ._container-body{    
+        @apply max-w-[90vw] md:max-w-[60vw] mx-auto h-full relative;
+        ._background-body{
+            @apply bg-[url('/img/background_main.webp')] w-full h-[100vh] bg-cover bg-center absolute blur-sm content-none -z-10 bg-inherit;
+        }        
+        ._title-container{
+            @apply bg-[url('/img/circle-gradient-white-trans.png')] mx-auto flex flex-col align-middle justify-center;
+            ._book{
+                @apply w-[75%] md:w-[50%] mx-auto;
+            }
+            ._subtitle{
+                @apply text-white font-bold text-[24pt] md:text-[32pt] mx-auto mt-[-15px] md:mt-[-20px];
+            }
+        }
+    }
+}
+
+._footer{
+    @apply fixed bottom-0 left-0 right-0 h-[40px] md:h-[50px] bg-[#0CAFFF] shadow-inner;
+    ._container{
+        @apply flex flex-row items-center justify-center h-[40px] md:h-[50px] text-white;
+    }
+}

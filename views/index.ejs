@@ -1,15 +1,31 @@
 <html lang="en">
     <%- include('./partials/header.ejs') %>
-    <body class="_background m-0">        
-        <div class="_container-body">
-            <div class="_background-body" />          
-            <div style="background-size:100% 100%;" class="_title-container">
-                <div>
-                    <img src="/img/math-book.png" width="100vw" class="_book"/>   
-                </div>
-                <div class="_subtitle">THINGY</div>
-            </div>    
-        </div>    
+    <body>   
+        <img src="/img/background_main.webp" height="100vh" class="_img">  
+        <div>
+            <div class="_toolbar">
+                <div class="_image-container">
+                    <div style="background-size:100% 100%;" class="_image-background">
+                        <div>
+                            <img src="/img/math-book.png" width="100vw" class="_book"/>   
+                        </div>
+                        <div class="_subtitle">THINGY</div>
+                    </div> 
+                </div>    
+            </div>              
+            <div class="_page-content">
+                <ul>
+                    <li class="_list-item">
+                        <img src="/img/festive.webp" width="100vw" class="_img-festive"/>
+                        <div class="_buttonbar">
+                            <button class="_fontsize">Global ranking</button>
+                            <button class="_fontsize">What's this?</button>
+                            <button class="_fontsize">Contact</button>
+                        </div>                 
+                    </li>
+                </ul>      
+            </div>
+        </div> 
         <%- include('./partials/footer.ejs') %>
     </body>
 </html>

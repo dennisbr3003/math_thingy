@@ -1,3 +1,5 @@
+const DateTime = require('./DateTime')
+
 const fs = require('fs')
 const path = require('path') 
 const os = require('os')
@@ -11,6 +13,7 @@ class Log {
     }    
 
     #init(root){
+        this.datetime = new DateTime()
         this.root = root
         this.location = root
         this.writes = Date.now()
@@ -22,21 +25,21 @@ class Log {
 
     write(type, text, req) {
 
-        const d = new Date()
+        const dt = new Date()
 
         let reqtext = ''
         if(typeof req !== 'undefined'){
             reqtext=`http: ${req.httpVersion} | host: ${req.hostname} | method: ${String(req.method).padEnd(7, ' ')} | url: ${req.url}`
         }
         
-        let logfile = type.toUpperCase()==='ERR'?this.#getErrFileName(d):this.#getLogFileName(d)
+        let logfile = type.toUpperCase()==='ERR'?this.#getErrFileName(dt):this.#getLogFileName(dt)
 
         switch(process.env.LOGLEVEL) {
             case 'extended':
-                this.#writeline(d, logfile, reqtext===''?text:`${reqtext} | msg: ${text}`)
+                this.#writeline(dt, logfile, reqtext===''?text:`${reqtext} | msg: ${text}`)
                 break;
             case 'erroronly':
-                if(type='ERR') this.#writeline(d, logfile, reqtext===''?text:`${reqtext} | msg: ${text}`)
+                if(type='ERR') this.#writeline(dt, logfile, reqtext===''?text:`${reqtext} | msg: ${text}`)
                 break;    
         }               
 
@@ -44,34 +47,25 @@ class Log {
         if(Date.now() - this.writes >= (4 * 60 * 60 * 1000)) this.#clearLogFiles()
     }
 
-    #formatLine(dt, text){
-        
-        let y = `${dt.getFullYear()}`
-        let m = `${String(dt.getMonth()+1).padStart(2, '0')}`
-        let d = `${String(dt.getDate()).padStart(2, '0')}`
-        let h = `${String(dt.getHours()).padStart(2, '0')}`
-        let mn = `${String(dt.getMinutes()).padStart(2, '0')}`
-        let s = `${String(dt.getSeconds()).padStart(2, '0')}`
-        let ms = `${String(dt.getMilliseconds()).padStart(3, '0')}`
-
-        return `${y}-${m}-${d} ${h}:${mn}:${s}:${ms} - ${text}`               
+    #formatLine(dt, text){                      
+        return `${this.datetime.getDate(dt, 'd,m,y', '-')} ${this.datetime.getTime(dt, 'h,m,s,ms')}  - ${text}`
     }
 
-    #getLogFileName (d) {
-        return `${this.#getFileName(d)}.log`
+    #getLogFileName (dt) {
+        return `${this.#getFileName(dt)}.log`
     }
-    #getErrFileName (d) {
-        return `${this.#getFileName(d)}.err`
-    }
-
-    #getFileName(d){
-        return `${d.getFullYear()}${String(d.getMonth()+1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}`
+    #getErrFileName (dt) {
+        return `${this.#getFileName(dt)}.err`
     }
 
-    #writeline(d, logfile, text){
+    #getFileName(dt){
+        return `${this.datetime.getDate(dt, 'y,m,d', '')}`
+    }
+
+    #writeline(dt, logfile, text){
         fs.writeFile(`./${process.env.LOGFOLDER}/${logfile}`, 
-            `${this.#formatLine(d, text)}\r\n`, 
-            { flag: "a+" },  
+            `${this.#formatLine(dt, text)}\r\n`, 
+            { flag: 'a+' },  
             (err) => {if(err) console.log(err)}) 
     }
 

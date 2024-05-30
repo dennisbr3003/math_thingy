@@ -1,35 +1,74 @@
+/* https://daily.dev/blog/how-to-use-tailwindcss-with-node-js-express-and-pug */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* https://daily.dev/blog/how-to-use-tailwindcss-with-node-js-express-and-pug */
+/* https://dev.to/derick1530/how-to-create-scrollable-element-in-tailwind-without-a-scrollbar-4mbd */
+
+@layer utilities {
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;  
+        scrollbar-width: none; 
+    } 
+}
+
+body{
+    @apply bg-blue-400 relative;
+}
+
+button{
+    @apply border-solid border border-black m-1 w-[70%] md:w-[30%];
+}
+
+ul{
+    @apply list-none p-0 m-0 h-[500px] overflow-y-auto no-scrollbar; 
+}
+
+._img {
+    @apply w-[96%] md:w-[60%] h-full fixed bottom-0 top-0 ml-[2%] md:ml-[20%] mr-[2%] md:mr-[20%] -z-10 blur-sm;
+}
 
 ._fontsize {
     @apply text-[24pt] text-red-600;
 }
 
-._background{
-    @apply w-[100vw] h-[100vh] bg-cover bg-bottom bg-[url('/img/background.webp')];
-    ._container-body{    
-        @apply max-w-[90vw] md:max-w-[60vw] mx-auto h-full;
-        ._background-body{
-            @apply h-[100vh] bg-cover bg-blend-soft-light bg-bottom bg-[url('/img/background_main.webp')];
-        }        
-        ._title-container{
-            @apply bg-[url('/img/circle-gradient-white-trans.png')] mx-auto flex flex-col align-middle justify-center;
+._toolbar{
+    @apply w-full h-[20%] fixed;
+    ._image-container{
+        @apply w-[45%] md:w-[20%] h-[100%] mx-auto;
+        ._image-background{
+            @apply h-full w-full bg-[url('/img/circle-gradient-white-trans.png')];
             ._book{
-                @apply w-[75%] md:w-[50%] mx-auto;
+                @apply w-[100%] md:w-[100%] mx-auto;
             }
             ._subtitle{
-                @apply text-white font-bold text-[24pt] md:text-[32pt] mx-auto mt-[-15px] md:mt-[-20px];
+                @apply text-white text-center font-bold text-[24pt] md:text-[32pt] mt-[-15px] md:mt-[-20px];
             }
         }
+    }
+}
+
+._page-content {
+    @apply flex flex-col items-center pt-[18vh] md:pt-[25vh];
+    ._img-festive {
+        @apply w-[80%] md:w-[60%] mt-[20px];
     }
 }
 
 ._footer{
     @apply fixed bottom-0 left-0 right-0 h-[40px] md:h-[50px] bg-[#0CAFFF] shadow-inner;
     ._container{
-        @apply flex flex-row items-center justify-center h-[40px] md:h-[50px] text-white;
+        @apply flex flex-col items-center justify-center h-[40px] md:h-[50px] text-white;
     }
 }
+
+._list-item{
+    @apply flex flex-col items-center;
+    ._buttonbar{
+        @apply flex flex-col items-center md:flex-row md:align-middle justify-evenly w-[90%] bg-white
+    }
+}   
