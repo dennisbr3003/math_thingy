@@ -15,7 +15,3 @@
         scrollbar-width: none; 
     } 
 }
-
-._fontsize {
-    @apply text-[24pt] text-red-600;
-}
