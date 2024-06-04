@@ -21,7 +21,7 @@
     ._image-container{
         @apply w-[70vw] md:w-[20vw] h-[100%] mx-auto;
         ._image-background{
-            @apply h-full w-full bg-[url('/img/circle-gradient-white-trans.png')];
+            @apply h-full w-full bg-[url('/img/circle-gradient-white-trans.webp')];
             ._book{
                 @apply w-[100%] mx-auto;
             }
@@ -35,14 +35,14 @@
 ._page-content {
     @apply flex flex-col items-center pt-[150px] md:pt-[170px];
     ._list-item-container{
-        @apply h-[calc(100vh-(150px+40px-15px))] md:h-[calc(100vh-(170px+50px-20px))];
+        @apply h-[calc(100vh-(150px+40px-15px))] md:h-[calc(100vh-(170px+50px-20px))] w-[95vw] md:w-[60vw];
         ._list-item{
             @apply flex flex-col items-center;
             ._img-festive {
-                @apply w-[80%] md:w-[55%] mt-[20px];
+                @apply w-[90%] md:w-[55%] mt-[20px];
             }
             ._buttonbar{
-                @apply flex flex-col items-center md:flex-row md:align-middle justify-evenly w-[90%] pb-[30px] md:pb-0;
+                @apply flex flex-col items-center md:flex-row md:align-middle justify-evenly w-[90%] pb-[40px] md:pb-[50px];
             }        
         }
     }
