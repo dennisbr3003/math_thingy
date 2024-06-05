@@ -7,10 +7,18 @@ class PageData {
         this.datetime = new DateTime()
     }
 
-    getPageData(cssfile){
-        this.data.year = this.datetime.getYear()
-        this.data.generated = this.datetime.getTime()
-        this.data.cssfile = cssfile
+    getPageData(page){
+        switch(page){
+            case 'main':
+                this.data.year = this.datetime.getYear()
+                this.data.generated = this.datetime.getTime()        
+                break;
+            case 'error':
+                // do nothing for now
+                break;
+        }
+        // always do this
+        this.data.cssfile = page
         return this.data
     }    
 }

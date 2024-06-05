@@ -2,7 +2,7 @@ const express = require('express')
 const path = require('path') 
 const Log = require('./objects/Log')
 const PageData = require('./objects/PageData')
-
+// oldes logfile: 20240522.log
 require('dotenv').config()
 
 const app = express()
@@ -29,4 +29,9 @@ app.use((req, res, next)=> {
 
 app.get('/', (req, res) => {   
     res.render('index', pageData.getPageData('main'))
+})
+
+app.use((req, res) => {
+    log.write('ERR', 'Navigation error (404)', req)
+    res.status(404).render('error', pageData.getPageData('error'))
 })

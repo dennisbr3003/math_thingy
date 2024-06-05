@@ -1,0 +1,17 @@
+<html lang="en">
+    <%- include('./partials/header.ejs') %>
+    <body>   
+        <%- include('./partials/background.ejs') %>
+        <div class="_container-404">
+            <img src="/img/broken-glass.webp" height="100vh"> 
+            <div class="text-center">
+                <img src="/img/404.webp" width="100%" class="_img-404"> 
+                <div class="_fonttext mt-[-30px]">Hmmm... looks like you managed to break something here.</div>
+                <div class="_fonttext mt-3 md:mt-0">Maybe we should go home and try something else?</div>
+            </div>
+            <button onclick="window.location.href='/'" class="_fontbutton mt-[50px] w-[70%] md:w-[30%]">
+                <img src="/img/icons/home.svg" width="25px" class="_icon mt-2"/>Go Home
+            </button>
+        </div>        
+    </body>
+</html>

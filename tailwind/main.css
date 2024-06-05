@@ -4,24 +4,12 @@
     @apply flex flex-row items-center;
 }
 
-._icon{
-    @apply inline mr-[10px];
-}
-
-._img {
-    @apply w-[96%] md:w-[60%] h-full fixed top-0 ml-[2%] md:ml-[20%] mr-[2%] md:mr-[20%] -z-10 blur-sm;
-}
-
-._fontsize {
-    @apply text-[20pt] font-semibold text-white;
-}
-
 ._toolbar{
     @apply w-full h-[150px] md:h-[170px] fixed;
     ._image-container{
         @apply w-[70vw] md:w-[20vw] h-[100%] mx-auto;
         ._image-background{
-            @apply h-full w-full bg-[url('/img/circle-gradient-white-trans.webp')];
+            @apply h-full w-full bg-[url('/img/circle-gradient.webp')];
             ._book{
                 @apply w-[100%] mx-auto;
             }
@@ -39,7 +27,7 @@
         ._list-item{
             @apply flex flex-col items-center;
             ._img-festive {
-                @apply w-[90%] md:w-[55%] mt-[20px];
+                @apply w-[90%] md:w-[65%] mt-[40px] md:mt-[60px];
             }
             ._buttonbar{
                 @apply flex flex-col items-center md:flex-row md:align-middle justify-evenly w-[90%] pb-[40px] md:pb-[50px];
