@@ -27,7 +27,7 @@
         ._list-item{
             @apply flex flex-col items-center;
             ._img-festive {
-                @apply w-[90%] md:w-[65%] mt-[40px] md:mt-[60px];
+                @apply w-[90%] md:w-[60%] mt-[40px] md:mt-[60px];
             }
             ._buttonbar{
                 @apply flex flex-col items-center md:flex-row md:align-middle justify-evenly w-[90%] pb-[40px] md:pb-[50px];
@@ -37,7 +37,9 @@
 }
 
 ._footer{
-    @apply fixed bottom-0 left-0 right-0 h-[40px] md:h-[50px]  bg-gradient-to-b from-[#3457D5] to-[#0CAFFF] shadow-inner;
+    @apply fixed bottom-0 left-0 right-0 
+           h-[40px] md:h-[60px] xl:h-[80px] 
+           bg-gradient-to-b from-[#3457D5] to-[#0CAFFF] shadow-inner;
     ._container{
         @apply flex flex-col items-center justify-center h-full text-white;
     }

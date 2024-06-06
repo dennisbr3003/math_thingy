@@ -17,7 +17,7 @@
 }
 
 body{
-    @apply bg-[#60A5FA] relative;
+     @apply bg-[#60A5FA] relative w-[100vw] h-[100vh] bg-cover bg-center bg-[url('/img/math-15.webp')] -z-10;
 }
 
 ul{
@@ -29,19 +29,15 @@ button{
     @apply  bg-[#60A5FA88] active:bg-[#60A5FA] active:scale-90
              rounded-xl p-1 pb-2
              flex flex-row items-center justify-center
-             md:mt-2
-             md:bg-transparent md:border md:border-transparent 
-             md:active:bg-transparent md:active:scale-105
-             md:hover:scale-105
-           md:hover:border-white;    
+             xl:hover:scale-105;    
 }
-
+/*  h-[40px] md:h-[60px] xl:h-[80px]  */
 ._img {
     @apply w-[96%] md:w-[60%] h-full fixed top-0 ml-[2%] md:ml-[20%] mr-[2%] md:mr-[20%] -z-10 blur-sm;
 }
 
 ._icon{
-    @apply inline mr-[10px];
+    @apply inline mr-[15px];
 }
 
 ._fontbutton {
