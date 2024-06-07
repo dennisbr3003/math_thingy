@@ -1,63 +1,15 @@
 /* https://daily.dev/blog/how-to-use-tailwindcss-with-node-js-express-and-pug */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* https://dev.to/derick1530/how-to-create-scrollable-element-in-tailwind-without-a-scrollbar-4mbd */
-
-@layer utilities {
-    .no-scrollbar::-webkit-scrollbar {
-        display: none;
-    }
-    .no-scrollbar {
-        -ms-overflow-style: none;  
-        scrollbar-width: none; 
-    } 
-}
-
-body{
-    @apply bg-[#60A5FA] relative;
-}
-
 .flexrow{
     @apply flex flex-row items-center;
 }
 
-button{
-    /* @apply bg-[#60A5FA00] rounded-md m-1 w-[70%] md:w-[30%] border-b-4 border-transparent hover:scale-105 hover:border-[#0039a6]; */
-    @apply  bg-[#60A5FA88] active:bg-[#60A5FA] active:scale-90
-             rounded-xl mt-[35px] w-[70%] p-3
-             flex flex-row items-center justify-center
-             md:mt-2 md:p-1
-             md:bg-transparent md:w-[30%] md:border md:border-transparent 
-             md:active:bg-transparent md:active:scale-105
-             md:hover:scale-105
-           md:hover:border-white;    
-}
-
-._icon{
-    @apply inline mr-[10px];
-}
-
-ul{
-    @apply list-none p-0 m-0 h-[65vh] overflow-y-auto no-scrollbar; 
-}
-
-._img {
-    @apply w-[96%] md:w-[60%] h-full fixed bottom-0 top-0 ml-[2%] md:ml-[20%] mr-[2%] md:mr-[20%] -z-10 blur-sm;
-}
-
-._fontsize {
-    @apply text-[20pt] font-semibold text-white;
-}
-
 ._toolbar{
-    @apply w-full h-[20vh] md:h-[25vh] fixed;
+    @apply w-full h-[150px] md:h-[170px] fixed;
     ._image-container{
         @apply w-[70vw] md:w-[20vw] h-[100%] mx-auto;
         ._image-background{
-            @apply h-full w-full bg-[url('/img/circle-gradient-white-trans.png')];
+            @apply h-full w-full bg-[url('/img/circle-gradient.webp')];
             ._book{
                 @apply w-[100%] mx-auto;
             }
@@ -69,22 +21,26 @@ ul{
 }
 
 ._page-content {
-    @apply flex flex-col items-center pt-[22vh] md:pt-[25vh];
-    ._list-item{
-        @apply flex flex-col items-center;
-        ._img-festive {
-            @apply w-[80%] md:w-[60%] mt-[20px];
+    @apply flex flex-col items-center pt-[150px] md:pt-[170px];
+    ._list-item-container{
+        @apply h-[calc(100vh-(150px+40px-15px))] md:h-[calc(100vh-(170px+50px-20px))] w-[95vw] md:w-[60vw];
+        ._list-item{
+            @apply flex flex-col items-center;
+            ._img-festive {
+                @apply w-[90%] md:w-[60%] mt-[40px] md:mt-[60px];
+            }
+            ._buttonbar{
+                @apply flex flex-col items-center md:flex-row md:align-middle justify-evenly w-[90%] pb-[40px] md:pb-[50px];
+            }        
         }
-        ._buttonbar{
-            @apply flex flex-col items-center md:flex-row md:align-middle justify-evenly w-[90%];
-        }        
     }
 }
 
 ._footer{
-    /* @apply fixed bottom-0 left-0 right-0 h-[40px] md:h-[50px] bg-[#0CAFFF] shadow-inner; /* bg-[#3457D5] */
-    @apply fixed bottom-0 left-0 right-0 h-[40px] md:h-[50px]  bg-gradient-to-b from-[#3457D5] to-[#0CAFFF] shadow-inner;
+    @apply fixed bottom-0 left-0 right-0 
+           h-[40px] md:h-[60px] xl:h-[80px] 
+           bg-gradient-to-b from-[#3457D5] to-[#0CAFFF] shadow-inner;
     ._container{
-        @apply flex flex-col items-center justify-center h-[40px] md:h-[50px] text-white;
+        @apply flex flex-col items-center justify-center h-full text-white;
     }
 }

@@ -1,0 +1,49 @@
+/* https://daily.dev/blog/how-to-use-tailwindcss-with-node-js-express-and-pug */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* https://dev.to/derick1530/how-to-create-scrollable-element-in-tailwind-without-a-scrollbar-4mbd */
+
+@layer utilities {
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;  
+        scrollbar-width: none; 
+    } 
+}
+
+body{
+     @apply bg-[#60A5FA] relative w-[100vw] h-[100vh] bg-cover bg-center bg-[url('/img/math-15.webp')] -z-10;
+}
+
+ul{
+    @apply list-none p-0 m-0 overflow-y-auto no-scrollbar; 
+}
+
+button{
+    /* @apply bg-[#60A5FA00] rounded-md m-1 w-[70%] md:w-[30%] border-b-4 border-transparent hover:scale-105 hover:border-[#0039a6]; */
+    @apply  bg-[#60A5FA88] active:bg-[#60A5FA] active:scale-90
+             rounded-xl p-1 pb-2
+             flex flex-row items-center justify-center
+             xl:hover:scale-105;    
+}
+/*  h-[40px] md:h-[60px] xl:h-[80px]  */
+._img {
+    @apply w-[96%] md:w-[60%] h-full fixed top-0 ml-[2%] md:ml-[20%] mr-[2%] md:mr-[20%] -z-10 blur-sm;
+}
+
+._icon{
+    @apply inline mr-[15px];
+}
+
+._fontbutton {
+    @apply text-[20pt] font-semibold text-white;
+}
+
+._fonttext {
+    @apply text-[12pt] md:text-[20pt] font-semibold text-white;
+}

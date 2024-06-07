@@ -1,0 +1,9 @@
+/* https://stackoverflow.com/questions/4684304/how-can-i-resize-an-image-dynamically-with-css-as-the-browser-width-height-chang */
+
+body{
+    @apply bg-white relative w-[100vw] h-[100vh] bg-cover bg-center bg-[url('/img/404.webp')] xl:bg-[url('/img/404-xl.webp')] -z-10;
+}
+
+._fonttext {
+    @apply text-[15pt] md:text-[30pt] xl:text-[35pt] font-semibold text-gray-800;
+}

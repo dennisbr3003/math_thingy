@@ -1,31 +1,33 @@
 <html lang="en">
     <%- include('./partials/header.ejs') %>
     <body>   
-        <img src="/img/background_main.webp" height="100vh" class="_img">  
+        <!-- <%- include('./partials/background.ejs') %> -->
+        <!-- <img src="/img/background.webp" height="100vh">   -->
         <div>
             <div class="_toolbar">
                 <div class="_image-container">
                     <div style="background-size:100% 100%;" class="_image-background">
                         <div>
-                            <img src="/img/math-book.png" width="100vw" class="_book"/>   
+                            <img src="/img/math-book.webp" width="100vw" class="_book"/>   
                         </div>
                         <div class="_subtitle">THINGY</div>
                     </div> 
                 </div>    
             </div>              
             <div class="_page-content">
-                <ul>
+                <ul class="_list-item-container">
                     <li class="_list-item">
+                        <!-- <img src="/img/mathsymbols.png" width="100vw" class="_img-festive"/> -->
                         <img src="/img/festive.webp" width="100vw" class="_img-festive"/>
                         <div class="_buttonbar">
-                            <button onclick="window.location.href='/ranking'" class="_fontsize">
-                                <img src="/img/global.svg" width="25px" class="_icon"/>Ranking
+                            <button onclick="window.location.href='/ranking'" class="_fontbutton mt-[35px] w-[70%] md:w-[30%]">
+                                <img src="/img/icons/global.svg" width="25px" class="_icon"/>Ranking
                             </button>
-                            <button onclick="window.location.href='/thegame'" class="_fontsize">
-                                <img src="/img/question.svg" width="25px" class="_icon"/>What's This?
+                            <button onclick="window.location.href='/thegame'" class="_fontbutton mt-[35px] w-[70%] md:w-[30%]">
+                                <img src="/img/icons/question.svg" width="25px" class="_icon"/>What's This?
                             </button>
-                            <button onclick="window.location.href='/contact'" class="_fontsize">
-                                <img src="/img/contact.svg" width="25px" class="_icon"/>Contact
+                            <button onclick="window.location.href='/contact'" class="_fontbutton mt-[35px] w-[70%] md:w-[30%]">
+                                <img src="/img/icons/contact.svg" width="25px" class="_icon"/>Contact
                             </button>
                         </div>                 
                     </li>
