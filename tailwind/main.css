@@ -23,15 +23,15 @@
 ._page-content {
     @apply flex flex-col items-center pt-[150px] md:pt-[170px];
     ._list-item-container{
-        @apply h-[calc(100vh-(145px+40px))] md:h-[calc(100vh-(170px+50px))] xl:h-[calc(100vh-(170px+60px))] w-[95vw] md:w-[80vw];
+        @apply h-[calc(100vh-(145px+30px))] md:h-[calc(100vh-(170px+50px))] xl:h-[calc(100vh-(170px+60px))] w-[95vw] md:w-[80vw];
         ._list-item{
             @apply grid grid-cols-1 md:grid-cols-5;
             ._img-festive {
                 @apply w-[90%] mt-[40px] md:mt-0 pb-[40px] md:pb-[50px];
             }
-            /* ._buttonbar{
-                @apply flex flex-col items-center md:flex-row md:align-middle justify-evenly w-[90%] pb-[40px] md:pb-[50px];
-            }         */
+            ._sub-list-item-cols-10{
+                @apply text-[1em] md:text-[1.6em] font-medium p-2 grid grid-cols-10 cursor-pointer rounded-lg shadow-lg mt-[12px] bg-gradient-to-b from-[#dadde5] to-[#FFFFFF88];
+            }
         }
     }
 }

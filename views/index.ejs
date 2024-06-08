@@ -15,15 +15,18 @@
             <div class="_page-content">
                 <ul class="_list-item-container">
                     <li class="_list-item">
-                        <div class="col-span-3 p-1">
-                            <ul class="h-fit md:h-[calc(100vh-(170px+80px))] xl:h-[calc(100vh-(170px+90px))]">
-                                <li class="text-[1em] md:text-[1.6em] font-medium p-2 grid grid-cols-10 bg-white"><div class="col-span-2"><img src="/img/stranger.webp" width="75%" class="mx-auto"></div><div class="col-span-8 px-2"><span id="interval">Hey it's your first time! Welcome!</span></div></li>    
-                                <li class="text-[1em] md:text-[1.6em] font-medium p-2 grid grid-cols-10 cursor-pointer rounded-lg shadow-lg mt-[5px] bg-gradient-to-b from-[#dadde5] to-[#FFFFFF88]"><div class="col-span-2 my-auto"><img src="/img/start.webp" width="75%" class="mx-auto"></div><div class="col-span-8 px-2">There where 12 new rankings in your absence</div></li>
-                                <li class="text-[1em] md:text-[1.6em] font-medium p-2 grid grid-cols-10 cursor-pointer rounded-lg shadow-lg mt-[5px] bg-gradient-to-b from-[#dadde5] to-[#FFFFFF88]"><div class="col-span-2 my-auto"><img src="/img/start.webp" width="75%" class="mx-auto"></div><div class="col-span-8 px-2">Your highest ranking is still 277. You should get to work</div></li>
-                                <li class="text-[1em] md:text-[1.6em] font-medium p-2 grid grid-cols-10 cursor-pointer rounded-lg shadow-lg mt-[5px] bg-gradient-to-b from-[#dadde5] to-[#FFFFFF88]"><div class="col-span-2 my-auto"><img src="/img/start.webp" width="75%" class="mx-auto"></div><div class="col-span-8 px-2">New feature in the Math Thingy App, be sure to check it out</div></li>                            
+                        <div class="col-span-2 md:hidden">
+                            <img src="/img/festive.webp" width="90vw" class="_img-festive mx-auto"/>
+                        </div>                        
+                        <div class="col-span-3 p-1 pb-[30px] md:pb-0">                            
+                            <ul class="h-fit p-2 md:p-0 md:h-[calc(100vh-(170px+80px))] xl:h-[calc(100vh-(170px+90px))]">
+                                <li class="text-[1em] md:text-[1.6em] font-medium p-2 grid grid-cols-10 bg-white"><div class="col-span-2"><img src="/img/smiley-listen-up.png" width="90%" class="mx-auto"></div><div class="col-span-8 px-2"><span id="interval">Hey it's your first time! Welcome!</span></div></li>    
+                                <li class="_sub-list-item-cols-10"><div class="col-span-2 my-auto"><img src="/img/start.webp" width="75%" class="mx-auto"></div><div class="col-span-8 px-2">There where 12 new rankings in your absence</div></li>
+                                <li class="_sub-list-item-cols-10"><div class="col-span-2 my-auto"><img src="/img/start.webp" width="75%" class="mx-auto"></div><div class="col-span-8 px-2">Your highest ranking is still 277. You should get to work</div></li>
+                                <li class="_sub-list-item-cols-10"><div class="col-span-2 my-auto"><img src="/img/start.webp" width="75%" class="mx-auto"></div><div class="col-span-8 px-2">New feature in the Math Thingy App, be sure to check it out</div></li>                            
                             </ul>
                         </div>
-                        <div class="col-span-2">
+                        <div class="col-span-2 max-md:hidden">
                             <img src="/img/festive.webp" width="100vw" class="_img-festive ml-auto"/>
                         </div>
                         <!-- <div class="_buttonbar">
@@ -43,16 +46,12 @@
         </div> 
         <%- include('./partials/footer.ejs') %>
         <script type="module">
-            import { Epoch } from '/class/Epoch.js'
+            import { getElapsedTimeAsString } from '/lib/epoch.js'
+
 
             //let ejsEpoch = "<%= epoch %>"
-            if(localStorage.getItem("visit")===''||localStorage.getItem("visit")===null){
-                document.getElementById("interval").innerHTML = "Hey it's your first time! Welcome!"                
-            } else {    
-                const epoch = new Epoch(+localStorage.getItem("visit"))
-                document.getElementById("interval").innerHTML = `Hey stranger! Your last visit was ${epoch.getElapsedTimeAsString()} ago...here's what happened`
-            }
-            localStorage.setItem("visit", Date.now())
+            document.getElementById("interval").innerHTML = getElapsedTimeAsString(+localStorage.getItem("visit"))
+            if(performance.navigation.type!==1)localStorage.setItem("visit", Date.now())
 
         </script>
     </body>
