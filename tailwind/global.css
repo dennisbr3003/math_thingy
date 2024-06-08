@@ -17,7 +17,7 @@
 }
 
 body{
-     @apply bg-[#60A5FA] relative w-[100vw] h-[100vh] bg-cover bg-center bg-[url('/img/math-15.webp')] -z-10;
+     @apply bg-[white] relative w-[100vw] h-[100vh] bg-cover bg-center bg-[url('/img/math-15.webp')] -z-10;
 }
 
 ul{
