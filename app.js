@@ -1,8 +1,8 @@
 const express = require('express')
 const path = require('path') 
-const Log = require('./objects/Log')
-const PageData = require('./objects/PageData')
-// oldes logfile: 20240522.log
+const Log = require('./classes/Log')
+const PageData = require('./classes/PageData')
+// oldest logfile: 20240522.log
 require('dotenv').config()
 
 const app = express()

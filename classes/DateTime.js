@@ -87,7 +87,10 @@ class DateTime {
         return String(getDate())    
     
     }
-
+    
+    getEpoch(){
+        return Date.now()
+    }
 }
 
 module.exports = DateTime
