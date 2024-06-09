@@ -1,8 +1,24 @@
-// Hey stranger! Your last visit was ${getElapsedTimeAsString(+localStorage.getItem("visit"))} ago...here's what happened
 
-const getElapsedTimeAsString = (lastvisit) => {
-    if(lastvisit===''||lastvisit===null) return 'Hey it\'s your first time! Welcome!'  
-    return `Hey stranger! Your last visit was ${getElapsedTime(+lastvisit)} ago. Here's what happened after your last visit...` 
+const getElapsedTimeAsString = (navtype) => {
+    
+    /*
+        navtypes: 
+        0 navigate     lick click, entering of a URL, form submission, ...
+        1 reload       reload click or location.reload()
+        2 back_forward back/forward click or calling history.back()/history.forward()
+        3 prerender    navigation initiated by a prerender hint
+    */
+
+    let lastvisit = +localStorage.getItem("visit")
+    if(lastvisit===null)lastvisit=0
+
+    if(navtype===0){
+        localStorage.setItem("visit", Date.now())    
+        localStorage.setItem("prevvisit", lastvisit)
+    }    
+
+    if(lastvisit===''||lastvisit===null) return 'Hey it\'s your first time! Check out what\'s been going on below!'  
+    return `Hey stranger! Your last visit was ${getElapsedTime(+localStorage.getItem('prevvisit'))} ago. Check what happened since your last visit...` 
 }
 
 const getElapsedTime = (lastvisit) => {    

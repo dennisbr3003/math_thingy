@@ -44,3 +44,7 @@
         @apply flex flex-col items-center justify-center h-full text-gray-400;
     }
 }
+
+.text-balloon{
+    @apply bg-[url('/img/textballoon6.png')] md:bg-[url('/img/textballoon5.png')] bg-center bg-no-repeat;
+}
