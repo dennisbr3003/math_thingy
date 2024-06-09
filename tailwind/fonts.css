@@ -1,0 +1,130 @@
+/* cartoon smiley text */
+.shadows-into-light-regular {
+    font-family: "Shadows Into Light", cursive;
+    /* font-weight: 400; */
+    font-style: normal;
+}
+
+/* 404 smiley in distress */
+.permanent-marker-regular {
+    font-family: "Permanent Marker", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.indie-flower-regular {
+    font-family: "Indie Flower", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.luckiest-guy-regular {
+    font-family: "Luckiest Guy", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+.special-elite-regular {
+    font-family: "Special Elite", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.combo-regular {
+    font-family: "Combo", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}  
+
+.grechen-fuemen-regular {
+    font-family: "Grechen Fuemen", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.chela-one-regular {
+    font-family: "Chela One", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.lacquer-regular {
+    font-family: "Lacquer", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}    
+
+.kablammo-dennimob {
+  font-family: "Kablammo", system-ui;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "MORF" 0;
+}
+
+.nosifer-regular {
+    font-family: "Nosifer", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.frijole-regular {
+    font-family: "Frijole", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+.unkempt-regular {
+    font-family: "Unkempt", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+.unkempt-bold {
+    font-family: "Unkempt", cursive;
+    font-weight: 700;
+    font-style: normal;
+}  
+  
+.atma-light {
+    font-family: "Atma", system-ui;
+    font-weight: 300;
+    font-style: normal;
+}
+  
+.atma-regular {
+    font-family: "Atma", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+.atma-medium {
+    font-family: "Atma", system-ui;
+    font-weight: 500;
+    font-style: normal;
+}
+  
+.atma-semibold {
+    font-family: "Atma", system-ui;
+    font-weight: 600;
+    font-style: normal;
+}
+  
+.atma-bold {
+    font-family: "Atma", system-ui;
+    font-weight: 700;
+    font-style: normal;
+}
+  
+.oregano-regular {
+    font-family: "Oregano", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+ 
+.oregano-regular-italic {
+    font-family: "Oregano", cursive;
+    font-weight: 400;
+    font-style: italic;
+}
+  

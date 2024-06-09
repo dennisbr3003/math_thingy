@@ -47,3 +47,4 @@ button{
 ._fonttext {
     @apply text-[12pt] md:text-[20pt] font-semibold text-white;
 }
+    
