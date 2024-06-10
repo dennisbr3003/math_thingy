@@ -5,6 +5,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'sans': ['Helvetica', 'Arial', 'sans-serif'],
+        'Atma-Medium': ['Atma-Medium', 'system-ui']
+      }
     },
   },
   plugins: [],
