@@ -4,6 +4,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* https://blog.logrocket.com/how-to-use-custom-fonts-tailwind-css */
+
+@font-face {
+    font-family: 'Atma-Medium';
+    src: url("/fonts/Atma-Medium.ttf");
+}
+
 /* https://dev.to/derick1530/how-to-create-scrollable-element-in-tailwind-without-a-scrollbar-4mbd */
 
 @layer utilities {
