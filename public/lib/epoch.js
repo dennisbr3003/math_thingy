@@ -1,5 +1,5 @@
 
-const getElapsedTimeAsString = (navtype) => {
+const getElapsedTimeAsString = (navtype, textfirst, textcalculated) => {
     
     /*
         navtypes: 
@@ -17,8 +17,10 @@ const getElapsedTimeAsString = (navtype) => {
         localStorage.setItem("prevvisit", lastvisit)
     }    
 
-    if(lastvisit===''||lastvisit===null) return 'Hey it\'s your first time! Check out what\'s been going on below!'  
-    return `Hey stranger! Your last visit was ${getElapsedTime(+localStorage.getItem('prevvisit'))} ago. Check what happened since your last visit...` 
+    if(lastvisit===''||lastvisit===null) return textfirst
+    return textcalculated.replace('{param1}', getElapsedTime(+localStorage.getItem('prevvisit')))  
+    //if(lastvisit===''||lastvisit===null) return 'Hey it\'s your first time! Check out what\'s been going on below!'  
+    //return `Hey stranger! Your last visit was ${getElapsedTime(+localStorage.getItem('prevvisit'))} ago. Check what happened since your last visit...` 
 }
 
 const getElapsedTime = (lastvisit) => {    
