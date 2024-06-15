@@ -1,14 +1,23 @@
 <html lang="en">
     <%- include('./partials/header.ejs') %>
     <body>   
-        <div class="_fonttext pt-[25px] text-center pl-2 pr-2">Hmmm... looks like you managed to break something here.</div>
-        <!-- https://www.pngegg.com/en/png-fmcme -->
-        <img src="/img/smiley-fear.png" width="125px" class="mx-auto"/>
-        <div class="fixed bottom-10 left-0 right-0 text-center">
-            <div class="_fonttext mt-3">Maybe we should go home and try something else?</div>
-            <button onclick="window.location.href='/'" class="_fontbutton mt-[30px] w-[60%] md:w-[30%] xl:w-[15%] mx-auto">
-                <img src="/img/icons/home.svg" width="40px" class="_icon mt-1"/>HOME
-            </button>
+        <div class="md:hidden _error-gradient">
+            <div class="grid grid-cols-12 pt-4">
+                <img src="/img/smiley-omg.webp" width="90%" class="m-auto col-span-6 col-start-4 ">
+            </div>
+            <div class="text-center px-2 font-PermanentMarker-Regular text-[1.5em] !text-gray-500"><%= errortext %></div>
+        </div>
+        <div class="max-md:hidden flex flex-row items-center justify-center _error-gradient pt-4">
+            <img src="/img/smiley-omg.webp" width="20%">
+            <div class="font-PermanentMarker-Regular text-[2.5em] text-center !text-gray-600 max-w-[45%]"><%= errortext %></div>
+        </div> 
+        <div class="fixed bottom-5 left-0 right-0 text-center">
+            <a href="/">
+                <div class="hover:scale-110 w-fit mx-auto">
+                    <img src="/img/home.webp" width="125px" class="mx-auto"/>
+                    <div class="text-center font-Atma-Medium md:text-[14pt]"><%= hometext %></div>
+                </div>
+            </a>
         </div>        
     </body>
 </html>
