@@ -42,13 +42,10 @@
         <%- include('./partials/footer.ejs') %>
         
         <script type="module">
+
             import { getElapsedTimeAsString } from '/lib/epoch.js'
 
-            getElapsedTimeAsString(performance.navigation.type)
-
-            // getting a var value from EJS data. Mind the quotes
-            //let ejsEpoch = "<%= epoch %>"
-            document.getElementById("interval").innerHTML = getElapsedTimeAsString(+localStorage.getItem("visit"))
+            document.getElementById("interval").innerHTML = getElapsedTimeAsString(performance.navigation.type, "<%= firsttime %>", "<%= lastvisit %>")
             if(performance.navigation.type!==1)localStorage.setItem("visit", Date.now())
 
         </script>
