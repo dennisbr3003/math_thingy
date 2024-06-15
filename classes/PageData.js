@@ -16,6 +16,8 @@ class PageData {
                 break;
             case 'error':
                 // do nothing for now
+                this.data.errortext = 'Oh no!! You totally broke Math Thingy\'s official home page!'
+                this.data.hometext = 'Click here to get a fresh start!'
                 break;
         }
         // always do this

@@ -8,8 +8,19 @@
 
 @font-face {
     font-family: 'Atma-Medium';
-    src: url("/fonts/Atma-Medium.ttf");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+    src: url("/fonts/Atma-Medium.ttf") format('truetype')
 }
+
+@font-face {
+    font-family: 'PermanentMarker-Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/PermanentMarker-Regular.ttf') format('truetype')
+} 
 
 /* https://dev.to/derick1530/how-to-create-scrollable-element-in-tailwind-without-a-scrollbar-4mbd */
 

@@ -4,6 +4,6 @@ body{
     @apply bg-white relative w-[100vw] h-[100vh] bg-cover bg-center bg-[url('/img/404.webp')] xl:bg-[url('/img/404-xl.webp')] -z-10;
 }
 
-._fonttext {
-    @apply text-[15pt] md:text-[30pt] xl:text-[35pt] font-semibold text-gray-800;
+._error-gradient{
+    @apply bg-gradient-to-b from-[#b3797980] to-[#FFFFFF00];
 }
