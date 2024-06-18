@@ -1,0 +1,28 @@
+{
+    "greeting": "Hello, World!",
+    "welcome": "Welcome to our website.",
+    "and": "en",
+    "index": {
+        "firstVisit": "Hey, it's your first time seeing you here! Welcome! Check out what's been happening below!",
+        "subsequentVisit": "Hey stranger! Your last visit was {param1} ago. Check what happened since your last visit..."
+    },
+    "error" : {
+        "panic": "Oh no!! You totally broke Math Thingy's official home page!",
+        "freshStart": "Click here to get a fresh start!"
+    },
+    "metrics": {
+        "day": "day",
+        "days": "days",
+        "hour": "hour",
+        "hours": "hours",
+        "minute": "minute",
+        "minutes": "minutes",
+        "second": "second",
+        "seconds": "seconds"
+    },      
+    "footer": {
+        "copyright": "Copyright", 
+        "generated": "Generated"
+    }    
+}
+  

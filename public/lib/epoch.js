@@ -1,6 +1,6 @@
 
-const getElapsedTimeAsString = (navtype, textfirst, textcalculated) => {
-    
+class Epoch {
+
     /*
         navtypes: 
         0 navigate     lick click, entering of a URL, form submission, ...
@@ -9,61 +9,70 @@ const getElapsedTimeAsString = (navtype, textfirst, textcalculated) => {
         3 prerender    navigation initiated by a prerender hint
     */
 
-    let lastvisit = +localStorage.getItem("visit")
-    if(lastvisit===null)lastvisit=0
 
-    if(navtype===0){
-        localStorage.setItem("visit", Date.now())    
-        localStorage.setItem("prevvisit", lastvisit)
+    constructor(navtype, translations){
+        this.navtype = navtype
+        this.translations = translations
+    }
+
+    getElapsedTimeAsString(){
+
+        let lastvisit = +localStorage.getItem("visit")
+        if(lastvisit===null)lastvisit=0
+    
+        if(this.navtype===0){
+            localStorage.setItem("visit", Date.now())    
+            localStorage.setItem("prevvisit", lastvisit)
+        }    
+    
+        if(lastvisit===''||lastvisit===null) return this.translations.firstVisit
+        return this.translations.subsequentVisit.replace('{param1}', this.#getElapsedTime(+localStorage.getItem('prevvisit')))  
+
+    }
+    
+    #getElapsedTime (lastvisit) {    
+    
+        let milliesElapsed=Date.now() - +lastvisit
+        let seconds, minutes, hours, days, remaining
+    
+        remaining = milliesElapsed    
+        days = Math.floor(remaining / (1000 * 60 * 60 * 24))
+        if(days!==0)remaining = remaining - (days * (1000 * 60 * 60 * 24))
+    
+        hours = Math.floor(remaining / (1000 * 60 * 60))
+        if(hours!==0)remaining = remaining - (hours * (1000 * 60 * 60))
+    
+        minutes = Math.floor(remaining / (1000 * 60))
+        if(minutes!==0)remaining = remaining - (minutes * (1000 * 60))
+    
+        seconds = Math.floor(remaining / (1000))
+        if(seconds!==0)remaining = remaining - (seconds * 1000)
+    
+        if(days!==0) return `${days} ${this.#getTagDay(days)}, ${hours} ${this.#getTagHour(hours)}, ${minutes} ${this.#getTagMinutes(minutes)} ${this.translations.and} ${seconds} ${this.#getTagSeconds(seconds)}`
+        if(days===0&&hours!==0) return `${hours} ${this.#getTagHour(hours)}, ${minutes} ${this.#getTagMinutes(minutes)} ${this.translations.and} ${seconds} ${this.#getTagSeconds(seconds)}`
+        if(days===0&&hours===0&&minutes!==0) return `${minutes} ${this.#getTagMinutes(minutes)} ${this.translations.and} ${seconds} ${this.#getTagSeconds(seconds)}`
+        if(days===0&&hours===0&&minutes===0) return `${seconds} ${this.#getTagSeconds(seconds)}`
+        return ''
+    }    
+    
+    #getTagDay = (val) => {
+        return val!==1?this.translations.days:this.translations.day
+    }
+    
+    #getTagHour = (val) => {
+        return val!==1?this.translations.hours:this.translations.hour
+    }
+    
+    #getTagMinutes = (val) => {
+        return val!==1?this.translations.minutes:this.translations.minute
+    }
+    
+    #getTagSeconds = (val) => {
+        return val!==1?this.translations.seconds:this.translations.second
     }    
 
-    if(lastvisit===''||lastvisit===null) return textfirst
-    return textcalculated.replace('{param1}', getElapsedTime(+localStorage.getItem('prevvisit')))  
-    //if(lastvisit===''||lastvisit===null) return 'Hey it\'s your first time! Check out what\'s been going on below!'  
-    //return `Hey stranger! Your last visit was ${getElapsedTime(+localStorage.getItem('prevvisit'))} ago. Check what happened since your last visit...` 
-}
-
-const getElapsedTime = (lastvisit) => {    
-
-    let milliesElapsed=Date.now() - +lastvisit
-    let seconds, minutes, hours, days, remaining
-
-    remaining = milliesElapsed    
-    days = Math.floor(remaining / (1000 * 60 * 60 * 24))
-    if(days!==0)remaining = remaining - (days * (1000 * 60 * 60 * 24))
-
-    hours = Math.floor(remaining / (1000 * 60 * 60))
-    if(hours!==0)remaining = remaining - (hours * (1000 * 60 * 60))
-
-    minutes = Math.floor(remaining / (1000 * 60))
-    if(minutes!==0)remaining = remaining - (minutes * (1000 * 60))
-
-    seconds = Math.floor(remaining / (1000))
-    if(seconds!==0)remaining = remaining - (seconds * 1000)
-
-    if(days!==0) return `${days} ${getTagDay(days)}, ${hours} ${getTagHour(hours)}, ${minutes} ${getTagMinutes(minutes)} and ${seconds} ${getTagSeconds(seconds)}`
-    if(days===0&&hours!==0) return `${hours} ${getTagHour(hours)}, ${minutes} ${getTagMinutes(minutes)} and ${seconds} ${getTagSeconds(seconds)}`
-    if(days===0&&hours===0&&minutes!==0) return `${minutes} ${getTagMinutes(minutes)} and ${seconds} ${getTagSeconds(seconds)}`
-    if(days===0&&hours===0&&minutes===0) return `${seconds} ${getTagSeconds(seconds)}`
-    return ''
-}    
-
-const getTagDay = (val) => {
-    return val!==1?'days':'day'
-}
-
-const getTagHour = (val) => {
-    return val!==1?'hours':'hour'
-}
-
-const getTagMinutes = (val) => {
-    return val!==1?'minutes':'minute'
-}
-
-const getTagSeconds = (val) => {
-    return val!==1?'seconds':'second'
 }
 
 //https://javascript.info/import-export
 
-export { getElapsedTimeAsString }
+export { Epoch }
