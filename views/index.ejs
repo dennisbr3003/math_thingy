@@ -26,7 +26,7 @@
                                         <div id="interval" class="_text-balloon-text"></div>
                                     </div>
                                 </li>    
-                                <li class="_sub-list-item-cols-10"><div class="col-span-2 my-auto"><img src="/img/start.webp" width="75%" class="mx-auto"></div><div class="col-span-8 px-2 text-[12pt] md:text-[16pt]">There where 12 new rankings in your absence</div></li>
+                                <li class="_sub-list-item-cols-10"><div class="col-span-2 my-auto"><img src="/img/start.webp" width="75%" class="mx-auto"></div><div class="col-span-8 px-2 text-[12pt] md:text-[16pt]"><%= t('welcome') %></div></li>
                                 <li class="_sub-list-item-cols-10"><div class="col-span-2 my-auto"><img src="/img/start.webp" width="75%" class="mx-auto"></div><div class="col-span-8 px-2 text-[12pt] md:text-[16pt]">Your highest ranking is still 277. You should get to work</div></li>
                                 <li class="_sub-list-item-cols-10"><div class="col-span-2 my-auto"><img src="/img/start.webp" width="75%" class="mx-auto"></div><div class="col-span-8 px-2 text-[12pt] md:text-[16pt]">New feature in the Math Thingy App, be sure to check it out</div></li>                            
                             </ul>
@@ -43,9 +43,17 @@
         
         <script type="module">
 
-            import { getElapsedTimeAsString } from '/lib/epoch.js'
-
-            document.getElementById("interval").innerHTML = getElapsedTimeAsString(performance.navigation.type, "<%= firsttime %>", "<%= lastvisit %>")
+            import { Epoch } from '/lib/epoch.js'
+            // https://stackoverflow.com/questions/70809817/how-to-handle-passed-ejs-variable-as-a-string
+            // In order to pass an EJS data object to a JS file we need to make a copy. The object cannot be
+            // passed directly. It will be become 'undefined'
+            // Mind the single quotes with the JSON parse function!! Failure do to so will result in 
+            // SyntaxError: missing ) after argument list in C:\DennisB\math_thingy\views\index.ejs while compiling ejs
+            // If the above error is not helpful, you may want to try EJS-Lint:
+            // https://github.com/RyanZim/EJS-Lint
+            // Or, if you meant to create an async function, pass `async: true` as an option.
+            const epoch = new Epoch(performance.navigation.type, JSON.parse('<%-JSON.stringify(translations)%>'))
+            document.getElementById("interval").innerHTML = epoch.getElapsedTimeAsString()
             if(performance.navigation.type!==1)localStorage.setItem("visit", Date.now())
 
         </script>

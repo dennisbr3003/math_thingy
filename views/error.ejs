@@ -5,17 +5,17 @@
             <div class="grid grid-cols-12 pt-4">
                 <img src="/img/smiley-omg.webp" width="90%" class="m-auto col-span-6 col-start-4 ">
             </div>
-            <div class="text-center px-2 font-PermanentMarker-Regular text-[1.5em] !text-gray-500"><%= errortext %></div>
+            <div class="text-center px-2 font-PermanentMarker-Regular text-[1.5em] !text-gray-500"><%= t('error.panic') %></div>
         </div>
         <div class="max-md:hidden flex flex-row items-center justify-center _error-gradient pt-4">
             <img src="/img/smiley-omg.webp" width="20%">
-            <div class="font-PermanentMarker-Regular text-[2.5em] text-center !text-gray-600 max-w-[45%]"><%= errortext %></div>
+            <div class="font-PermanentMarker-Regular text-[2.5em] text-center !text-gray-600 max-w-[45%]"><%= t('error.panic') %></div>
         </div> 
         <div class="fixed bottom-5 left-0 right-0 text-center">
             <a href="/">
                 <div class="hover:scale-110 w-fit mx-auto">
                     <img src="/img/home.webp" width="125px" class="mx-auto"/>
-                    <div class="text-center font-Atma-Medium md:text-[14pt]"><%= hometext %></div>
+                    <div class="text-center font-Atma-Medium md:text-[14pt]"><%= t('error.freshStart') %></div>
                 </div>
             </a>
         </div>        
