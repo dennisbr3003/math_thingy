@@ -6,22 +6,29 @@
 
 /* https://blog.logrocket.com/how-to-use-custom-fonts-tailwind-css */
 
-@font-face {
-    font-family: 'Atma-Medium';
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-    src: url("/fonts/Atma-Medium.ttf") format('truetype')
+@layer base {
+    @font-face {
+        font-family: 'Atma-Regular';
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+        src: url("/fonts/Atma-Regular.ttf") format('truetype')
+    }    
+    @font-face {
+        font-family: 'Atma-Medium';
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+        src: url("/fonts/Atma-Medium.ttf") format('truetype')
+    }
+    @font-face {
+        font-family: 'PermanentMarker-Regular';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('/fonts/PermanentMarker-Regular.ttf') format('truetype')
+    } 
 }
-
-@font-face {
-    font-family: 'PermanentMarker-Regular';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url('/fonts/PermanentMarker-Regular.ttf') format('truetype')
-} 
-
 /* https://dev.to/derick1530/how-to-create-scrollable-element-in-tailwind-without-a-scrollbar-4mbd */
 
 @layer utilities {
@@ -42,14 +49,6 @@ ul{
     @apply list-none p-0 m-0 overflow-y-auto no-scrollbar; 
 }
 
-button{
-    /* @apply bg-[#60A5FA00] rounded-md m-1 w-[70%] md:w-[30%] border-b-4 border-transparent hover:scale-105 hover:border-[#0039a6]; */
-    @apply  bg-[#60A5FA88] active:bg-[#60A5FA] active:scale-90
-             rounded-xl p-1 pb-2
-             flex flex-row items-center justify-center
-             xl:hover:scale-105;    
-}
-/*  h-[40px] md:h-[60px] xl:h-[80px]  */
 ._img {
     @apply w-[96%] md:w-[60%] h-full fixed top-0 ml-[2%] md:ml-[20%] mr-[2%] md:mr-[20%] -z-10 blur-sm;
 }

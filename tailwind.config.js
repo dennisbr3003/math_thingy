@@ -8,6 +8,7 @@ module.exports = {
       fontFamily: {
         'sans': ['Helvetica', 'Arial', 'sans-serif'],
         'Atma-Medium': ['Atma-Medium', 'system-ui'],
+        'Atma-Regular': ['Atma-Regular', 'system-ui'],
         'PermanentMarker-Regular' : ['PermanentMarker-Regular', 'cursive']
       }
     },

@@ -51,3 +51,62 @@
         @apply font-Atma-Medium font-normal text-center text-[14pt] md:text-[18pt] pl-[30px] pt-[10px] pb-[10px] pr-[5px] md:pl-[60px] md:pr-[30px] md:pt-[20px] md:pb-[20px];
     }
 }
+
+.wrapper{
+    @apply bottom-[60px] md:bottom-[70px] xl:bottom-[80px]
+           fixed max-w-[345px] w-[100%] bg-blue-300 rounded-lg p-[20px]
+           max-md:bottom-[-600px] max-md:transition-[bottom] max-md:duration-700 max-md:ease-in max-md:right-[calc((100%-345px)/2)]
+           md:right-[-375px] md:transition-[right] md:duration-500 md:ease-in;
+}
+.wrapper.show {
+    @apply right-[calc((100%-345px)/2)] max-md:bottom-[70px] md:right-[20px] 
+}
+.wrapper header{
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+}
+header i {
+    color: #4070f4;
+    font-size: 32px;
+}
+header h2 {
+    color: #4070f4;
+    font-size: 28px;
+    font-weight: 700;
+}
+.wrapper .data {
+    margin-top: 16px;
+}
+.wrapper .data p {
+    color: #333;
+    font-size: 16px;
+}
+.data p a {
+    color:#4070f4;
+    text-decoration: none;
+}
+.data p a:hover {
+    color:#4070f4;
+    text-decoration: underline;
+}
+.wrapper .buttons {
+    margin-top: 16px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.buttons .button {
+    border: none;
+    background-color: #4070f4;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 8px 0;
+    color:white;
+    width: calc(100% / 2 - 10px);
+    transition: all 0.3s ease;
+}
+.buttons .button:hover {
+    background-color: #034bf1;
+}

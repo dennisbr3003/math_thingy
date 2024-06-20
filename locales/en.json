@@ -23,6 +23,13 @@
     "footer": {
         "copyright": "Copyright", 
         "generated": "Generated"
+    },
+    "cookies": {
+        "title": "Yay! Cookies!",
+        "text": "Life is better with cookies. Most people would agree cookies make life better. For us, they help us improve your browse experience on this site. But if you don't like cookies, that's cool - you can opt out if you wish.",
+        "readmore": "Read more...",
+        "accept": "I ❤️ cookies",
+        "decline": "Opt out"
     }    
 }
   
