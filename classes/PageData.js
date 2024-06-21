@@ -10,7 +10,7 @@ class PageData {
     }
 
     getPageData(page, lang){
-        console.log(page, lang)
+        console.log(page, lang)        
         switch(page){
             case 'main':
                 this.data.year = this.datetime.getYear()

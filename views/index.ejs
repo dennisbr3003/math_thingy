@@ -79,7 +79,7 @@
                     button.addEventListener('click', () => {
                         cookieBox.classList.remove('show')
                         if(button.id==='acceptButton'){
-                            document.cookie = 'mt_cookies_allowed=true; max-age=' +30 * 24 * 60 * 60 +'; Secure; SameSite=Strict'
+                            document.cookie = 'mt_cookies_allowed=true; max-age=' +30 * 24 * 60 * 60 +'; Secure; SameSite=Strict; HttpOnly'
                         } // anders in localstorage aangeven dat er geen cookies mogen (ook met een max-age)
                     })
 
