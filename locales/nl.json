@@ -23,6 +23,13 @@
     "footer": {
         "copyright": "Rechten voorbehouden", 
         "generated": "Gegenereerd"
-    }
+    },
+    "cookies": {
+        "title": "Woehoe, cookies!",
+        "text": "Het leven is beter met cookies. De meeste mensen zullen het ermee eens zijn dat cookies het leven beter maken. Voor ons helpen ze om je surfervaring op deze site te verbeteren. Maar als je niet van cookies houdt, is dat prima - je kunt je afmelden als je dat wilt.",
+        "readmore": "Lees meer...",
+        "accept": "Cookies 👍",
+        "decline": "Ik meld me af"        
+    }    
 }
   

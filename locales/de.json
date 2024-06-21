@@ -23,6 +23,13 @@
     "footer": {
         "copyright": "Droit d'auteur", 
         "generated": "Généré"
+    },
+    "cookies": {
+        "title": "Juhu! Cookies!",
+        "text": "Das Leben ist besser mit Cookies. Die meisten Menschen würden zustimmen, dass Cookies das Leben besser machen. Für uns helfen sie, dein Surferlebnis auf dieser Website zu verbessern. Aber wenn du keine Cookies magst, ist das kein Problem - du kannst sie abschalten, wenn du willst.",
+        "readmore": "Lies weiter...",
+        "accept": "Cookies 👍",
+        "decline": "Lieber nicht"        
     }        
 }
   

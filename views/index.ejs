@@ -1,6 +1,6 @@
 <html lang="en">
     <%- include('./partials/header.ejs') %>
-    <body>   
+    <body>           
         <div>
             <div class="_toolbar">
                 <div class="_image-container">
@@ -12,7 +12,7 @@
                     </div> 
                 </div>    
             </div>              
-            <div class="_page-content">
+            <div class="_page-content">                      
                 <ul class="_list-item-container">
                     <li class="_list-item">
                         <div class="col-span-2 md:hidden">
@@ -35,10 +35,22 @@
                             <img src="/img/festive.webp" width="100vw" class="_img-festive ml-auto"/>
                         </div>
                     </li>
-                </ul>      
+                </ul>                     
             </div>
+            <div class="wrapper">
+                <header>
+                    <img src="/img/icons/cookie1.svg" width="40px">
+                    <h2 class="font-PermanentMarker-Regular"><%= t('cookies.title') %></h2>
+                </header>                    
+                <div class="data">
+                    <p class="font-Atma-Regular !text-[13pt]"><%= t('cookies.text') %><a href="/" class="ml-2"><%= t('cookies.readmore') %></a></p>
+                </div>
+                <div class="buttons">
+                    <button class="button font-Atma-Regular !text-[14pt]" id="acceptButton"><%= t('cookies.accept') %></button>
+                    <button class="button font-Atma-Regular !text-[14pt]" id="declineButton"><%= t('cookies.decline') %></button>
+                </div>
+            </div>       
         </div> 
-
         <%- include('./partials/footer.ejs') %>
         
         <script type="module">
@@ -55,6 +67,26 @@
             const epoch = new Epoch(performance.navigation.type, JSON.parse('<%-JSON.stringify(translations)%>'))
             document.getElementById("interval").innerHTML = epoch.getElapsedTimeAsString()
             if(performance.navigation.type!==1)localStorage.setItem("visit", Date.now())
+
+
+            const cookieBox = document.querySelector('.wrapper'),
+                  buttons = document.querySelectorAll('.button')
+
+            const executeCodes = () => {
+                if(document.cookie.includes('mt_cookies_allowed')) return
+                cookieBox.classList.add('show')
+                buttons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        cookieBox.classList.remove('show')
+                        if(button.id==='acceptButton'){
+                            document.cookie = 'mt_cookies_allowed=true; max-age=' +30 * 24 * 60 * 60 +'; Secure; SameSite=Strict; HttpOnly'
+                        } // anders in localstorage aangeven dat er geen cookies mogen (ook met een max-age)
+                    })
+
+                })
+            }
+
+            window.addEventListener('load', executeCodes)      
 
         </script>
 
