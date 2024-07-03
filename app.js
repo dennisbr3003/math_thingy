@@ -61,6 +61,7 @@ app.get('/', async (req, res) => {
 
 app.get('/switch/:lang', (req, res) => {
     const { lang } = req.params;
+    console.log(lang)
     //res.cookie('lang', lang); // save language cookie 
     res.redirect('back'); // Redirect back to the previous page
   });

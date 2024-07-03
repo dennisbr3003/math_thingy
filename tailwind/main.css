@@ -5,17 +5,18 @@
 }
 
 ._toolbar{
-    @apply w-full h-[150px] md:h-[170px] fixed;
-    ._image-container{
-        @apply w-[70vw] md:w-[20vw] h-[100%] mx-auto;
-        ._image-background{
-            @apply h-full w-full bg-[url('/img/circle-gradient.webp')];
-            ._book{
-                @apply w-[100%] mx-auto;
-            }
-            ._subtitle{
-                @apply text-gray-400 text-center font-bold text-[24pt] md:text-[32pt] mt-[-15px] md:mt-[-20px];
-            }
+    @apply w-full h-[150px] md:h-[170px] fixed md:flex md:flex-row md:items-start md:justify-between md:gap-[20px];
+}
+
+._math-thingy-logo{
+    @apply w-[70vw] md:w-[20vw] h-[100%] max-md:mx-auto;
+    ._image-background{
+        @apply h-full w-full bg-[url('/img/circle-gradient.webp')];
+        ._book{
+            @apply w-[100%] mx-auto;
+        }
+        ._subtitle{
+            @apply text-gray-400 text-center font-bold text-[24pt] md:text-[32pt] mt-[-15px] md:mt-[-20px];
         }
     }
 }
@@ -62,51 +63,44 @@
     @apply right-[calc((100%-345px)/2)] max-md:bottom-[70px] md:right-[20px] 
 }
 .wrapper header{
-    display: flex;
-    align-items: center;
-    column-gap: 15px;
+    @apply flex items-center gap-[15px];
 }
+
 header i {
-    color: #4070f4;
-    font-size: 32px;
+    @apply text-[#4070f4] text-[32px];
 }
+
 header h2 {
-    color: #4070f4;
-    font-size: 28px;
-    font-weight: 700;
+    @apply text-[#4070f4] text-[28px] font-bold;
 }
+
 .wrapper .data {
-    margin-top: 16px;
+    @apply mt-4;
 }
 .wrapper .data p {
-    color: #333;
-    font-size: 16px;
+    @apply text-[#333] text-[1rem];
 }
+
 .data p a {
-    color:#4070f4;
-    text-decoration: none;
+    @apply text-[#4070f4] no-underline;
 }
+
 .data p a:hover {
-    color:#4070f4;
-    text-decoration: underline;
+    @apply text-[#4070f4] underline;
 }
+
 .wrapper .buttons {
-    margin-top: 16px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @apply mt-4 w-full flex items-center justify-between;
 }
+
 .buttons .button {
-    border: none;
-    background-color: #4070f4;
-    cursor: pointer;
-    border-radius: 8px;
-    padding: 8px 0;
-    color:white;
-    width: calc(100% / 2 - 10px);
-    transition: all 0.3s ease;
+    @apply border-none bg-[#4070f4] cursor-pointer rounded-[8px] py-2 text-white w-[calc(100%/2-10px)] transition-all duration-300 ease-in;
 }
+
 .buttons .button:hover {
-    background-color: #034bf1;
+    @apply bg-[#034bf1];
+}
+
+.languagelist.selectshow {
+    @apply opacity-100 pointer-events-auto; 
 }
