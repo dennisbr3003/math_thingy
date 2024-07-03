@@ -91,14 +91,17 @@ class Log {
         const foldercontent = await fs.promises.readdir(this.location, {withFileTypes: true})
         foldercontent.forEach(element => {
              if(element.isFile()){
-                fs.stat(`${element.path}${element.name}`, (err, stat) => {
+                fs.stat(`${element.parentPath}${element.name}`, (err, stat) => {
                     if(err){
                         console.log(err)
                     } else {
                         // check if the file is older then 30 days (in millies). If so, then delete the file
                         if((stat.mtimeMs - (new Date(stat.mtime).getTimezoneOffset() * 60 * 1000)) + 
                            (process.env.LOGLIVE * 24 * 60 * 60 * 1000) < Date.now()){
-                            fs.unlink(`${element.path}${element.name}`)
+                            fs.unlink(`${element.parentPath}${element.name}`,(err => {
+                                if(err) console.log(err.message)
+                                else console.log('deleted', `${element.parentPath}${element.name}`)
+                           }))
                         }
                     }
                 })

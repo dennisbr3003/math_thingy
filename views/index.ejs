@@ -3,7 +3,7 @@
     <body>           
         <div>
             <div class="_toolbar">
-                <div class="_image-container">
+                <div class="_math-thingy-logo mx-4">
                     <div style="background-size:100% 100%;" class="_image-background">
                         <div>
                             <img src="/img/math-book.webp" width="100vw" class="_book"/>   
@@ -11,6 +11,21 @@
                         <div class="_subtitle">THINGY</div>
                     </div> 
                 </div>    
+                <div class="flex flex-col max-md:fixed max-md:top-0 max-md:right-0">
+                    <div id='languageflag' class="languageselect mt-[10px] md:mt-[20px] mr-[10px] md:mr-[40px] cursor-pointer">
+                        <img id="abc" src="/img/flags/<%= selectedLanguage.language %>.svg" width="35" class="inline"/>
+                    </div>
+                    <div id="languagelistcontainer" class="languagelist flex flex-col min-w-max bg-white p-2 rounded-xl border-2 border-blue-500 fixed top-[50px] md:top-[60px] right-[15px] md:right-[40px] shadow-xl opacity-0 transition-[opacity] duration-300 ease-in pointer-events-none">
+                        <div class="pt-[5px]" id="test">
+                            <% languages.forEach((lng) => { %>
+                                <a href="/switch/<%= lng.language %>">
+                                <button id="<%= lng.language %>" class="languagebutton font-Atma-Regular text-[22px] w-full flex flex-row items-center gap-[10px] pl-[20px] pr-[20px] py-[5px] hover:bg-[#93C5FD88]"><img src="/img/flags/<%= lng.language %>.svg" width="35" class="inline"/> <%= lng.description %></button>                            
+                                </a>
+                            <% }) %>
+                        </div>
+                    </div>
+                </div>
+
             </div>              
             <div class="_page-content">                      
                 <ul class="_list-item-container">
@@ -68,9 +83,15 @@
             document.getElementById("interval").innerHTML = epoch.getElapsedTimeAsString()
             if(performance.navigation.type!==1)localStorage.setItem("visit", Date.now())
 
-
             const cookieBox = document.querySelector('.wrapper'),
-                  buttons = document.querySelectorAll('.button')
+                  buttons = document.querySelectorAll('.button'),
+                  languagebuttons = document.querySelectorAll('.languagebutton')
+                
+            // languagebuttons.forEach(languagebutton => {
+            //     languagebutton.addEventListener('click', () => {
+            //         window.location.href = `/switch/${languagebutton.id}` 
+            //     })
+            // })
 
             const executeCodes = () => {
                 if(document.cookie.includes('mt_cookies_allowed')) return
@@ -79,7 +100,8 @@
                     button.addEventListener('click', () => {
                         cookieBox.classList.remove('show')
                         if(button.id==='acceptButton'){
-                            document.cookie = 'mt_cookies_allowed=true; max-age=' +30 * 24 * 60 * 60 +'; Secure; SameSite=Strict; HttpOnly'
+                            document.cookie = 'mt_cookies_allowed=true; max-age=' + (30 * 24 * 60 * 60) +'; Secure; SameSite=Strict;'
+                            document.cookie = 'mt_cookies_language=' + navigator.language + '; max-age=' + (1000 * 24 * 60 * 60) + '; Secure; SameSite=Strict;'
                         } // anders in localstorage aangeven dat er geen cookies mogen (ook met een max-age)
                     })
 
@@ -87,6 +109,20 @@
             }
 
             window.addEventListener('load', executeCodes)      
+            
+            // https://jsfiddle.net/kym2rvyL/1/
+            window.addEventListener('click', function(e){
+                if (document.getElementById('languageflag').contains(e.target)){ // clicked inside the flag selector
+                    document.querySelector('.languagelist').classList.toggle('selectshow')
+                }
+                else { // clicked outside the language list and not on the flag itself
+                    if(!document.getElementById('languagelistcontainer').contains(e.target)){
+                        document.querySelector('.languagelist').classList.remove('selectshow')
+                    } else { // clicked inside the language list
+                        document.querySelector('.languagelist').classList.toggle('selectshow')
+                    }
+                }
+            })  
 
         </script>
 
