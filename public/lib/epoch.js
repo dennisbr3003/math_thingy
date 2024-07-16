@@ -1,17 +1,8 @@
 
 class Epoch {
 
-    /*
-        navtypes: 
-        0 navigate     lick click, entering of a URL, form submission, ...
-        1 reload       reload click or location.reload()
-        2 back_forward back/forward click or calling history.back()/history.forward()
-        3 prerender    navigation initiated by a prerender hint
-    */
-
-
-    constructor(navtype, translations){
-        this.navtype = navtype
+    constructor(newsession, translations){
+        this.newsession = newsession // true (session===null) / false (session!==null)
         this.translations = translations
     }
 
@@ -20,7 +11,7 @@ class Epoch {
         let lastvisit = +localStorage.getItem("visit")
         if(lastvisit===null)lastvisit=0
     
-        if(this.navtype===0){
+        if(this.newsession){ // no session = first entry
             localStorage.setItem("visit", Date.now())    
             localStorage.setItem("prevvisit", lastvisit)
         }    
