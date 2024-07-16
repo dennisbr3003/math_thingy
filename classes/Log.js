@@ -10,22 +10,45 @@ require('dotenv').config()
 class Log {
 
     constructor (root) {
-        this.#init(root)
+        this.root = root
     }    
 
-    #init(root){
+    async #init(){
+
+        let tmp = '' 
         this.datetime = new DateTime()
         this.localize = new Localize()
-        this.root = root
-        this.location = root
-        this.writes = Date.now()
-        this.#checkLogFolder(process.env.LOGFOLDER)
-        this.#clearLogFiles()
-        this.write('', 'New session ------------')
-        this.write('', `OS: ${os.platform()} | ${os.homedir()} | ${os.version()}`)
+        this.location = this.root
+        this.cleared = Date.now()
+
+        await this.#checkLogFolder(process.env.LOGFOLDER)
+        await this.#clearLogFiles()
+        await this.#writeline(new Date(), this.#getLogFileName(new Date()), 'Cleared logfiles if needed')
+
+        tmp = await this.#getversions()
+        await this.#writeline(new Date(), this.#getLogFileName(new Date()), tmp)
+        tmp = await this.#checkversion()
+        await this.#writeline(new Date(), this.#getLogFileName(new Date()), tmp)
+
+        await this.#writeline(new Date(), this.#getLogFileName(new Date()), `Root: ${this.root}`)
+        await this.#writeline(new Date(), this.#getLogFileName(new Date()), 'Started app.js')
+        await this.#writeline(new Date(), this.#getLogFileName(new Date()), `Listening on port ${process.env.PORT}`)
+      
     }
 
-    write(type, text, req) {
+    async initialize(){
+        await this.#init()
+    }
+
+    async #getversions(){
+        return `OS: ${os.platform()} | ${os.homedir()} | ${os.version()} | Node: ${process.versions.node}`
+    }
+
+    async #checkversion(){
+        return process.versions.node<="20.1.0"?`Your node version ${process.versions.node} is too old. Please upgrade to 20.1.0 or better. Some functions may not work`:'Node version OK'
+    }
+
+    async write(type, text, req) {
 
         const dt = new Date()
 
@@ -46,7 +69,7 @@ class Log {
         }               
 
         // check and clear files every 4 hours. Files older then 30 days (.env) are deleted
-        if(Date.now() - this.writes >= (4 * 60 * 60 * 1000)) this.#clearLogFiles()
+        if(Date.now() - this.cleared >= (4 * 60 * 60 * 1000)) this.#clearLogFiles()
     }
 
     #formatLine(dt, text){                      
@@ -64,14 +87,14 @@ class Log {
         return `${this.datetime.getDate(dt, 'y,m,d', '')}`
     }
 
-    #writeline(dt, logfile, text){
-        fs.writeFile(`./${process.env.LOGFOLDER}/${logfile}`, 
+    async #writeline(dt, logfile, text){        
+        fs.promises.writeFile(`./${process.env.LOGFOLDER}/${logfile}`, 
             `${this.#formatLine(dt, text)}\r\n`, 
             { flag: 'a+' },  
             (err) => {if(err) console.log(err)}) 
     }
 
-    #checkLogFolder (folder) {
+    async #checkLogFolder (folder) {
 
         const folders = folder.split(path.sep)
         
@@ -84,30 +107,32 @@ class Log {
             } catch (err) {
                 console.error(err);
             }                        
-        });
+        })        
+        this.#writeline(new Date(), this.#getLogFileName(new Date()), `Logfolder: ${this.location} - created or present`)
     }
 
     async #clearLogFiles(){
         const foldercontent = await fs.promises.readdir(this.location, {withFileTypes: true})
         foldercontent.forEach(element => {
              if(element.isFile()){
-                fs.stat(`${element.parentPath}${element.name}`, (err, stat) => {
+                // path is deprecated since v20.1.0
+                fs.promises.stat(`${element.parentPath}${element.name}`, (err, stat) => {
                     if(err){
                         console.log(err)
                     } else {
-                        // check if the file is older then 30 days (in millies). If so, then delete the file
+                        //check if the file is older then 30 days (in millies). If so, then delete the file
                         if((stat.mtimeMs - (new Date(stat.mtime).getTimezoneOffset() * 60 * 1000)) + 
                            (process.env.LOGLIVE * 24 * 60 * 60 * 1000) < Date.now()){
-                            fs.unlink(`${element.parentPath}${element.name}`,(err => {
-                                if(err) console.log(err.message)
-                                else console.log('deleted', `${element.parentPath}${element.name}`)
+                            fs.promises.unlink(`${element.parentPath}${element.name}`,(err => {
+                                if(err) console.log(err.message)                        
+                                else this.#writeline(new Date(), this.#getLogFileName(new Date()), `Deleted ${element.parentPath}${element.name}`)
                            }))
                         }
                     }
                 })
              }
         })
-        this.writes = Date.now()
+        this.cleared = Date.now()
     }
 
 }

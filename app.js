@@ -8,8 +8,11 @@ const i18next = require('i18next')
 const i18nextMiddleware = require('i18next-http-middleware')
 const Backend = require('i18next-fs-backend')
 
-// oldest logfile: 20240522.log
 require('dotenv').config()
+
+const initApp = async () => {
+  await log.initialize()
+}
 
 i18next
 .use(Backend)
@@ -27,7 +30,6 @@ i18next
 });
 
 const app = express()
-
 const log = new Log(__dirname)
 const pageData = new PageData()
 const localize = new Localize()
@@ -35,11 +37,11 @@ const localize = new Localize()
 app.set('view engine', 'ejs')
 app.set('views', 'views') 
 
-log.write('', 'Start app.js')
-
 app.listen(process.env.PORT) 
+// convenient to start the app from the terminal
+console.log('ready to receive requests on ', `http://localhost:${process.env.PORT}`)
 
-log.write('', `Listening on port ${process.env.PORT}`)
+initApp()
 
 app.use(express.static(path.join(__dirname, "public")));
 
