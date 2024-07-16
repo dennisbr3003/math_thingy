@@ -1,0 +1,14 @@
+<div class="flex flex-col max-md:fixed max-md:top-0 max-md:right-0">
+    <div id='languageflag' class="languageselect mt-[10px] md:mt-[20px] mr-[10px] md:mr-[40px] cursor-pointer">
+        <img id="abc" src="/img/flags/<%= selectedLanguage.language %>.svg" width="35" class="inline"/>
+    </div>
+    <div id="languagelistcontainer" class="languagelist flex flex-col min-w-max bg-white p-2 rounded-xl border-2 border-blue-500 fixed top-[50px] md:top-[60px] right-[15px] md:right-[40px] shadow-xl opacity-0 transition-[opacity] duration-300 ease-in pointer-events-none">
+        <div class="pt-[5px]" id="test">
+            <% languages.forEach((lng) => { %>
+                <a href="/switch/<%= lng.language %>">
+                    <button id="<%= lng.language %>" class="languagebutton font-Atma-Regular text-[22px] w-full flex flex-row items-center gap-[10px] pl-[20px] pr-[20px] py-[5px] hover:bg-[#93C5FD88]"><img src="/img/flags/<%= lng.language %>.svg" width="35" class="inline"/> <%= lng.description %></button>                            
+                </a>
+            <% }) %>
+        </div>
+    </div>
+</div>

@@ -11,21 +11,7 @@
                         <div class="_subtitle">THINGY</div>
                     </div> 
                 </div>    
-                <div class="flex flex-col max-md:fixed max-md:top-0 max-md:right-0">
-                    <div id='languageflag' class="languageselect mt-[10px] md:mt-[20px] mr-[10px] md:mr-[40px] cursor-pointer">
-                        <img id="abc" src="/img/flags/<%= selectedLanguage.language %>.svg" width="35" class="inline"/>
-                    </div>
-                    <div id="languagelistcontainer" class="languagelist flex flex-col min-w-max bg-white p-2 rounded-xl border-2 border-blue-500 fixed top-[50px] md:top-[60px] right-[15px] md:right-[40px] shadow-xl opacity-0 transition-[opacity] duration-300 ease-in pointer-events-none">
-                        <div class="pt-[5px]" id="test">
-                            <% languages.forEach((lng) => { %>
-                                <a href="/switch/<%= lng.language %>">
-                                <button id="<%= lng.language %>" class="languagebutton font-Atma-Regular text-[22px] w-full flex flex-row items-center gap-[10px] pl-[20px] pr-[20px] py-[5px] hover:bg-[#93C5FD88]"><img src="/img/flags/<%= lng.language %>.svg" width="35" class="inline"/> <%= lng.description %></button>                            
-                                </a>
-                            <% }) %>
-                        </div>
-                    </div>
-                </div>
-
+                <%- include('./partials/languageswitcher.ejs') %>
             </div>              
             <div class="_page-content">                      
                 <ul class="_list-item-container">
@@ -52,49 +38,39 @@
                     </li>
                 </ul>                     
             </div>
-            <div class="wrapper">
-                <header>
-                    <img src="/img/icons/cookie1.svg" width="40px">
-                    <h2 class="font-PermanentMarker-Regular"><%= t('cookies.title') %></h2>
-                </header>                    
-                <div class="data">
-                    <p class="font-Atma-Regular !text-[13pt]"><%= t('cookies.text') %><a href="/" class="ml-2"><%= t('cookies.readmore') %></a></p>
-                </div>
-                <div class="buttons">
-                    <button class="button font-Atma-Regular !text-[14pt]" id="acceptButton"><%= t('cookies.accept') %></button>
-                    <button class="button font-Atma-Regular !text-[14pt]" id="declineButton"><%= t('cookies.decline') %></button>
-                </div>
-            </div>       
+            <%- include('./partials/cookies.ejs') %>
         </div> 
         <%- include('./partials/footer.ejs') %>
         
         <script type="module">
 
             import { Epoch } from '/lib/epoch.js'
-            // https://stackoverflow.com/questions/70809817/how-to-handle-passed-ejs-variable-as-a-string
-            // In order to pass an EJS data object to a JS file we need to make a copy. The object cannot be
-            // passed directly. It will be become 'undefined'
-            // Mind the single quotes with the JSON parse function!! Failure do to so will result in 
-            // SyntaxError: missing ) after argument list in C:\DennisB\math_thingy\views\index.ejs while compiling ejs
-            // If the above error is not helpful, you may want to try EJS-Lint:
-            // https://github.com/RyanZim/EJS-Lint
-            // Or, if you meant to create an async function, pass `async: true` as an option.
-            const epoch = new Epoch(performance.navigation.type, JSON.parse('<%-JSON.stringify(translations)%>'))
-            document.getElementById("interval").innerHTML = epoch.getElapsedTimeAsString()
-            if(performance.navigation.type!==1)localStorage.setItem("visit", Date.now())
+            import { generateUUID } from '/lib/uuid.js'
 
             const cookieBox = document.querySelector('.wrapper'),
-                  buttons = document.querySelectorAll('.button'),
-                  languagebuttons = document.querySelectorAll('.languagebutton')
-                
-            // languagebuttons.forEach(languagebutton => {
-            //     languagebutton.addEventListener('click', () => {
-            //         window.location.href = `/switch/${languagebutton.id}` 
-            //     })
-            // })
+                  buttons = document.querySelectorAll('.button')
 
             const executeCodes = () => {
+
+                // https://stackoverflow.com/questions/70809817/how-to-handle-passed-ejs-variable-as-a-string
+                const epoch = new Epoch(sessionStorage.getItem('session')===null, JSON.parse('<%-JSON.stringify(translations)%>'))
+                document.getElementById("interval").innerHTML = epoch.getElapsedTimeAsString()
+
+                // create a session id if it cannot be found
+                let session_id = sessionStorage.getItem('session')
+                if(session_id===null) sessionStorage.setItem('session', generateUUID())
+                
+                // check if cookies where accepted.If cookies where accepted a cookie will be found
+                // it will expire in 30 days after which it automatically cannot be found
                 if(document.cookie.includes('mt_cookies_allowed')) return
+
+                // no cookie was found so check if cookies where rejected and if that was more than 30 days ago
+                let nocookieterm = localStorage.getItem('nocookies')
+                if(nocookieterm!==null){
+                    if(Math.abs(+Date.now() - +nocookieterm) <= (30 * 24 * 60 * 60 * 1000)) return
+                }
+
+                // there is no cookie and no rejection or one of them expired
                 cookieBox.classList.add('show')
                 buttons.forEach(button => {
                     button.addEventListener('click', () => {
@@ -102,7 +78,10 @@
                         if(button.id==='acceptButton'){
                             document.cookie = 'mt_cookies_allowed=true; max-age=' + (30 * 24 * 60 * 60) +'; Secure; SameSite=Strict;'
                             document.cookie = 'mt_cookies_language=' + navigator.language + '; max-age=' + (1000 * 24 * 60 * 60) + '; Secure; SameSite=Strict;'
-                        } // anders in localstorage aangeven dat er geen cookies mogen (ook met een max-age)
+                        } 
+                        else {
+                            localStorage.setItem('nocookies', Date.now()) // set rejection and keep it for 30 days after which we ask again
+                        }
                     })
 
                 })
@@ -111,7 +90,7 @@
             window.addEventListener('load', executeCodes)      
             
             // https://jsfiddle.net/kym2rvyL/1/
-            window.addEventListener('click', function(e){
+            window.addEventListener('click', e => {
                 if (document.getElementById('languageflag').contains(e.target)){ // clicked inside the flag selector
                     document.querySelector('.languagelist').classList.toggle('selectshow')
                 }
