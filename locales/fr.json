@@ -3,11 +3,11 @@
     "welcome": "Bienvenue sur notre site web.",
     "and": "et",
     "index": {
-        "firstVisit": "Salut, c'est la première fois que tu viens ici ! Bienvenue ! Regarde ce qui s'est passé ci-dessous !",
-        "subsequentVisit": "Salut l'étranger ! Ta dernière visite remonte à {param1}. Vérifie ce qui s'est passé depuis ta dernière visite..."
+        "firstVisit": "Salut, c&#39;est la première fois que tu viens ici ! Bienvenue ! Regarde ce qui s&#39;est passé ci-dessous !",
+        "subsequentVisit": "Salut l&#39;étranger ! Ta dernière visite remonte à {param1}. Vérifie ce qui s&#39;est passé depuis ta dernière visite..."
     },
     "error" : {
-        "panic": "Oh non ! Tu as totalement cassé la page d'accueil officielle de Math Thingy !",
+        "panic": "Oh non ! Tu as totalement cassé la page d&#39;accueil officielle de Math Thingy !",
         "freshStart": "Clique ici pour prendre un nouveau départ !"
     },
     "metrics": {
@@ -21,14 +21,14 @@
         "seconds": "secondes"
     },
     "footer": {
-        "copyright": "Copyright", 
-        "generated": "Generated"
+        "copyright": "Droit d&#39;auteur", 
+        "generated": "Généré"
     },
     "cookies": {
         "title": "Yay ! Cookies !",
-        "text": "La vie est meilleure avec des cookies. La plupart des gens seraient d'accord pour dire que les cookies rendent la vie meilleure. Pour nous, ils nous aident à améliorer ton expérience de navigation sur ce site. Mais si tu n'aimes pas les cookies, c'est cool - tu peux les refuser si tu le souhaites.",
+        "text": "La vie est meilleure avec des cookies. La plupart des gens seraient d&#39;accord pour dire que les cookies rendent la vie meilleure. Pour nous, ils nous aident à améliorer ton expérience de navigation sur ce site. Mais si tu n&#39;aimes pas les cookies, c&#39;est cool - tu peux les refuser si tu le souhaites.",
         "readmore": "En savoir plus...",
-        "accept": "D'accord 👍",
+        "accept": "D&#39;accord 👍",
         "decline": "Non, merci"        
     }                              
 }

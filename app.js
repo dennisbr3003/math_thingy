@@ -1,5 +1,7 @@
 const express = require('express')
 const path = require('path') 
+const cookieParser = require('cookie-parser')
+
 const Log = require('./classes/Log')
 const PageData = require('./classes/PageData')
 const Localize = require('./classes/Localize')
@@ -11,7 +13,7 @@ const Backend = require('i18next-fs-backend')
 require('dotenv').config()
 
 const initApp = async () => {
-  await log.initialize()
+  await log.initLog()
 }
 
 i18next
@@ -22,18 +24,24 @@ i18next
     loadPath: __dirname + '/locales/{{lng}}.json',
   },
   detection: {
-    order: ['querystring', 'cookie'],
-    caches: ['cookie']
+    order: ['cookie', 'querystring', 'path', 'header'],
+    caches: ['cookie'],
+    lookupQuerystring: 'lng',
+    lookupCookie: 'i18next',
+    lookupHeader: 'accept-language',
   },
   fallbackLng: 'en',
   preload: ['en', 'nl', 'fr', 'de']
 });
 
+
 const app = express()
+
 const log = new Log(__dirname)
 const pageData = new PageData()
 const localize = new Localize()
 
+app.use(cookieParser())
 app.set('view engine', 'ejs')
 app.set('views', 'views') 
 
@@ -50,27 +58,21 @@ app.use(i18nextMiddleware.handle(i18next));
 // middleware to check any incomming call. Ideal for logging
 app.use((req, res, next)=> {
     log.write('', '', req)
-    next()
+    localize.getLanguage(req)
+    next()    
 })
 
 app.get('/', async (req, res) => {   
-    let lng = localize.getBrowserLanguage(req)
-    console.log(req.i18n.language, lng)
-    await req.i18n.changeLanguage(localize.getBrowserLanguage(req))
-    console.log(req.i18n.t('greeting'))
-    res.render('index', pageData.getPageData('main', lng))
+    res.render('index', pageData.getPageData('main', req.i18n.resolvedLanguage))
 })
 
-app.get('/switch/:lang', (req, res) => {
+app.get('/switch/:lang', async (req, res) => {
     const { lang } = req.params;
-    console.log(lang)
-    //res.cookie('lang', lang); // save language cookie 
-    res.redirect('back'); // Redirect back to the previous page
+    res.cookie('i18next', lang)
+    res.redirect('back'); // Redirect back to the previous page, this reloads the page
   });
 
 app.use(async (req, res) => {
     log.write('ERR', 'Navigation error (404)', req)
-    let lng = localize.getBrowserLanguage(req)
-    await req.i18n.changeLanguage(localize.getBrowserLanguage(req))
-    res.status(404).render('error', pageData.getPageData('error', lng))
+    res.status(404).render('error', pageData.getPageData('error', req.i18n.resolvedLanguage))
 })
