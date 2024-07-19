@@ -1,109 +1,129 @@
 <html lang="en">
-    <%- include('./partials/header.ejs') %>
-    <body>           
+<%- include('./partials/header.ejs') %>
+
+    <body>
         <div>
             <div class="_toolbar">
                 <div class="_math-thingy-logo mx-4">
                     <div style="background-size:100% 100%;" class="_image-background">
                         <div>
-                            <img src="/img/math-book.webp" width="100vw" class="_book"/>   
+                            <img src="/img/math-book.webp" width="100vw" class="_book" />
                         </div>
                         <div class="_subtitle">THINGY</div>
-                    </div> 
-                </div>    
+                    </div>
+                </div>
                 <%- include('./partials/languageswitcher.ejs') %>
-            </div>              
-            <div class="_page-content">                      
+            </div>
+            <div class="_page-content">
                 <ul class="_list-item-container">
                     <li class="_list-item">
                         <div class="col-span-2 md:hidden">
-                            <img src="/img/festive.webp" width="90vw" class="_img-festive mx-auto"/>
-                        </div>                        
-                        <div class="col-span-3 p-1 pb-[30px] md:pb-0">                            
-                            <ul class="h-fit p-2 md:p-0 md:h-[calc(100vh-(170px+80px))] xl:h-[calc(100vh-(170px+90px))]">
+                            <img src="/img/festive.webp" width="90vw" class="_img-festive mx-auto" />
+                        </div>
+                        <div class="col-span-3 p-1 pb-[30px] md:pb-0">
+                            <ul
+                                class="h-fit p-2 md:p-0 md:h-[calc(100vh-(170px+80px))] xl:h-[calc(100vh-(170px+90px))]">
                                 <li class="text-[1em] md:text-[1.6em] font-medium p-2 grid grid-cols-10 bg-white">
-                                    <div class="col-span-2 md:mt-auto"><img src="/img/smiley-listen-up.webp" height="90%"></div>
+                                    <div class="col-span-2 md:mt-auto"><img src="/img/smiley-listen-up.webp"
+                                            height="90%"></div>
                                     <div class="col-span-8 px-2 _text-balloon" style="background-size:100% 100%;">
                                         <div id="interval" class="_text-balloon-text"></div>
                                     </div>
-                                </li>    
-                                <li class="_sub-list-item-cols-10"><div class="col-span-2 my-auto"><img src="/img/start.webp" width="75%" class="mx-auto"></div><div class="col-span-8 px-2 text-[12pt] md:text-[16pt]"><%= t('welcome') %></div></li>
-                                <li class="_sub-list-item-cols-10"><div class="col-span-2 my-auto"><img src="/img/start.webp" width="75%" class="mx-auto"></div><div class="col-span-8 px-2 text-[12pt] md:text-[16pt]">Your highest ranking is still 277. You should get to work</div></li>
-                                <li class="_sub-list-item-cols-10"><div class="col-span-2 my-auto"><img src="/img/start.webp" width="75%" class="mx-auto"></div><div class="col-span-8 px-2 text-[12pt] md:text-[16pt]">New feature in the Math Thingy App, be sure to check it out</div></li>                            
+                                </li>
+                                <li class="_sub-list-item-cols-10">
+                                    <div class="col-span-2 my-auto"><img src="/img/start.webp" width="75%"
+                                            class="mx-auto"></div>
+                                    <div class="col-span-8 px-2 text-[12pt] md:text-[16pt]">
+                                        <%= t('welcome') %>
+                                    </div>
+                                </li>
+                                <li class="_sub-list-item-cols-10">
+                                    <div class="col-span-2 my-auto"><img src="/img/start.webp" width="75%"
+                                            class="mx-auto"></div>
+                                    <div class="col-span-8 px-2 text-[12pt] md:text-[16pt]">Your highest ranking is
+                                        still 277. You should get to work</div>
+                                </li>
+                                <li class="_sub-list-item-cols-10">
+                                    <div class="col-span-2 my-auto"><img src="/img/start.webp" width="75%"
+                                            class="mx-auto"></div>
+                                    <div class="col-span-8 px-2 text-[12pt] md:text-[16pt]">New feature in the Math
+                                        Thingy App, be sure to check it out</div>
+                                </li>
                             </ul>
                         </div>
                         <div class="col-span-2 max-md:hidden">
-                            <img src="/img/festive.webp" width="100vw" class="_img-festive ml-auto"/>
+                            <img src="/img/festive.webp" width="100vw" class="_img-festive ml-auto" />
                         </div>
                     </li>
-                </ul>                     
+                </ul>
             </div>
             <%- include('./partials/cookies.ejs') %>
-        </div> 
+        </div>
         <%- include('./partials/footer.ejs') %>
-        
-        <script type="module">
 
-            import { Epoch } from '/lib/epoch.js'
-            import { generateUUID } from '/lib/uuid.js'
+            <script type="module" async>
 
-            const cookieBox = document.querySelector('.wrapper'),
-                  buttons = document.querySelectorAll('.button')
+                import { Epoch } from '/lib/epoch.js'
+                import { generateUUID } from '/lib/uuid.js'
 
-            const executeCodes = () => {
+                const cookieBox = document.querySelector('.wrapper'),
+                    buttons = document.querySelectorAll('.button')
 
-                // https://stackoverflow.com/questions/70809817/how-to-handle-passed-ejs-variable-as-a-string
-                const epoch = new Epoch(sessionStorage.getItem('session')===null, JSON.parse('<%-JSON.stringify(translations)%>'))
-                document.getElementById("interval").innerHTML = epoch.getElapsedTimeAsString()
+                const executeCodes = () => {
 
-                // create a session id if it cannot be found
-                let session_id = sessionStorage.getItem('session')
-                if(session_id===null) sessionStorage.setItem('session', generateUUID())
-                
-                // check if cookies where accepted.If cookies where accepted a cookie will be found
-                // it will expire in 30 days after which it automatically cannot be found
-                if(document.cookie.includes('mt_cookies_allowed')) return
+                    // https://stackoverflow.com/questions/70809817/how-to-handle-passed-ejs-variable-as-a-string
+                    const epoch = new Epoch(sessionStorage.getItem('session') === null, JSON.parse('<%-JSON.stringify(translations)%>'))
+                    document.getElementById("interval").innerHTML = epoch.getElapsedTimeAsString()
 
-                // no cookie was found so check if cookies where rejected and if that was more than 30 days ago
-                let nocookieterm = localStorage.getItem('nocookies')
-                if(nocookieterm!==null){
-                    if(Math.abs(+Date.now() - +nocookieterm) <= (30 * 24 * 60 * 60 * 1000)) return
-                }
+                    // create a session id if it cannot be found
+                    let session_id = sessionStorage.getItem('session')
+                    if (session_id === null) sessionStorage.setItem('session', generateUUID())
 
-                // there is no cookie and no rejection or one of them expired
-                cookieBox.classList.add('show')
-                buttons.forEach(button => {
-                    button.addEventListener('click', () => {
-                        cookieBox.classList.remove('show')
-                        if(button.id==='acceptButton'){
-                            document.cookie = 'mt_cookies_allowed=true; max-age=' + (30 * 24 * 60 * 60) +'; Secure; SameSite=Strict;'
-                            document.cookie = 'mt_cookies_language=' + navigator.language + '; max-age=' + (1000 * 24 * 60 * 60) + '; Secure; SameSite=Strict;'
-                        } 
-                        else {
-                            localStorage.setItem('nocookies', Date.now()) // set rejection and keep it for 30 days after which we ask again
-                        }
+                    // check if cookies where accepted.If cookies where accepted a cookie will be found
+                    // it will expire in 30 days after which it automatically cannot be found
+                    if (document.cookie.includes('mt_cookies_allowed')) return
+
+                    // no cookie was found so check if cookies where rejected and if that was more than 30 days ago
+                    let nocookieterm = localStorage.getItem('nocookies')
+                    if (nocookieterm !== null) {
+                        if (Math.abs(+Date.now() - +nocookieterm) <= (30 * 24 * 60 * 60 * 1000)) return
+                    }
+
+                    // there is no cookie and no rejection or one of them expired
+                    cookieBox.classList.add('show')
+                    buttons.forEach(button => {
+                        button.addEventListener('click', () => {
+                            cookieBox.classList.remove('show')
+                            if (button.id === 'acceptButton') {
+                                document.cookie = 'mt_cookies_allowed=true; max-age=' + (30 * 24 * 60 * 60) + '; Secure; SameSite=Strict;'
+                                document.cookie = 'mt_cookies_language=' + navigator.language + '; max-age=' + (1000 * 24 * 60 * 60) + '; Secure; SameSite=Strict;'
+                            }
+                            else {
+                                localStorage.setItem('nocookies', Date.now()) // set rejection and keep it for 30 days after which we ask again
+                            }
+                        })
+
                     })
-
-                })
-            }
-
-            window.addEventListener('load', executeCodes)      
-            
-            // https://jsfiddle.net/kym2rvyL/1/
-            window.addEventListener('click', e => {
-                if (document.getElementById('languageflag').contains(e.target)){ // clicked inside the flag selector
-                    document.querySelector('.languagelist').classList.toggle('selectshow')
                 }
-                else { // clicked outside the language list and not on the flag itself
-                    if(!document.getElementById('languagelistcontainer').contains(e.target)){
-                        document.querySelector('.languagelist').classList.remove('selectshow')
-                    } else { // clicked inside the language list
+
+                window.addEventListener('load', executeCodes)
+
+                // https://jsfiddle.net/kym2rvyL/1/
+                window.addEventListener('click', e => {
+                    if (document.getElementById('languageflag').contains(e.target)) { // clicked inside the flag selector
                         document.querySelector('.languagelist').classList.toggle('selectshow')
                     }
-                }
-            })  
+                    else { // clicked outside the language list and not on the flag itself
+                        if (!document.getElementById('languagelistcontainer').contains(e.target)) {
+                            document.querySelector('.languagelist').classList.remove('selectshow')
+                        } else { // clicked inside the language list
+                            document.querySelector('.languagelist').classList.toggle('selectshow')
+                        }
+                    }
+                })
 
-        </script>
+            </script>
 
     </body>
+
 </html>

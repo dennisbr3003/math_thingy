@@ -7,7 +7,7 @@
         "subsequentVisit": "Hey vreemdeling! Je laatste bezoek was {param1} geleden. Check wat er is gebeurd sinds je laatste bezoek..."
     },
     "error" : {
-        "panic": "Oh nee!! Je hebt Math Thingy's officiële pagina compleet kapot gemaakt!",
+        "panic": "Oh nee!! Je hebt Math Thingy&#39;s officiële pagina compleet kapot gemaakt!",
         "freshStart": "Klik hier voor een frisse start!"
     },
     "metrics": {

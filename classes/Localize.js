@@ -1,37 +1,27 @@
 const i18next = require('i18next')
-const i18nextMiddleware = require('i18next-http-middleware')
-const Backend = require('i18next-fs-backend')
-
-i18next
-.use(Backend)
-.use(i18nextMiddleware.LanguageDetector)
-.init({
-  backend: {
-    loadPath: __dirname + '/locales/{{lng}}.json',
-  },
-  detection: {
-    order: ['querystring', 'cookie'],
-    caches: ['cookie']
-  },
-  fallbackLng: 'en',
-  preload: ['en', 'nl', 'fr', 'de']
-});
-
 
 class Localize {
 
     constructor(){
     }
 
-    getBrowserLanguage(req) {
-        return req.acceptsLanguages().length!==0?req.acceptsLanguages()[0]:'en-US'
+    setLanguage(lang){
+      i18next.changeLanguage(lang)
     }
 
-    getIndexTranslations(lang) {
+    getLanguage(req) {
+     for (var key in req.cookies) {
+        if (req.cookies.hasOwnProperty(key)) {
+            console.log(key + " -> " + req.cookies[key]);
+        }
+      }         
+      return req.i18n.resolvedLanguage
+      // return req.acceptsLanguages().length!==0?req.acceptsLanguages()[0]:'en-US'
+    }
+
+    getIndexTranslations() {
 
         let translations = new Object()
-
-        i18next.changeLanguage(lang)
         translations.firstVisit = i18next.t('index.firstVisit') 
         translations.subsequentVisit = i18next.t('index.subsequentVisit')
         translations.and = i18next.t('and')
@@ -43,15 +33,13 @@ class Localize {
         translations.minutes = i18next.t('metrics.minutes')
         translations.second = i18next.t('metrics.seconds')
         translations.seconds = i18next.t('metrics.seconds')
-        translations.footer = this.#getFooterTranslations(lang)     
+        translations.footer = this.#getFooterTranslations()     
         return translations
     }
 
-    #getFooterTranslations (lang) {
+    #getFooterTranslations () {
 
         let translations = new Object()
-
-        i18next.changeLanguage(lang)
         translations.copyright = i18next.t('footer.copyright')
         translations.generated = i18next.t('footer.generated')
         return translations

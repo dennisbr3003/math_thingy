@@ -10,8 +10,8 @@ class PageData {
     }
 
     getPageData(page, lang){
-        console.log(page, lang)
-        this.data.selectedLanguage = {language: 'nl', description: 'Nederlands'}    
+        this.localize.setLanguage(lang)
+        this.data.selectedLanguage = {language: lang, description: 'not important'}    
         this.data.languages = [            
             {language: 'nl', description: 'Nederlands'},
             {language: 'en', description: 'English'},

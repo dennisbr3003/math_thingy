@@ -36,7 +36,7 @@ class Log {
       
     }
 
-    async initialize(){
+    async initLog(){
         await this.#init()
     }
 
@@ -54,7 +54,7 @@ class Log {
 
         let reqtext = ''
         if(typeof req !== 'undefined'){
-            reqtext=`http: ${req.httpVersion} | ${this.localize.getBrowserLanguage(req)} | host: ${req.hostname} | method: ${String(req.method).padEnd(7, ' ')} | url: ${req.url}`
+            reqtext=`http: ${req.httpVersion} | ${this.localize.getLanguage(req)} | host: ${req.hostname} | method: ${String(req.method).padEnd(7, ' ')} | url: ${req.url}`
         }
         
         let logfile = type.toUpperCase()==='ERR'?this.#getErrFileName(dt):this.#getLogFileName(dt)
