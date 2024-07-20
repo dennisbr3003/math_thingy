@@ -1,5 +1,4 @@
 const DateTime = require('./DateTime')
-const Localize = require('./Localize')
 
 const fs = require('fs')
 const path = require('path') 
@@ -17,7 +16,6 @@ class Log {
 
         let tmp = '' 
         this.datetime = new DateTime()
-        this.localize = new Localize()
         this.location = this.root
         this.cleared = Date.now()
 
@@ -54,7 +52,7 @@ class Log {
 
         let reqtext = ''
         if(typeof req !== 'undefined'){
-            reqtext=`http: ${req.httpVersion} | ${this.localize.getLanguage(req)} | host: ${req.hostname} | method: ${String(req.method).padEnd(7, ' ')} | url: ${req.url}`
+            reqtext=`http: ${req.httpVersion} | ${req.i18n.resolvedLanguage} | host: ${req.hostname} | method: ${String(req.method).padEnd(7, ' ')} | url: ${req.url}`
         }
         
         let logfile = type.toUpperCase()==='ERR'?this.#getErrFileName(dt):this.#getLogFileName(dt)
