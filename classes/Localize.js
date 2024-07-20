@@ -9,15 +9,14 @@ class Localize {
       i18next.changeLanguage(lang)
     }
 
-    getLanguage(req) {
-     for (var key in req.cookies) {
-        if (req.cookies.hasOwnProperty(key)) {
-            console.log(key + " -> " + req.cookies[key]);
-        }
-      }         
-      return req.i18n.resolvedLanguage
-      // return req.acceptsLanguages().length!==0?req.acceptsLanguages()[0]:'en-US'
-    }
+    // getLanguage(req) {
+    //  for (let key in req.cookies) {
+    //     if (req.cookies.hasOwnProperty(key)) {
+    //         console.log(key + " -> " + req.cookies[key]);
+    //     }
+    //   }         
+    //   return req.i18n.resolvedLanguage
+    // }
 
     getIndexTranslations() {
 

@@ -19,7 +19,7 @@ class PageData {
             {language: 'fr', description: 'Français'}
         ]    
         switch(page){
-            case 'main':
+            case 'index':
                 this.data.year = this.datetime.getYear()
                 this.data.generated = this.datetime.getTime()        
                 this.data.epoch = this.datetime.getEpoch()     

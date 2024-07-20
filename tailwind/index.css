@@ -1,38 +1,18 @@
 /* https://daily.dev/blog/how-to-use-tailwindcss-with-node-js-express-and-pug */
 
-.flexrow{
-    @apply flex flex-row items-center;
-}
-
 ._toolbar{
-    @apply w-full h-[150px] md:h-[170px] fixed md:flex md:flex-row md:items-start md:justify-between md:gap-[20px];
-}
-
-._math-thingy-logo{
-    @apply w-[70vw] md:w-[20vw] h-[100%] max-md:mx-auto;
-    ._image-background{
-        @apply h-full w-full bg-[url('/img/circle-gradient.webp')];
-        ._book{
-            @apply w-[100%] mx-auto;
-        }
-        ._subtitle{
-            @apply text-gray-400 text-center font-bold text-[24pt] md:text-[32pt] mt-[-15px] md:mt-[-20px];
-        }
+    @apply h-[130px] md:h-[170px] fixed left-0 top-0 right-0 md:flex md:flex-row md:items-start md:justify-between md:gap-[20px];
+    ._thingy{
+        @apply text-gray-400 text-center font-bold text-[24pt] md:text-[32pt] mt-[-15px] md:mt-[-20px];
     }
 }
 
 ._page-content {
-    @apply flex flex-col items-center pt-[150px] md:pt-[170px];
+    @apply flex flex-col items-center pt-[170px];
     ._list-item-container{
-        @apply h-[calc(100vh-(145px+30px))] md:h-[calc(100vh-(170px+50px))] xl:h-[calc(100vh-(170px+60px))] w-[95vw] md:w-[80vw];
-        ._list-item{
-            @apply grid grid-cols-1 md:grid-cols-5;
-            ._img-festive {
-                @apply w-[90%] mt-[40px] md:mt-0 pb-[40px] md:pb-[50px];
-            }
-            ._sub-list-item-cols-10{
-                @apply text-[1em] md:text-[1.6em] font-medium p-2 grid grid-cols-10 cursor-pointer rounded-lg shadow-lg mt-[12px] bg-gradient-to-b from-[#dadde5] to-[#FFFFFF88];
-            }
+        @apply h-[calc(100vh-(130px+40px+5px))] md:h-[calc(100vh-(170px+50px+5px))] xl:h-[calc(100vh-(170px+60px+5px))] w-[95vw] md:w-[80vw] pt-5;
+        ._sub-list-item-cols-10{
+            @apply text-[1em] md:text-[1.6em] font-medium p-2 grid grid-cols-10 cursor-pointer rounded-lg shadow-lg mt-[12px] bg-gradient-to-b from-[#dadde5] to-[#FFFFFF88];
         }
     }
 }
@@ -49,9 +29,11 @@
 ._text-balloon{
     @apply bg-[url('/img/textballoon6.webp')] md:bg-[url('/img/textballoon5.webp')] bg-center bg-no-repeat;
     ._text-balloon-text {
-        @apply font-Atma-Medium font-normal text-center text-[14pt] md:text-[18pt] pl-[30px] pt-[10px] pb-[10px] pr-[5px] md:pl-[60px] md:pr-[30px] md:pt-[20px] md:pb-[20px];
+        @apply font-Atma-Medium font-normal text-center text-[14pt] md:text-[18pt] pl-[30px] pt-[15px] pb-[15px] pr-[5px] md:pl-[70px] md:pr-[30px] md:pt-[20px] md:pb-[20px];
     }
 }
+
+/* cookie pop-up */
 
 .wrapper{
     @apply bottom-[60px] md:bottom-[70px] xl:bottom-[80px]
@@ -65,41 +47,35 @@
 .wrapper header{
     @apply flex items-center gap-[15px];
 }
-
 header i {
     @apply text-[#4070f4] text-[32px];
 }
-
 header h2 {
     @apply text-[#4070f4] text-[28px] font-bold;
 }
-
 .wrapper .data {
     @apply mt-4;
 }
 .wrapper .data p {
     @apply text-[#333] text-[1rem];
 }
-
 .data p a {
     @apply text-[#4070f4] no-underline;
 }
-
 .data p a:hover {
     @apply text-[#4070f4] underline;
 }
-
 .wrapper .buttons {
     @apply mt-4 w-full flex items-center justify-between;
 }
-
 .buttons .button {
     @apply border-none bg-[#4070f4] cursor-pointer rounded-[8px] py-2 text-white w-[calc(100%/2-10px)] transition-all duration-300 ease-in;
 }
-
 .buttons .button:hover {
     @apply bg-[#034bf1];
 }
+
+/* language switcher */
 
 .languagelist.selectshow {
     @apply opacity-100 pointer-events-auto; 

@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path') 
 const cookieParser = require('cookie-parser')
+const compression = require('compression')
 
 const Log = require('./classes/Log')
 const PageData = require('./classes/PageData')
@@ -42,6 +43,8 @@ const pageData = new PageData()
 const localize = new Localize()
 
 app.use(cookieParser())
+app.use(compression());
+
 app.set('view engine', 'ejs')
 app.set('views', 'views') 
 
@@ -58,17 +61,16 @@ app.use(i18nextMiddleware.handle(i18next));
 // middleware to check any incomming call. Ideal for logging
 app.use((req, res, next)=> {
     log.write('', '', req)
-    localize.getLanguage(req)
     next()    
 })
 
 app.get('/', async (req, res) => {   
-    res.render('index', pageData.getPageData('main', req.i18n.resolvedLanguage))
+    res.render('index', pageData.getPageData('index', req.i18n.resolvedLanguage))
 })
 
-app.get('/switch/:lang', async (req, res) => {
-    const { lang } = req.params;
-    res.cookie('i18next', lang)
+app.get('/switch/:lng', async (req, res) => {
+    const { lng } = req.params;
+    res.cookie('i18next', lng)
     res.redirect('back'); // Redirect back to the previous page, this reloads the page
   });
 

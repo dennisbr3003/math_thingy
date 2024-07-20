@@ -4,55 +4,56 @@
     <body>
         <div>
             <div class="_toolbar">
-                <div class="_math-thingy-logo mx-4">
-                    <div style="background-size:100% 100%;" class="_image-background">
-                        <div>
-                            <img src="/img/math-book.webp" width="100vw" class="_book" />
-                        </div>
-                        <div class="_subtitle">THINGY</div>
+                <!-- the size of this div contains the max dimensions of the webp within. This measn there is a max to wich you can display this webp 
+                     and that max is the size of the surrounding div element. You can downsize the webp. h-[100%] means it will grow in height to the
+                     the dimensions of the surrounding div, which is the toolbar div -->
+                <div class="w-[70vw] md:w-[20vw] h-[100%] max-md:mx-auto pt-2">
+                    <img src="/img/math-book.webp" width="300px" height="150px" class="mx-auto" />
+                    <div class="_thingy">
+                        THINGY
                     </div>
                 </div>
                 <%- include('./partials/languageswitcher.ejs') %>
             </div>
             <div class="_page-content">
                 <ul class="_list-item-container">
-                    <li class="_list-item">
-                        <div class="col-span-2 md:hidden">
-                            <img src="/img/festive.webp" width="90vw" class="_img-festive mx-auto" />
-                        </div>
+                    <li class="grid grid-cols-1 md:grid-cols-5">
                         <div class="col-span-3 p-1 pb-[30px] md:pb-0">
                             <ul
                                 class="h-fit p-2 md:p-0 md:h-[calc(100vh-(170px+80px))] xl:h-[calc(100vh-(170px+90px))]">
-                                <li class="text-[1em] md:text-[1.6em] font-medium p-2 grid grid-cols-10 bg-white">
-                                    <div class="col-span-2 md:mt-auto"><img src="/img/smiley-listen-up.webp"
-                                            height="90%"></div>
+                                <li class="text-[1em] md:text-[1.6em] font-medium p-2 grid grid-cols-10">
+                                    <div class="col-span-2 mt-4 md:mt-auto"><img src="/img/smiley-listen-up.webp"
+                                            width="250px" height="250px"></div>
                                     <div class="col-span-8 px-2 _text-balloon" style="background-size:100% 100%;">
                                         <div id="interval" class="_text-balloon-text"></div>
                                     </div>
                                 </li>
                                 <li class="_sub-list-item-cols-10">
-                                    <div class="col-span-2 my-auto"><img src="/img/start.webp" width="75%"
-                                            class="mx-auto"></div>
+                                    <div class="col-span-2 my-auto"><img src="/img/start.webp" width="100px"
+                                            height="50px" class="mx-auto"></div>
                                     <div class="col-span-8 px-2 text-[12pt] md:text-[16pt]">
                                         <%= t('welcome') %>
                                     </div>
                                 </li>
                                 <li class="_sub-list-item-cols-10">
-                                    <div class="col-span-2 my-auto"><img src="/img/start.webp" width="75%"
-                                            class="mx-auto"></div>
-                                    <div class="col-span-8 px-2 text-[12pt] md:text-[16pt]">Your highest ranking is
-                                        still 277. You should get to work</div>
+                                    <div class="col-span-2 my-auto"><img src="/img/start.webp" width="100px"
+                                            height="50px" class="mx-auto"></div>
+                                    <div class="col-span-8 px-2 text-[12pt] md:text-[16pt]">
+                                        Your highest ranking is still 277. You should get to work
+                                    </div>
                                 </li>
                                 <li class="_sub-list-item-cols-10">
-                                    <div class="col-span-2 my-auto"><img src="/img/start.webp" width="75%"
-                                            class="mx-auto"></div>
-                                    <div class="col-span-8 px-2 text-[12pt] md:text-[16pt]">New feature in the Math
-                                        Thingy App, be sure to check it out</div>
+                                    <div class="col-span-2 my-auto"><img src="/img/start.webp" width="100px"
+                                            height="50px" class="mx-auto"></div>
+                                    <div class="col-span-8 px-2 text-[12pt] md:text-[16pt]">
+                                        New feature in the Math Thingy App, be sure to check it out
+                                    </div>
                                 </li>
                             </ul>
                         </div>
-                        <div class="col-span-2 max-md:hidden">
-                            <img src="/img/festive.webp" width="100vw" class="_img-festive ml-auto" />
+                        <div class="col-span-2 max-md:order-first">
+                            <img fetchpriority="high" src="/img/festive.webp" width="475px" height="200px"
+                                class="max-md:px-3 mx-auto pt-6" />
                         </div>
                     </li>
                 </ul>

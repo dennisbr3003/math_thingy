@@ -2,9 +2,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Math Thingy</title>
-    <link rel="stylesheet" href="/css/global.css"/>
-    <link rel="stylesheet" href="/css/<%= cssfile %>.css"/>
-    <link rel="icon" href="/img/favico.webp">    
+    <link rel="prefetch" href="/img/math-15-mobile.webp" as="image">
+    <link rel="prefetch" href="/img/math-15.webp" as="image">
+    <link rel="stylesheet" href="/css/global.css" /> <!-- 310ms -->
+    <link rel="stylesheet" href="/css/<%= cssfile %>.css" /> <!-- 310ms -->
+    <link rel="icon" href="/img/favico.webp">
+    <!-- https://stackoverflow.com/questions/32013088/image-prefetching-using-link-tag -->
     <!-- 
         https://stackoverflow.com/questions/5559578/having-links-relative-to-root
         A root-relative URL starts with a / character, to look something like 
