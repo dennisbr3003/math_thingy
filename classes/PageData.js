@@ -9,7 +9,10 @@ class PageData {
         this.localize = new Localize()
     }
 
-    getPageData(page, lang){
+    getPageData(page, lang, playerArray){
+
+        const player = playerArray ?? []
+
         this.localize.setLanguage(lang)
         this.data.selectedLanguage = {language: lang, description: 'not important'}    
         this.data.languages = [            
@@ -23,11 +26,16 @@ class PageData {
                 this.data.year = this.datetime.getYear()
                 this.data.generated = this.datetime.getTime()        
                 this.data.epoch = this.datetime.getEpoch()     
-                this.data.translations = this.localize.getIndexTranslations(lang)
+                this.data.playerDevice = player.length!==0?player[0]:''
+                this.data.playerName = player.length!==0?player[1]:''
+                this.data.translations = this.localize.getIndexTranslations(player)
                 break;
             case 'error':
                 // do nothing for now
-                break;
+                break
+            case 'about':
+                // do nothing for now
+                break
         }
         // always do this
         this.data.cssfile = page

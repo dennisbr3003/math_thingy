@@ -12,21 +12,19 @@ class Log {
         this.root = root
     }    
 
-    async #init(){
+    // this should be used when initializing the app
+    async init(){
 
-        let tmp = '' 
         this.datetime = new DateTime()
         this.location = this.root
         this.cleared = Date.now()
 
-        await this.#checkLogFolder(process.env.LOGFOLDER)
+        await this.#checkLogFolder(process.env.LOGFOLDER, true)
         await this.#clearLogFiles()
         await this.#writeline(new Date(), this.#getLogFileName(new Date()), 'Cleared logfiles if needed')
 
-        tmp = await this.#getversions()
-        await this.#writeline(new Date(), this.#getLogFileName(new Date()), tmp)
-        tmp = await this.#checkversion()
-        await this.#writeline(new Date(), this.#getLogFileName(new Date()), tmp)
+        await this.#writeline(new Date(), this.#getLogFileName(new Date()), await this.#getversions())
+        await this.#writeline(new Date(), this.#getLogFileName(new Date()), await this.#checkversion())
 
         await this.#writeline(new Date(), this.#getLogFileName(new Date()), `Root: ${this.root}`)
         await this.#writeline(new Date(), this.#getLogFileName(new Date()), 'Started app.js')
@@ -34,8 +32,11 @@ class Log {
       
     }
 
-    async initLog(){
-        await this.#init()
+    // short version of init. It does not clear logfiles or checks versions. (Logfiles are checked and cleared on every write)
+    async prepare() {
+        this.datetime = new DateTime()
+        this.location = this.root
+        await this.#checkLogFolder(process.env.LOGFOLDER, false)
     }
 
     async #getversions(){
@@ -70,6 +71,12 @@ class Log {
         if(Date.now() - this.cleared >= (4 * 60 * 60 * 1000)) this.#clearLogFiles()
     }
 
+    async listCookies(req){        
+        for (let key in req.cookies) {
+            if (req.cookies.hasOwnProperty(key)) this.#writeline(new Date(), this.#getLogFileName(new Date()), `Cookie: ${key} - ${req.cookies[key]}`)
+        }         
+    }
+
     #formatLine(dt, text){                      
         return `${this.datetime.getDate(dt, 'd,m,y', '-')} ${this.datetime.getTime(dt, 'h,m,s,ms')}  - ${text}`
     }
@@ -92,7 +99,7 @@ class Log {
             (err) => {if(err) console.log(err)}) 
     }
 
-    async #checkLogFolder (folder) {
+    async #checkLogFolder (folder, writeline) {
 
         const folders = folder.split(path.sep)
         
@@ -106,7 +113,7 @@ class Log {
                 console.error(err);
             }                        
         })        
-        this.#writeline(new Date(), this.#getLogFileName(new Date()), `Logfolder: ${this.location} - created or present`)
+        if(writeline)this.#writeline(new Date(), this.#getLogFileName(new Date()), `Logfolder: ${this.location} - created or present`)
     }
 
     async #clearLogFiles(){

@@ -13,7 +13,13 @@
                         THINGY
                     </div>
                 </div>
-                <%- include('./partials/languageswitcher.ejs') %>
+                <div class="flex flex-row items-center mt-[10px] md:mt-[20px] max-md:fixed max-md:top-0 max-md:right-0">
+                    <a href="/about">
+                        <img id="abc" src="/img/icons/info.webp" width="35px" height="20px"
+                            class="cursor-pointer mr-[10px]" />
+                    </a>
+                    <%- include('./partials/languageswitcher.ejs') %>
+                </div>
             </div>
             <div class="_page-content">
                 <ul class="_list-item-container">
@@ -21,34 +27,44 @@
                         <div class="col-span-3 p-1 pb-[30px] md:pb-0">
                             <ul
                                 class="h-fit p-2 md:p-0 md:h-[calc(100vh-(170px+80px))] xl:h-[calc(100vh-(170px+90px))]">
-                                <li class="text-[1em] md:text-[1.6em] font-medium p-2 grid grid-cols-10">
+                                <li
+                                    class="text-[1em] md:text-[1.6em] font-medium p-2 grid grid-cols-10 sticky top-0 bg-white cursor-default">
                                     <div class="col-span-2 mt-4 md:mt-auto"><img src="/img/smiley-listen-up.webp"
                                             width="250px" height="250px"></div>
                                     <div class="col-span-8 px-2 _text-balloon" style="background-size:100% 100%;">
                                         <div id="interval" class="_text-balloon-text"></div>
                                     </div>
                                 </li>
-                                <li class="_sub-list-item-cols-10">
-                                    <div class="col-span-2 my-auto"><img src="/img/start.webp" width="100px"
-                                            height="50px" class="mx-auto"></div>
-                                    <div class="col-span-8 px-2 text-[12pt] md:text-[16pt]">
-                                        <%= t('welcome') %>
-                                    </div>
-                                </li>
-                                <li class="_sub-list-item-cols-10">
-                                    <div class="col-span-2 my-auto"><img src="/img/start.webp" width="100px"
-                                            height="50px" class="mx-auto"></div>
-                                    <div class="col-span-8 px-2 text-[12pt] md:text-[16pt]">
-                                        Your highest ranking is still 277. You should get to work
-                                    </div>
-                                </li>
-                                <li class="_sub-list-item-cols-10">
-                                    <div class="col-span-2 my-auto"><img src="/img/start.webp" width="100px"
-                                            height="50px" class="mx-auto"></div>
-                                    <div class="col-span-8 px-2 text-[12pt] md:text-[16pt]">
-                                        New feature in the Math Thingy App, be sure to check it out
-                                    </div>
-                                </li>
+                                <% if(playerDevice!=='' &&playerName==='' ) { %>
+                                    <li class="_sub-list-item-cols-10 cursor-pointer">
+                                        <div class="col-span-2 mt-2 mb-auto"><img src="/img/start.webp" width="100px"
+                                                height="50px" class="mx-auto"></div>
+                                        <div class="_text">
+                                            <%- t('index.unknownPlayer', {device: playerDevice}) %>
+                                        </div>
+                                    </li>
+                                    <% } %>
+                                        <li class="_sub-list-item-cols-10">
+                                            <div class="col-span-2 mt-2 mb-auto"><img src="/img/start.webp"
+                                                    width="100px" height="50px" class="mx-auto"></div>
+                                            <div class="_text">
+                                                <%= t('welcome') %>
+                                            </div>
+                                        </li>
+                                        <li class="_sub-list-item-cols-10">
+                                            <div class="col-span-2 mt-2 mb-auto"><img src="/img/start.webp"
+                                                    width="100px" height="50px" class="mx-auto"></div>
+                                            <div class="_text">
+                                                Your highest ranking is still 277. You should get to work
+                                            </div>
+                                        </li>
+                                        <li class="_sub-list-item-cols-10">
+                                            <div class="col-span-2 mt-2 mb-auto"><img src="/img/start.webp"
+                                                    width="100px" height="50px" class="mx-auto"></div>
+                                            <div class="_text">
+                                                New feature in the Math Thingy App, be sure to check it out
+                                            </div>
+                                        </li>
                             </ul>
                         </div>
                         <div class="col-span-2 max-md:order-first">
@@ -97,7 +113,7 @@
                             cookieBox.classList.remove('show')
                             if (button.id === 'acceptButton') {
                                 document.cookie = 'mt_cookies_allowed=true; max-age=' + (30 * 24 * 60 * 60) + '; Secure; SameSite=Strict;'
-                                document.cookie = 'mt_cookies_language=' + navigator.language + '; max-age=' + (1000 * 24 * 60 * 60) + '; Secure; SameSite=Strict;'
+                                //document.cookie = 'mt_cookies_language=' + navigator.language + '; max-age=' + (1000 * 24 * 60 * 60) + '; Secure; SameSite=Strict;'
                             }
                             else {
                                 localStorage.setItem('nocookies', Date.now()) // set rejection and keep it for 30 days after which we ask again
