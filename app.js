@@ -41,7 +41,7 @@ const app = express()
 
 const log = new Log(__dirname)
 const entity = new Entity(__dirname)
-const pageData = new PageData()
+const pageData = new PageData(__dirname)
 
 app.use(cookieParser())
 app.use(compression()); /* https://www.geeksforgeeks.org/how-to-do-compression-with-gzip-in-node-js/ */

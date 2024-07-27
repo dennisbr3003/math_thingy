@@ -53,6 +53,10 @@ class Localize {
 
     }
 
+    getHomeButtonText(page){
+       return i18next.t(`${page}.hometext`)
+    }
+
 }
 
 module.exports = Localize

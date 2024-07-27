@@ -10,7 +10,7 @@
     },
     "error" : {
         "panic": "Oh non ! Tu as totalement cassé la page d&#39;accueil officielle de Math Thingy !",
-        "freshStart": "Clique ici pour prendre un nouveau départ !"
+        "hometext": "Clique ici pour prendre un nouveau départ !"
     },
     "metrics": {
         "day": "jour",
@@ -32,5 +32,11 @@
         "readmore": "En savoir plus...",
         "accept": "D&#39;accord 👍",
         "decline": "Non, merci"        
-    }                              
+    },
+    "about": {
+        "checkout": "Hé, regarde le matériel technologique utilisé pour créer la « page d'accueil officielle » de Math Thingy !!!",
+        "config": "Dernière mise à jour :",
+        "about": "À propos de ce site...",
+        "hometext": "J'en ai vu assez, je me retire ! 😒"
+    }    
 }

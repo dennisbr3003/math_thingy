@@ -1,0 +1,24 @@
+<!-- 
+    if you want to use this partial you must have a translation for 'hometext'.
+    Translation key 'hometext' is always resolved for each page wether it exists or 
+    not. You need to create a section in each translation file with the name of the 
+    page and a key 'hometext'. Her is an example for the 'about' page:
+
+    "about": {
+        "checkout": "...some translation...",
+        "config": "...some translation...",
+        "about": "...some translation...",
+        "hometext": "I've seen enough, I'm off! 😒"
+    }
+
+    You can use use emoji's in these texts
+ -->
+
+<a href="/">
+    <div class="hover:scale-110 w-fit mx-auto">
+        <img src="/img/home.webp" width="125px" class="mx-auto" />
+        <div class="text-center font-Atma-Medium md:text-[14pt]">
+            <%= hometext %>
+        </div>
+    </div>
+</a>

@@ -10,7 +10,7 @@
     },
     "error" : {
         "panic": "Oh no!! You totally broke Math Thingy&#39;s official home page!",
-        "freshStart": "Click here to get a fresh start!"
+        "hometext": "Click here to get a fresh start!"
     },
     "metrics": {
         "day": "day",
@@ -32,6 +32,12 @@
         "readmore": "Read more...",
         "accept": "I ❤️ cookies",
         "decline": "Opt out"
+    },
+    "about": {
+        "checkout": "Hey, check out the cool tech stuff that was used to create \"the official homepage\" of Math Thingy!!",
+        "config": "Last configuration update:",
+        "about": "About this website...",
+        "hometext": "I've seen enough, I'm off! 😒"
     }    
 }
   
