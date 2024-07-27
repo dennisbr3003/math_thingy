@@ -10,7 +10,7 @@
     },
     "error" : {
         "panic": "Oh nein!! Du hast die offizielle Homepage von Math Thingy zerstört!",
-        "freshStart": "Klicke hier für einen Neuanfang!"
+        "hometext": "Klicke hier für einen Neuanfang!"
     },
     "metrics": {
         "day": "Tag",
@@ -32,6 +32,12 @@
         "readmore": "Lies weiter...",
         "accept": "Cookies 👍",
         "decline": "Lieber nicht"        
-    }        
+    },   
+    "about": {
+        "checkout": "Hey, sieh dir an, was für cooler Technikkram benutzt wurde, um \"die offizielle Homepage\" von Math Thingy zu erstellen!!!",
+        "config": "Letzte Konfigurationsaktualisierung:",
+        "about": "Über diese Webseite...",
+        "hometext": "Ich habe genug gesehen, ich bin raus! 😒"
+    }
 }
   

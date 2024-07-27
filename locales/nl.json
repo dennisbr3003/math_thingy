@@ -10,7 +10,7 @@
     },
     "error" : {
         "panic": "Oh nee!! Je hebt Math Thingy&#39;s officiële pagina compleet kapot gemaakt!",
-        "freshStart": "Klik hier voor een frisse start!"
+        "hometext": "Klik hier voor een frisse start!"
     },
     "metrics": {
         "day": "dag",
@@ -32,6 +32,12 @@
         "readmore": "Lees meer...",
         "accept": "Cookies 👍",
         "decline": "Ik meld me af"        
-    }
+    },
+    "about": {
+        "checkout": "Hé, check dat coole tech spul dat is gebruikt om \"de officiële homepage\" van Math Thingy te maken!!!",
+        "config": "Laatste configuratie update:",
+        "about": "Over deze website...",
+        "hometext": "Ik heb genoeg gezien, ik ben weg! 😒"
+    }    
 }
   

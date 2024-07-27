@@ -2,7 +2,44 @@
 <%- include('./partials/header.ejs') %>
 
     <body>
-        <div>About</div>
+        <div class="w-[95vw] md:w-[60vw] pt-5 px-2 mx-auto">
+            <div>
+                <div class="_title">
+                    <%= t('about.about') %>
+                </div>
+            </div>
+            <div class="text-[1em] md:text-[1.6em] font-medium p-2 grid grid-cols-10 bg-white cursor-default md:mb-2">
+                <div class="mt-1 col-span-2 md:col-span-1"><img src="/img/smiley-congrats.webp" width="100px"
+                        height="100x">
+                </div>
+                <div class="col-span-8 md:col-span-5 _text-balloon" style="background-size:100% 100%;">
+                    <div id="abouttext" class="_text-balloon-text">
+                        <%= t('about.checkout') %>
+                    </div>
+                </div>
+            </div>
+            <ul class="text-[12pt] md:text-[18pt] h-fit">
+                <% versions.forEach((version)=> { %>
+                    <li class="grid grid-cols-12">
+                        <div class="flex flex-row items-center col-span-10 border-b-2 border-gray-300 py-1">
+                            <img src="/img/logo/<%= version.img %>" width="50" height="50"
+                                class="mr-2 md:mr-8 max-md:scale-[0.80]" />
+                            <%= version.name %>
+                        </div>
+                        <div class="flex flex-row items-center justify-end col-span-2 border-b-2 border-gray-300 py-1">
+                            <%= version.version %>
+                        </div>
+                    </li>
+                    <% }) %>
+            </ul>
+            <div class="text-[10pt] md:text-[12pt] pt-[10px] md:pt-[20px] pb-[20px]">
+                <%= t('about.config') %>
+                    <%= lastModified %>
+            </div>
+        </div>
+        <div class="mt-[30px] pb-[30px]">
+            <%- include('./partials/homebutton.ejs') %>
+        </div>
     </body>
 
 </html>

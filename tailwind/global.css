@@ -42,7 +42,7 @@
 }
 
 body{
-     @apply bg-[white] relative w-[100vw] h-[100vh] bg-cover bg-center bg-[url('/img/math-15-mobile.webp')] md:bg-[url('/img/math-15.webp')] -z-10;
+     @apply bg-[white] relative w-[100%] h-[100%] bg-cover bg-center bg-[url('/img/math-15-mobile.webp')] md:bg-[url('/img/math-15.webp')] -z-10;
 }
 
 ul{

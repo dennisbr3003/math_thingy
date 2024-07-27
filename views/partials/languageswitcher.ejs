@@ -8,8 +8,8 @@
         <% languages.forEach((lng)=> { %>
             <a href="/switch/<%= lng.language %>">
                 <button id="<%= lng.language %>"
-                    class="languagebutton font-Atma-Regular text-[22px] w-full flex flex-row items-center gap-[10px] pl-[20px] pr-[20px] py-[5px] hover:bg-[#93C5FD88]"><img
-                        src="/img/flags/<%= lng.language %>.svg" width="35" height="20" />
+                    class="languagebutton font-Atma-Regular text-[22px] w-full flex flex-row items-center gap-[10px] pl-[20px] pr-[20px] py-[5px] hover:bg-[#93C5FD88]">
+                    <img src="/img/flags/<%= lng.language %>.svg" width="35" height="20" />
                     <%= lng.description %>
                 </button>
             </a>

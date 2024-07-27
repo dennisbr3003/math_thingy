@@ -1,0 +1,9 @@
+._title {
+    @apply text-center pt-2 mb-[20px] md:mb-[40px] font-PermanentMarker-Regular text-[1.5em] md:text-[2.5em] !text-gray-500;
+}
+._text-balloon{
+    @apply bg-[url('/img/textballoon6.webp')] bg-center bg-no-repeat;
+    ._text-balloon-text {
+        @apply font-Atma-Medium font-normal text-center text-[14pt] md:text-[18pt] pl-[30px] pt-[15px] pb-[15px] pr-[15px] md:pl-[70px] md:pr-[30px] md:pt-[20px] md:pb-[20px];
+    }
+}
