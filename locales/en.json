@@ -37,6 +37,9 @@
         "checkout": "Hey, check out the cool tech stuff that was used to create \"the official homepage\" of Math Thingy!!",
         "config": "Last configuration update:",
         "about": "About this website...",
+        "clickme": "Click me!",
+        "contactTitle": "Need to get something off your chest?",
+        "contactText": "If you've seen a mistake (impossible), have suggestions for improvements (highly unlikely), just want to pass along that the site and app are great (always do) or if you have a question (doesn't matter about what)...why not pass it along to one of the devs who built this site? \n\n You may even get an answer!", 
         "hometext": "I've seen enough, I'm off! 😒"
     }    
 }
