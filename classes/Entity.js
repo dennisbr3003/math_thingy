@@ -1,34 +1,28 @@
-const mongoose = require('mongoose')
 const Log = require('../classes/Log')
-const Player = require('../models/player')
+const axioslib = require('axios')
+
+axios = axioslib.create({
+    baseURL: process.env.API
+});
 
 require('dotenv').config()
 
 class Entity {
     
     constructor(root){
-        this.dbURI = `mongodb+srv://${process.env.USER}:${process.env.PWD}@math-thingy.hcmbohg.mongodb.net/maththingy?retryWrites=true&w=majority&appName=math-thingy`
         this.root = root
         this.log = new Log(this.root)
         this.log.prepare() // quick init
     }
 
-    async init(){
-        await this.#connectToMongo()
-    }   
-
-    #connectToMongo = async () => {
-        try{    
-            await mongoose.connect(this.dbURI);
-            this.log.write('', 'Entity: Connected to remote MongoDB')
-        } catch(err) {
-            this.log.write('', `Entity: Not connected to remote MongoDB ${err.message}`)
+    async getPlayerByAxios(deviceId) {
+        try{
+            const result = await axios.get(`/player/${deviceId}`)        
+            return result.data
+        } catch (err) {
+            this.log.write('', `Entity: getPlayerByAxios failed. Message: ${err.message}`)
+            return null
         }
-    }
-
-    async getPlayer(deviceId) {
-        const query = Player.where({ device: deviceId })
-        return await query.findOne()
     }
 
 }

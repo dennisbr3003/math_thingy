@@ -36,24 +36,26 @@
                 <%= t('about.config') %>
                     <%= lastModified %>
             </div>
-            <div class="grid grid-cols-12 mt-[30px]">
-                <a href="/about/contact"
-                    class="col-span-3 md:col-span-2 pt-[5px] md:pt-[20px] hover:scale-110 transition-all border-b-2 border-gray-300 py-1">
-                    <img src="/img/ask-the-nerd.webp" width="150" height="150" class="mx-auto">
-                    <div class="mt-[5px] font-Atma-Medium text-center animate-bounce">
-                        <%= t('about.clickme') %>
-                    </div>
-                </a>
-                <div
-                    class="col-span-9 md:col-span-10 font-Atma-Medium text-[14pt] md:text-[18pt] cursor-default pl-2 border-b-2 border-gray-300 pb-[20px]">
-                    <div class="font-bold">
-                        <%= t('about.contactTitle') %>
-                    </div>
-                    <div class="font-normal whitespace-pre-line">
-                        <%= t('about.contactText') %>
+            <% if( playerDevice!=='' ) { %>
+                <div class="grid grid-cols-12 mt-[30px]">
+                    <a href="/about/contact"
+                        class="col-span-3 md:col-span-2 pt-[5px] md:pt-[20px] hover:scale-110 transition-all border-b-2 border-gray-300 py-1">
+                        <img src="/img/ask-the-nerd.webp" width="150" height="150" class="mx-auto">
+                        <div class="mt-[5px] font-Atma-Medium text-center animate-bounce">
+                            <%= t('about.clickme') %>
+                        </div>
+                    </a>
+                    <div
+                        class="col-span-9 md:col-span-10 font-Atma-Medium text-[14pt] md:text-[18pt] cursor-default pl-2 border-b-2 border-gray-300 pb-[20px]">
+                        <div class="font-bold">
+                            <%= t('about.contactTitle') %>
+                        </div>
+                        <div class="font-normal whitespace-pre-line">
+                            <%= t('about.contactText') %>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <% } %>
         </div>
         <div class="mt-[40px] pb-[30px]">
             <%- include('./partials/homebutton.ejs') %>
