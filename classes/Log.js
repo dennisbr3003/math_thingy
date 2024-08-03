@@ -53,7 +53,7 @@ class Log {
 
         let reqtext = ''
         if(typeof req !== 'undefined'){
-            reqtext=`http: ${req.httpVersion} | ${req.i18n.resolvedLanguage} | host: ${req.hostname} | method: ${String(req.method).padEnd(7, ' ')} | url: ${req.url}`
+            reqtext=`http: ${req.httpVersion} | ${req.get('Accept-Language')} | host: ${req.hostname} | method: ${String(req.method).padEnd(7, ' ')} | url: ${req.url}`
         }
         
         let logfile = type.toUpperCase()==='ERR'?this.#getErrFileName(dt):this.#getLogFileName(dt)

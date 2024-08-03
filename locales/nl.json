@@ -37,6 +37,9 @@
         "checkout": "Hé, check dat coole tech spul dat is gebruikt om \"de officiële homepage\" van Math Thingy te maken!!!",
         "config": "Laatste configuratie update:",
         "about": "Over deze website...",
+        "clickme": "Klik op mij!",
+        "contactTitle": "Heb je nog iets wat je kwijt moet?",
+        "contactText": "Als je een fout hebt gezien (onmogelijk), verbeterpunten hebt (lijkt ons sterk), even wil doorgeven dat de site en de app fantastisch zijn (altijd doen) of als je een vraag hebt (maakt niet uit waarover)...waarom dan niet even doorgeven aan één van de devs die deze site gebouwd hebben? \n\n Misschien krijg nog wel een antwoord ook!", 
         "hometext": "Ik heb genoeg gezien, ik ben weg! 😒"
     }    
 }

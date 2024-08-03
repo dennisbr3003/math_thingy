@@ -2,6 +2,7 @@ const express = require('express')
 const path = require('path') 
 const cookieParser = require('cookie-parser')
 const compression = require('compression')
+const helmet = require('helmet')
 
 const Log = require('./classes/Log')
 const PageData = require('./classes/PageData')
@@ -15,7 +16,6 @@ require('dotenv').config()
 
 const initApp = async () => {
   await log.init()
-  await entity.init() 
 }
 
 i18next
@@ -44,7 +44,11 @@ const entity = new Entity(__dirname)
 const pageData = new PageData(__dirname)
 
 app.use(cookieParser())
-app.use(compression()); /* https://www.geeksforgeeks.org/how-to-do-compression-with-gzip-in-node-js/ */
+app.use(compression()) /* https://www.geeksforgeeks.org/how-to-do-compression-with-gzip-in-node-js/ */
+//app.use(helmet()) // this one crashes the app on the translations with the metric parameters and the inline shit in the languageswitcher or the click event added to it
+/*
+Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self'". Either the 'unsafe-inline' keyword, a hash ('sha256-1OrOxCJjSlmLRnBGOSDrysCyUbkWRmpVJGjiztTfSMk='), or a nonce ('nonce-...') is required to enable inline execution.
+*/
 
 app.set('view engine', 'ejs')
 app.set('views', 'views') 
@@ -77,7 +81,7 @@ app.get('/signin/:deviceId?', async (req, res) => {
   // init cookie
   res.clearCookie("player")
   if(setcookie) {
-    const player = await entity.getPlayer(req.params.deviceId)
+    const player = await entity.getPlayerByAxios(req.params.deviceId)
     if(player!==null) res.cookie('player', JSON.stringify([player.device, player.displayname]), { maxAge: (30 * 24 * 60 * 60 * 1000), secure: true, sameSite: 'strict'})
   }
   res.redirect('/start')
@@ -87,8 +91,6 @@ app.get('/start', (req, res) => {
   let playerArray = null
   for (let key in req.cookies){ // naar class
     if (req.cookies.hasOwnProperty(key) && key==='player'){
-      //const arr = JSON.parse(req.cookies[key])
-      //param = arr[1]!==''?arr[1]:arr[0]
       playerArray = JSON.parse(req.cookies[key])
     }
   }
@@ -103,7 +105,13 @@ app.get('/switch/:lng', async (req, res) => {
 });
 
 app.get('/about', (req, res) => {
-  res.render('about', pageData.getPageData('about', req.i18n.resolvedLanguage))
+  let playerArray = null
+  for (let key in req.cookies){ // naar class
+    if (req.cookies.hasOwnProperty(key) && key==='player'){
+      playerArray = JSON.parse(req.cookies[key])
+    }
+  }  
+  res.render('about', pageData.getPageData('about', req.i18n.resolvedLanguage, playerArray))
 })
 
 app.use(async (req, res) => {

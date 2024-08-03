@@ -33,15 +33,13 @@ class PageData {
         ]    
         switch(page){
             case 'index':
-                this.data.playerDevice = player.length!==0?player[0]:''
-                this.data.playerName = player.length!==0?player[1]:''
                 this.data.translations = this.localize.getIndexTranslations(player)
                 break;
             case 'error':
                 // do nothing for now
                 break
             case 'about':
-                this.#createAboutData()                
+                this.#createAboutData(player)                
                 break
         }
         // always do this
@@ -49,6 +47,8 @@ class PageData {
         this.data.generated = this.datetime.getTime()        
         this.data.epoch = this.datetime.getEpoch()     
         this.data.hometext = this.localize.getHomeButtonText(page)        
+        this.data.playerDevice = player.length!==0?player[0]:''
+        this.data.playerName = player.length!==0?player[1]:''
         this.data.cssfile = page
         return this.data
     }    
@@ -62,7 +62,7 @@ class PageData {
         }
     }
 
-    async #createAboutData() {
+    async #createAboutData(player) {
         lib.isEmpty(this.dependencies) ? await this.#readPackageJson() : false
         this.data.versions=[]
         this.data.versions.push({name: 'Node', version: process.versions.node, img: 'node_logo.svg'})
@@ -72,7 +72,7 @@ class PageData {
         this.data.versions.push({name: 'i18next (internationalization)', version: this.#getVersion('i18next'), img: 'i18next.svg'})
         this.data.versions.push({name: 'Cookie Parser', version: this.#getVersion('cookie-parser'), img: 'cookieparser-border.webp'})
         this.data.versions.push({name: 'Compression for Node', version: this.#getVersion('compression'), img: 'cartwheel_small.webp'})
-        this.data.versions.push({name: 'Mongoose (MongoDB)', version: this.#getVersion('mongoose'), img: 'mongoose-logo.webp'})
+        this.data.versions.push({name: 'Axios HTTP client', version: this.#getVersion('axios'), img: 'axios.webp'})
         this.data.versions.push({name: 'JavaScript', version: '', img: 'js_logo.svg'})
         this.data.lastModified = `${this.datetime.getDate(new Date(this.lastModified), 'd,m,y')} ${this.datetime.getTime(new Date(this.lastModified))}`               
     }
