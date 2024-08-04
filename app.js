@@ -3,6 +3,7 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const compression = require('compression')
 const helmet = require('helmet')
+const { expressCspHeader, NONCE } = require("express-csp-header")
 
 const Log = require('./classes/Log')
 const PageData = require('./classes/PageData')
@@ -45,10 +46,18 @@ const pageData = new PageData(__dirname)
 
 app.use(cookieParser())
 app.use(compression()) /* https://www.geeksforgeeks.org/how-to-do-compression-with-gzip-in-node-js/ */
-//app.use(helmet()) // this one crashes the app on the translations with the metric parameters and the inline shit in the languageswitcher or the click event added to it
-/*
-Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self'". Either the 'unsafe-inline' keyword, a hash ('sha256-1OrOxCJjSlmLRnBGOSDrysCyUbkWRmpVJGjiztTfSMk='), or a nonce ('nonce-...') is required to enable inline execution.
-*/
+app.use(helmet()) 
+// this one crashes the app on the translations with the metric parameters and the inline shit in the languageswitcher or the click event added to it
+// Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self'". Either the 'unsafe-inline' keyword, a hash ('sha256-1OrOxCJjSlmLRnBGOSDrysCyUbkWRmpVJGjiztTfSMk='), or a nonce ('nonce-...') is required to enable inline execution.
+// solved it using: https://www.npmjs.com/package/express-csp-header + https://stackoverflow.com/questions/70924591/express-csp-ejs-inline-scripts-nonces-how-to
+// Also see https://content-security-policy.com/nonce/ for the chosen solution (using a nonce)
+
+app.use(
+  expressCspHeader({
+      directives: {"script-src": [NONCE]}
+  })
+)
+
 
 app.set('view engine', 'ejs')
 app.set('views', 'views') 
@@ -95,7 +104,7 @@ app.get('/start', (req, res) => {
     }
   }
   // param can be null or have a (string) value or even not passed
-  res.render('index', pageData.getPageData('index', req.i18n.resolvedLanguage, playerArray))
+  res.render('index', pageData.getPageData('index', req.i18n.resolvedLanguage, playerArray, req.nonce))
 })
 
 app.get('/switch/:lng', async (req, res) => {
@@ -111,7 +120,7 @@ app.get('/about', (req, res) => {
       playerArray = JSON.parse(req.cookies[key])
     }
   }  
-  res.render('about', pageData.getPageData('about', req.i18n.resolvedLanguage, playerArray))
+  res.render('about', pageData.getPageData('about', req.i18n.resolvedLanguage, playerArray, req.nonce))
 })
 
 app.use(async (req, res) => {
