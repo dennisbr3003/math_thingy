@@ -78,7 +78,7 @@
         </div>
         <%- include('./partials/footer.ejs') %>
 
-            <script type="module" async>
+            <script type="module" async nonce='<%= nonce %>'>
 
                 import { Epoch } from '/lib/epoch.js'
                 import { generateUUID } from '/lib/uuid.js'
