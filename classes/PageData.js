@@ -73,7 +73,7 @@ class PageData {
         this.data.versions.push({name: 'Cookie Parser', version: this.#getVersion('cookie-parser'), img: 'cookieparser-border.webp'})
         this.data.versions.push({name: 'Compression for Node', version: this.#getVersion('compression'), img: 'cartwheel_small.webp'})
         this.data.versions.push({name: 'Helmet (Security for Node)', version: this.#getVersion('helmet'), img: 'cartwheel_small.webp'})
-        this.data.versions.push({name: 'Express CSP header', version: this.#getVersion('express-csp-header'), img: 'cspheader.png'})
+        this.data.versions.push({name: 'Express CSP header', version: this.#getVersion('express-csp-header'), img: 'cspheader.webp'})
         this.data.versions.push({name: 'Axios HTTP client', version: this.#getVersion('axios'), img: 'axios.webp'})
         this.data.versions.push({name: 'JavaScript', version: '', img: 'js_logo.svg'})
         this.data.lastModified = `${this.datetime.getDate(new Date(this.lastModified), 'd,m,y')} ${this.datetime.getTime(new Date(this.lastModified))}`               
