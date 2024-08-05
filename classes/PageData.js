@@ -64,41 +64,25 @@ class PageData {
 
     async #createAboutData(player) {
         lib.isEmpty(this.dependencies) ? await this.#readPackageJson() : false
+        
         this.data.versions=[]
         this.data.versions.push({name: 'Node', version: process.versions.node, img: 'node_logo.svg'})
         this.data.versions.push({name: 'Express', version: this.#getVersion('express'), img: 'express_logo_small.webp'})
-        this.data.versions.push({name: 'EJS (Embedded JavaScript)', version: this.#getVersion('ejs'), img: 'ejs_logo.svg'})
+        this.data.versions.push({name: 'JavaScript', version: '', img: 'js_logo.svg'})
+        this.data.versions.push({name: 'EJS (Embedded JavaScript)', version: this.#getVersion('ejs'), img: 'ejs_logo.svg'})        
+        this.data.versions.push({name: 'Compression for Node', version: this.#getVersion('compression'), img: 'gzip-black.webp'})
         this.data.versions.push({name: 'Tailwind CSS', version: this.#getVersion('tailwindcss'), img: 'tailwind_logo.svg'})
+        this.data.versions.push({name: 'URL safe Base64', version: this.#getVersion('url-safe-base64'), img: 'base64.webp'})
+        this.data.versions.push({name: 'Cryptr', version: this.#getVersion('cryptr'), img: 'encryption.webp'})
         this.data.versions.push({name: 'i18next (internationalization)', version: this.#getVersion('i18next'), img: 'i18next.svg'})
         this.data.versions.push({name: 'Cookie Parser', version: this.#getVersion('cookie-parser'), img: 'cookieparser-border.webp'})
-        this.data.versions.push({name: 'Compression for Node', version: this.#getVersion('compression'), img: 'cartwheel_small.webp'})
-        this.data.versions.push({name: 'Helmet (Security for Node)', version: this.#getVersion('helmet'), img: 'cartwheel_small.webp'})
-        this.data.versions.push({name: 'Express CSP header', version: this.#getVersion('express-csp-header'), img: 'cspheader.webp'})
         this.data.versions.push({name: 'Axios HTTP client', version: this.#getVersion('axios'), img: 'axios.webp'})
-        this.data.versions.push({name: 'JavaScript', version: '', img: 'js_logo.svg'})
+        this.data.versions.push({name: 'Express CSP header', version: this.#getVersion('express-csp-header'), img: 'cspheader.webp'})        
+        this.data.versions.push({name: 'Helmet (Security for Node)', version: this.#getVersion('helmet'), img: 'cartwheel_small.webp'})
+
         this.data.lastModified = `${this.datetime.getDate(new Date(this.lastModified), 'd,m,y')} ${this.datetime.getTime(new Date(this.lastModified))}`               
     }
 
-/*
-    {
-        "autoprefixer": "^10.4.19",
-        "compression": "^1.7.4",
-        "cookie-parser": "^1.4.6",
-        "dotenv": "^16.4.5",
-        "ejs": "^3.1.10",
-        "express": "^4.19.2",
-        "i18n": "^0.15.1",
-        "i18next": "^23.11.5",
-        "i18next-fs-backend": "^2.3.1",
-        "i18next-http-middleware": "^3.6.0",
-        "mongoose": "^8.5.1",
-        "nodemon": "^3.1.0",
-        "path": "^0.12.7",
-        "postcss": "^8.4.38",
-        "postcss-cli": "^11.0.0",
-        "tailwindcss": "^3.4.3"
-    }
-*/
     #getVersion(module){
         return this.dependencies[module].substring(1)
     }
