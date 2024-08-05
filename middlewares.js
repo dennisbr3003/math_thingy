@@ -45,7 +45,7 @@ module.exports = [
         log.write('', '', req)
         next()  
     },    
-    expressCspHeader({ // has to be called after the helemt() function
+    expressCspHeader({ // has to be called after the helemt() function. req is extended with the attribute 'nonce' (no capitals)
         directives: {"script-src": [NONCE]}
     }),    
     i18nextMiddleware.handle(i18next)
