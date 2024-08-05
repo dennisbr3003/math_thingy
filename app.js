@@ -1,84 +1,25 @@
 const express = require('express')
 const path = require('path') 
-const cookieParser = require('cookie-parser')
-const compression = require('compression')
-const helmet = require('helmet')
-const { expressCspHeader, NONCE } = require("express-csp-header")
 
-const Log = require('./classes/Log')
 const PageData = require('./classes/PageData')
 const Entity = require('./classes/Entity')
 
-const i18next = require('i18next')
-const i18nextMiddleware = require('i18next-http-middleware')
-const Backend = require('i18next-fs-backend')
-
 require('dotenv').config()
-
-const initApp = async () => {
-  await log.init()
-}
-
-i18next
-.use(Backend)
-.use(i18nextMiddleware.LanguageDetector)
-.init({
-  backend: {
-    loadPath: __dirname + '/locales/{{lng}}.json',
-  },
-  detection: {
-    order: ['cookie', 'querystring', 'path', 'header'],
-    caches: ['cookie'],
-    lookupQuerystring: 'lng',
-    lookupCookie: 'i18next',
-    lookupHeader: 'accept-language',
-  },
-  fallbackLng: 'en',
-  preload: ['en', 'nl', 'fr', 'de']
-});
-
 
 const app = express()
 
-const log = new Log(__dirname)
+app.set('view engine', 'ejs')
+app.set('views', 'views') 
+app.listen(process.env.PORT) 
+
 const entity = new Entity(__dirname)
 const pageData = new PageData(__dirname)
 
-app.use(cookieParser())
-app.use(compression()) /* https://www.geeksforgeeks.org/how-to-do-compression-with-gzip-in-node-js/ */
-app.use(helmet()) 
-// this one crashes the app on the translations with the metric parameters and the inline shit in the languageswitcher or the click event added to it
-// Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self'". Either the 'unsafe-inline' keyword, a hash ('sha256-1OrOxCJjSlmLRnBGOSDrysCyUbkWRmpVJGjiztTfSMk='), or a nonce ('nonce-...') is required to enable inline execution.
-// solved it using: https://www.npmjs.com/package/express-csp-header + https://stackoverflow.com/questions/70924591/express-csp-ejs-inline-scripts-nonces-how-to
-// Also see https://content-security-policy.com/nonce/ for the chosen solution (using a nonce)
-
-app.use(
-  expressCspHeader({
-      directives: {"script-src": [NONCE]}
-  })
-)
-
-
-app.set('view engine', 'ejs')
-app.set('views', 'views') 
-
-app.listen(process.env.PORT) 
 // convenient to start the app from the terminal
 console.log('ready to receive requests on ', `http://localhost:${process.env.PORT}`)
 
-initApp()
-
 app.use(express.static(path.join(__dirname, "public")));
-
-app.use(i18nextMiddleware.handle(i18next));
-
-// middleware to check any incomming call. Ideal for logging
-app.use((req, res, next)=> {
-    log.listCookies(req)
-    log.write('', '', req)
-    next()    
-})
-
+app.use(require('./middlewares.js'))
 
 app.get('/', async (req, res) => {
   res.redirect('/start')
@@ -124,6 +65,5 @@ app.get('/about', (req, res) => {
 })
 
 app.use(async (req, res) => {
-    log.write('ERR', 'Navigation error (404)', req)
     res.status(404).render('error', pageData.getPageData('error', req.i18n.resolvedLanguage))
 })
