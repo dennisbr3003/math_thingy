@@ -21,6 +21,9 @@ console.log('ready to receive requests on ', `http://localhost:${process.env.POR
 app.use(express.static(path.join(__dirname, "public")));
 app.use(require('./middlewares.js'))
 
+//https://www.npmjs.com/package/cryptr
+// make yourself known as application to mt-api with some ecrypted shit that can be decrypted on the other side
+
 app.get('/', async (req, res) => {
   res.redirect('/start')
 })
