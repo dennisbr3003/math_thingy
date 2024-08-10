@@ -6,7 +6,12 @@
         "firstVisit": "Salut {{- player}}, c&#39;est la première fois que tu viens ici ! Bienvenue ! Regarde ce qui s&#39;est passé ci-dessous !",
         "subsequentVisit": "Salut {{- player}} ! Ta dernière visite remonte à {param1}. Vérifie ce qui s&#39;est passé depuis ta dernière visite...",
         "stranger": "l&#39;étranger",        
-        "unknownPlayer": "On dirait que nous ne connaissons pas ton nom ! Nous pouvons bien sûr t&#39;appeler {{ device }}, mais un nom ou quelque chose comme ça serait bien. Réparons cela !"
+        "unknownPlayer": "On dirait que nous ne connaissons pas ton nom ! Nous pouvons bien sûr t&#39;appeler {{ device }}, mais un nom ou quelque chose comme ça serait bien. Réparons cela !",
+        "the": "PAGE",
+        "official" : "OFFICIELLE",
+        "homepage": "D'ACCUEIL",
+        "very": "",
+        "subtitle": "La maison des magiciens des maths"
     },
     "error" : {
         "panic": "Oh non ! Tu as totalement cassé la page d&#39;accueil officielle de Math Thingy !",

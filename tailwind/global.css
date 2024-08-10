@@ -7,27 +7,84 @@
 /* https://blog.logrocket.com/how-to-use-custom-fonts-tailwind-css */
 
 @layer base {
-    @font-face {
+    /* @font-face {
         font-family: 'Atma-Regular';
         font-weight: 400;
         font-style: normal;
         font-display: swap;
         src: url("/fonts/Atma-Regular.ttf") format('truetype')
-    }    
+    }     */
     @font-face {
+        font-family: 'Atma-Regular';
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+        src: url("/fonts/Atma-Regular.woff2") format('woff2')
+    }           
+    /* @font-face {
         font-family: 'Atma-Medium';
         font-weight: 500;
         font-style: normal;
         font-display: swap;
         src: url("/fonts/Atma-Medium.ttf") format('truetype')
-    }
+    } */
+    @font-face {
+        font-family: 'Atma-Medium';
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+        src: url("/fonts/Atma-Medium.woff2") format('woff2')
+    }     
     @font-face {
         font-family: 'PermanentMarker-Regular';
         font-style: normal;
         font-weight: 400;
         font-display: swap;
-        src: url('/fonts/PermanentMarker-Regular.ttf') format('truetype')
-    } 
+        src: url('/fonts/PermanentMarker-Regular.woff2') format('woff2')
+    }     
+    /* @font-face {
+        font-family: 'IndieFlower-Regular';        
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('/fonts/IndieFlower-Regular.ttf') format('truetype')
+    }      */
+    @font-face {
+        font-family: 'IndieFlower-Regular';        
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('/fonts/IndieFlower-Regular.woff2') format('woff2')
+    }     
+    /* @font-face {
+        font-family: 'Frijole-Regular';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('/fonts/Frijole-Regular.ttf') format('truetype')
+    }      */
+    @font-face {
+        font-family: 'Frijole-Regular';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('/fonts/Frijole-Regular.woff2') format('woff2')
+    }              
+    /* @font-face {
+        font-family: 'Margarine-Regular';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('/fonts/Margarine-Regular.ttf') format('truetype')
+    }          */
+    @font-face {
+        font-family: 'Margarine-Regular';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('/fonts/Margarine-Regular.woff2') format('woff2')
+    }         
+
 }
 /* https://dev.to/derick1530/how-to-create-scrollable-element-in-tailwind-without-a-scrollbar-4mbd */
 

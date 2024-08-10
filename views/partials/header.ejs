@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="/css/global.css" /> <!-- 310ms -->
     <link rel="stylesheet" href="/css/<%= cssfile %>.css" /> <!-- 310ms -->
     <link rel="icon" href="/img/favico.webp">
+    <link rel="preload" href="/fonts/Atma-Medium.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/Atma-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/Frijole-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/IndieFlower-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/Margarine-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/PermanentMarker-Regular.woff2" as="font" type="font/woff2" crossorigin>
     <!-- https://stackoverflow.com/questions/32013088/image-prefetching-using-link-tag -->
     <!-- 
         https://stackoverflow.com/questions/5559578/having-links-relative-to-root
@@ -15,5 +21,14 @@
         <a href="/directoryInRoot/fileName.html">link text</a>.
 
         https://discuss.codecademy.com/t/can-you-apply-multiple-stylesheets-to-a-single-page/369792
+
+        Getting compressed fonts (woff2) from google fonts (+15 Lighthouse speedtest)
+        1. select font from google
+        2. check embedded code for downoad url (this is for ttf)
+        3. enter this url in the browser. This will show (possibly mutliple) download links to woff2 files
+        4. get the one you need (usually latin). This is a subset of the full ttf font. This will reduce size.
+        https://byteofdev.com/posts/speed-up-font-loading/ (subsetting, preloading and woff2 instead of ttf)
+        https://scribehow.com/shared/Get_woff2_file_from_Google_Fonts__LU61xGOpSju3YvOi9B2BMg
+
     -->
 </head>

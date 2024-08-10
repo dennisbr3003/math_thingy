@@ -6,7 +6,12 @@
         "firstVisit": "Hé {{- player}}, het is je eerste keer dat ik je hier zie! Welkom! Kijk hieronder wat er allemaal is gebeurd!",
         "subsequentVisit": "Hey {{- player}}! Je laatste bezoek was {param1} geleden. Check wat er is gebeurd sinds je laatste bezoek...",
         "stranger": "vreemdeling",
-        "unknownPlayer": "Héé het ziet er naar uit de we niet weten hoe je heet! we kunnen je natuurlijk {{ device }} blijven noemen maar misschien is een naam of iets dergelijks wel leuk. Laten we het fixen!"
+        "unknownPlayer": "Héé het ziet er naar uit de we niet weten hoe je heet! we kunnen je natuurlijk {{ device }} blijven noemen maar misschien is een naam of iets dergelijks wel leuk. Laten we het fixen!",
+        "the": "DE",
+        "official" : "OFFICIËLE",
+        "homepage": "HOMEPAGE",
+        "very": "ERG",
+        "subtitle": "Thuishaven voor de ergste wiskunde nerds"        
     },
     "error" : {
         "panic": "Oh nee!! Je hebt Math Thingy&#39;s officiële pagina compleet kapot gemaakt!",
