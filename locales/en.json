@@ -6,7 +6,12 @@
         "firstVisit": "Hey {{- player}}, it&#39;s your first time seeing you here! Welcome! Check out what&#39;s been happening below!",
         "subsequentVisit": "Hey {{- player}}! Your last visit was {param1} ago. Check what happened since your last visit...",
         "stranger": "stranger",
-        "unknownPlayer": "Hey it looks like the we don&#39;t know your name! we can of course call you {{ device }}, but maybe a name or something would be nice. Let&#39;s fix it!"
+        "unknownPlayer": "Hey it looks like the we don&#39;t know your name! we can of course call you {{ device }}, but maybe a name or something would be nice. Let&#39;s fix it!",
+        "the": "THE",
+        "official" : "OFFICIAL",
+        "homepage": "HOMEPAGE",
+        "very": "VERY",
+        "subtitle": "Home of the true math magicians"
     },
     "error" : {
         "panic": "Oh no!! You totally broke Math Thingy&#39;s official home page!",

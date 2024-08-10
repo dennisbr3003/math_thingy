@@ -6,7 +6,12 @@
         "firstVisit": "Hey {{- player}}, es ist das erste Mal, dass ich dich hier sehe! Herzlich willkommen! Schau dir an, was unten passiert ist!",
         "subsequentVisit": "Hallo {{- player}}! Dein letzter Besuch ist {param1} her. Schau nach, was seit deinem letzten Besuch passiert ist...",
         "stranger": "Fremder",        
-        "unknownPlayer": "Hey, es sieht so aus, als wüssten wir deinen Namen nicht! Wir können dich natürlich {{ device }} nennen, aber vielleicht wäre ein Name oder so etwas nett. Bringen wir es in Ordnung!"
+        "unknownPlayer": "Hey, es sieht so aus, als wüssten wir deinen Namen nicht! Wir können dich natürlich {{ device }} nennen, aber vielleicht wäre ein Name oder so etwas nett. Bringen wir es in Ordnung!",
+        "the": "DIE",
+        "official" : "OFFIZIELLE",
+        "homepage": "HOMEPAGE",
+        "very": "SEHR",
+        "subtitle": "Die Heimat der wahren Mathe-Magier"        
     },
     "error" : {
         "panic": "Oh nein!! Du hast die offizielle Homepage von Math Thingy zerstört!",

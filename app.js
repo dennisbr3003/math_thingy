@@ -15,14 +15,10 @@ app.listen(process.env.PORT)
 const entity = new Entity(__dirname)
 const pageData = new PageData(__dirname)
 
-// convenient to start the app from the terminal
 console.log('ready to receive requests on ', `http://localhost:${process.env.PORT}`)
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(require('./middlewares.js'))
-
-//https://www.npmjs.com/package/cryptr
-// make yourself known as application to mt-api with some ecrypted shit that can be decrypted on the other side
 
 app.get('/', async (req, res) => {
   res.redirect('/start')

@@ -1,16 +1,16 @@
 /* https://daily.dev/blog/how-to-use-tailwindcss-with-node-js-express-and-pug */
 
 ._toolbar{
-    @apply h-[130px] md:h-[170px] fixed left-0 top-0 right-0 md:flex md:flex-row md:items-start md:justify-between md:gap-[20px];
+    @apply h-[240px] md:h-[170px] fixed left-0 top-0 right-0 md:flex md:flex-row md:items-start md:justify-between md:gap-[20px] z-50;
     ._thingy{
         @apply text-gray-400 text-center font-bold text-[24pt] md:text-[32pt] mt-[-15px] md:mt-[-20px];
     }
 }
 
 ._page-content {
-    @apply flex flex-col items-center pt-[170px];
+    @apply flex flex-col items-center pt-[240px] md:pt-[170px];
     ._list-item-container{
-        @apply h-[calc(100vh-(130px+40px+5px))] md:h-[calc(100vh-(170px+50px+5px))] xl:h-[calc(100vh-(170px+60px+5px))] w-[95vw] md:w-[80vw] pt-5;
+        @apply h-[calc(100vh-(230px+40px+5px))] md:h-[calc(100vh-(160px+50px+5px))] xl:h-[calc(100vh-(160px+60px+5px))] w-[95vw] md:w-[80vw] pt-5;
         ._sub-list-item-cols-10{
             @apply text-[1em] md:text-[1.6em] font-medium p-2 grid grid-cols-10 cursor-pointer rounded-lg shadow-lg mt-[12px] bg-gradient-to-b from-[#dadde5] to-[#FFFFFF88];
             ._text{

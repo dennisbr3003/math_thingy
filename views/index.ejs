@@ -7,10 +7,31 @@
                 <!-- the size of this div contains the max dimensions of the webp within. This measn there is a max to wich you can display this webp 
                      and that max is the size of the surrounding div element. You can downsize the webp. h-[100%] means it will grow in height to the
                      the dimensions of the surrounding div, which is the toolbar div -->
-                <div class="w-[70vw] md:w-[20vw] h-[100%] max-md:mx-auto pt-2">
-                    <img src="/img/math-book.webp" width="300px" height="150px" class="mx-auto" />
-                    <div class="_thingy">
-                        THINGY
+                <div class="md:flex md:flex-row md:items-center">
+                    <div class="w-[70vw] md:w-[20vw] h-fit max-md:mx-auto pt-2">
+                        <img src="/img/math-book.webp" width="300px" height="150px" class="mx-auto" />
+                        <div class="_thingy">
+                            THINGY
+                        </div>
+                    </div>
+                    <div class="mx-auto">
+                        <div
+                            class="font-IndieFlower-Regular text-[1.5rem] md:text-[4rem] font-bold flex flex-row items-center max-md:justify-center">
+                            <%= t('index.the') %>
+                                <div
+                                    class="md:font-Frijole-Regular text-[1.5rem] md:text-[5rem] ml-[10px] md:ml-[20px] mr-[10px] md:mr-[20px] md:font-normal">
+                                    <span class="md:hidden">
+                                        <%= t('index.very') %>
+                                    </span>
+                                    <%= t('index.official') %>
+                                </div>
+                                <%= t('index.homepage') %>
+                        </div>
+                        <div
+                            class="font-Margarine-Regular text-[1rem] md:text-[1.5rem] mt-[-10px] md:mt-[-20px] text-center">
+                            <%= t('index.subtitle') %>
+                                <img src="/img/magician.webp" width="50px" height="50px" class="inline" />
+                        </div>
                     </div>
                 </div>
                 <div class="flex flex-row items-center mt-[10px] md:mt-[20px] max-md:fixed max-md:top-0 max-md:right-0">
@@ -21,14 +42,17 @@
                     <%- include('./partials/languageswitcher.ejs') %>
                 </div>
             </div>
+
+            <!-- einde toolbar -->
+
             <div class="_page-content">
                 <ul class="_list-item-container">
                     <li class="grid grid-cols-1 md:grid-cols-5">
                         <div class="col-span-3 p-1 pb-[30px] md:pb-0">
                             <ul
-                                class="h-fit p-2 md:p-0 md:h-[calc(100vh-(170px+80px))] xl:h-[calc(100vh-(170px+90px))]">
+                                class="h-fit p-2 md:p-0 md:h-[calc(100vh-(165px+80px))] xl:h-[calc(100vh-(165px+90px))] md:pb-[30px]">
                                 <li
-                                    class="text-[1em] md:text-[1.6em] font-medium p-2 grid grid-cols-10 sticky top-0 bg-white cursor-default">
+                                    class="text-[1em] md:text-[1.6em] font-medium p-2 grid grid-cols-10 sticky top-0 md:bg-white cursor-default">
                                     <div class="col-span-2 mt-4 md:mt-auto"><img src="/img/smiley-listen-up.webp"
                                             width="250px" height="250px"></div>
                                     <div class="col-span-8 px-2 _text-balloon" style="background-size:100% 100%;">
