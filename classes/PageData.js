@@ -40,6 +40,9 @@ class PageData {
             case 'about':
                 this.#createAboutData(player)                
                 break
+            case 'contact':
+                this.#createContactData(player)                
+                break                
         }
         // always do this
         this.data.year = this.datetime.getYear()
@@ -82,6 +85,10 @@ class PageData {
 
         this.data.lastModified = `${this.datetime.getDate(new Date(this.lastModified), 'd,m,y')} ${this.datetime.getTime(new Date(this.lastModified))}`               
     }
+
+    async #createContactData(player) {
+        console.log('player', player)
+    }    
 
     #getVersion(module){
         return this.dependencies[module].substring(1)

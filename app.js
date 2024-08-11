@@ -18,6 +18,9 @@ const pageData = new PageData(__dirname)
 console.log('ready to receive requests on ', `http://localhost:${process.env.PORT}`)
 
 app.use(express.static(path.join(__dirname, "public")));
+// middleware to "get" form data to the "req" object of a app.post call, it will be reachable in reg.body
+app.use(express.urlencoded({extended: true}))
+
 app.use(require('./middlewares.js'))
 
 app.get('/', async (req, res) => {
@@ -61,6 +64,37 @@ app.get('/about', (req, res) => {
     }
   }  
   res.render('about', pageData.getPageData('about', req.i18n.resolvedLanguage, playerArray, req.nonce))
+})
+
+app.get('/about/contact', (req, res) => {
+  let playerArray = null
+  for (let key in req.cookies){ // naar class
+    if (req.cookies.hasOwnProperty(key) && key==='player'){
+      playerArray = JSON.parse(req.cookies[key])
+    }
+  }  
+  res.render('contact', pageData.getPageData('contact', req.i18n.resolvedLanguage, playerArray, req.nonce))
+})
+
+app.post('/about/contact', (req, res) => {
+  let playerArray = null
+  for (let key in req.cookies){ // naar class
+    if (req.cookies.hasOwnProperty(key) && key==='player'){
+      playerArray = JSON.parse(req.cookies[key])
+    }
+  }  
+  console.log('player', playerArray)
+  console.log('formData', req.body)
+
+/*
+player [ '56191af4-60a4-4b9b-be51-91056dd32f1e', '' ]
+formData {
+  name: 'Dennis Brink',
+  email: 'dennis.brink@villaforyou.com',
+  message: 'ededseswd'
+}
+*/
+
 })
 
 app.use(async (req, res) => {

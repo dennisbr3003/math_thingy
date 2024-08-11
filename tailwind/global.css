@@ -86,4 +86,11 @@ ul{
 ._fonttext {
     @apply text-[12pt] md:text-[20pt] font-semibold text-white;
 }
-    
+
+._input {
+    @apply block p-2.5 w-full text-gray-900 bg-gray-50 rounded-lg outline outline-1 outline-gray-500 focus:outline-[3px] focus:outline-blue-500 focus:ring-blue-500 focus:border-blue-500;
+}
+
+._button {
+    @apply border-none bg-[#4070f4] cursor-pointer rounded-[8px] py-2 px-4 text-white transition-all duration-300 ease-in hover:bg-[#034bf1];
+}

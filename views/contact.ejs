@@ -2,9 +2,82 @@
 <%- include('./partials/header.ejs') %>
 
     <body>
-        <div>
-            Contact form (uses the cookie you agreed to)
+        <div class="w-[95vw] md:w-[50vw] pt-5 px-2 mx-auto">
+            <div class="_title flex flex-row items-center gap-5 justify-center">
+                <div>
+                    <%= t('contact.title') %>
+                </div>
+                <img src="/img/smiley-a-ok-small.webp" width="70" height="70" />
+            </div>
+            <div class="_body">
+                <form action="/about/contact" method="post" class="grid grid-cols-1 gap-y-2">
+                    <label for="name" class="_label">
+                        <%= t('contact.labelName') %>
+                    </label>
+                    <input type="text" id="name" name="name" required title="<%= t('contact.nameValidation') %>"
+                        placeholder="<%= t('contact.namePlaceholder') %>" class="_input name">
+                    <label for="email" class="_label">
+                        <%= t('contact.labelEmail') %>
+                    </label>
+                    <input type="email" id="email" name="email" required title="<%= t('contact.emailValidation') %>"
+                        placeholder="<%= t('contact.emailPlaceholder') %>" class="_input email">
+                    <label for="body" class="_label">
+                        <%= t('contact.labelMessage') %>
+                    </label>
+                    <textarea id="message" name="message" rows="7" required title=""
+                        placeholder="<%= t('contact.messagePlaceholder') %>"
+                        class="_input resize-none message"></textarea>
+                    <!-- This button will autotrigger the action and method of the form -->
+                    <button class="send ml-auto _button mt-2">
+                        <div class="flex flex-row items-center gap-3">
+                            <div class="_label">
+                                <%= t('contact.buttonSend') %>
+                            </div>
+                            <img src="/img/icons/send0.svg" width="25" height="25" />
+                        </div>
+                    </button>
+                </form>
+            </div>
         </div>
+        <div class="mt-[40px] pb-[30px]">
+            <%- include('./partials/homebutton.ejs') %>
+        </div>
+        <script nonce='<%= nonce %>'>
+
+            /* INLINE violates with NONCE (content-security-policy-wise) so we cannot use it here so we have to add events to HTML elements */
+            const inputElementArray = document.querySelectorAll('._input')
+            inputElementArray.forEach(element => {
+                element.addEventListener('input', e => {
+                    element.setCustomValidity('')
+                })
+            })
+
+            const sendButton = document.querySelector('.send').addEventListener('click', e => {
+                setValidationMessage()
+            })
+
+            // https://jsfiddle.net/patelriki13/Sqq8e/4
+            const setValidationMessage = () => {
+                inputElementArray.forEach(element => {
+                    if (element.classList.contains('name')) {
+                        if (element.value === '' || typeof element.value === 'undefined') {
+                            element.setCustomValidity("<%- t('contact.nameValidation') %>")
+                        } else element.setCustomValidity('')
+                    }
+                    if (element.classList.contains('email')) {
+                        if (element.value === '' || typeof element.value === 'undefined' || element.validity.typeMismatch) {
+                            element.setCustomValidity("<%- t('contact.emailValidation') %>")
+                        } else element.setCustomValidity('')
+                    }
+                    if (element.classList.contains('message')) {
+                        if (element.value === '' || typeof element.value === 'undefined') {
+                            element.setCustomValidity("<%- t('contact.messageValidation') %>")
+                        } else element.setCustomValidity('')
+                    }
+                })
+            }
+
+        </script>
     </body>
 
 </html>
