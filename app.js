@@ -3,6 +3,7 @@ const path = require('path')
 
 const PageData = require('./classes/PageData')
 const Entity = require('./classes/Entity')
+const ReqData = require('./classes/ReqData')
 
 require('dotenv').config()
 
@@ -14,6 +15,7 @@ app.listen(process.env.PORT)
 
 const entity = new Entity(__dirname)
 const pageData = new PageData(__dirname)
+const reqData = new ReqData()
 
 console.log('ready to receive requests on ', `http://localhost:${process.env.PORT}`)
 
@@ -28,26 +30,25 @@ app.get('/', async (req, res) => {
 })
 
 // this is comming in from the math thingy app
-app.get('/signin/:deviceId?', async (req, res) => {
-  const setcookie = !!req.params.deviceId ?? false
-  // init cookie
-  res.clearCookie("player")
-  if(setcookie) {
-    const player = await entity.getPlayerByAxios(req.params.deviceId)
-    if(player!==null) res.cookie('player', JSON.stringify([player.device, player.displayname]), { maxAge: (30 * 24 * 60 * 60 * 1000), secure: true, sameSite: 'strict'})
+app.get('/signin/:deviceId', async (req, res) => {
+  if(req.params.deviceId!=='') {
+    res.clearCookie("player") // reset cookie  
+    const player = await entity.getPlayerByAxios(req.params.deviceId) // get player data with deviceId
+    if(player!==null){
+      if(reqData.getCookiePermission(req.cookies)){ // longterm cookie 
+          res.cookie('player', JSON.stringify([player.device, player.displayname]), { maxAge: (30 * 24 * 60 * 60 * 1000), secure: true, sameSite: 'strict'})
+      } else { 
+          // short term cookie = session cookie
+          // https://stackoverflow.com/questions/10617954/chrome-doesnt-delete-session-cookies
+          res.cookie('player', JSON.stringify([player.device, player.displayname]), { secure: true, sameSite: 'strict'})
+      }
+    }
   }
   res.redirect('/start')
 })
 
 app.get('/start', (req, res) => {
-  let playerArray = null
-  for (let key in req.cookies){ // naar class
-    if (req.cookies.hasOwnProperty(key) && key==='player'){
-      playerArray = JSON.parse(req.cookies[key])
-    }
-  }
-  // param can be null or have a (string) value or even not passed
-  res.render('index', pageData.getPageData('index', req.i18n.resolvedLanguage, playerArray, req.nonce))
+  res.render('index', pageData.getPageData('index', req.i18n.resolvedLanguage, reqData.getPlayer(req.cookies), req.nonce))
 })
 
 app.get('/switch/:lng', async (req, res) => {
@@ -57,43 +58,26 @@ app.get('/switch/:lng', async (req, res) => {
 });
 
 app.get('/about', (req, res) => {
-  let playerArray = null
-  for (let key in req.cookies){ // naar class
-    if (req.cookies.hasOwnProperty(key) && key==='player'){
-      playerArray = JSON.parse(req.cookies[key])
-    }
-  }  
-  res.render('about', pageData.getPageData('about', req.i18n.resolvedLanguage, playerArray, req.nonce))
+  res.render('about', pageData.getPageData('about', req.i18n.resolvedLanguage, reqData.getPlayer(req.cookies), req.nonce))
 })
 
 app.get('/about/contact', (req, res) => {
-  let playerArray = null
-  for (let key in req.cookies){ // naar class
-    if (req.cookies.hasOwnProperty(key) && key==='player'){
-      playerArray = JSON.parse(req.cookies[key])
-    }
-  }  
-  res.render('contact', pageData.getPageData('contact', req.i18n.resolvedLanguage, playerArray, req.nonce))
+  res.render('contact', pageData.getPageData('contact', req.i18n.resolvedLanguage, reqData.getPlayer(req.cookies), req.nonce))
 })
 
 app.post('/about/contact', (req, res) => {
-  let playerArray = null
-  for (let key in req.cookies){ // naar class
-    if (req.cookies.hasOwnProperty(key) && key==='player'){
-      playerArray = JSON.parse(req.cookies[key])
-    }
-  }  
-  console.log('player', playerArray)
+  console.log('player', reqData.getPlayer(req.cookies))
+  // formData
   console.log('formData', req.body)
 
-/*
-player [ '56191af4-60a4-4b9b-be51-91056dd32f1e', '' ]
-formData {
-  name: 'Dennis Brink',
-  email: 'dennis.brink@villaforyou.com',
-  message: 'ededseswd'
-}
-*/
+  /*
+    player [ '56191af4-60a4-4b9b-be51-91056dd32f1e', '' ]
+    formData {
+      name: 'Dennis Brink',
+      email: 'dennis.brink@villaforyou.com',
+      message: 'ededseswd'
+    }
+  */
 
 })
 

@@ -11,7 +11,7 @@
         "official" : "OFFICIELLE",
         "homepage": "D'ACCUEIL",
         "very": "",
-        "subtitle": "La maison des magiciens des maths"
+        "subtitle": "Le rendez-vous des magiciens des maths"
     },
     "error" : {
         "panic": "Oh non ! Tu as totalement cassé la page d&#39;accueil officielle de Math Thingy !",
