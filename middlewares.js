@@ -2,10 +2,12 @@ const cookieParser = require('cookie-parser')
 const compression = require('compression')
 const helmet = require('helmet')
 const Log = require('./classes/Log')
-const { expressCspHeader, NONCE } = require("express-csp-header")
+const { expressCspHeader, NONCE, LINE } = require("express-csp-header")
 const i18next = require('i18next')
 const i18nextMiddleware = require('i18next-http-middleware')
 const Backend = require('i18next-fs-backend')
+
+
 
 i18next
 .use(Backend)
@@ -46,7 +48,7 @@ module.exports = [
         next()  
     },    
     expressCspHeader({ // has to be called after the helemt() function. req is extended with the attribute 'nonce' (no capitals)
-        directives: {"script-src": [NONCE]}
+        directives: {"script-src": [NONCE, LINE]}
     }),    
-    i18nextMiddleware.handle(i18next)
+    i18nextMiddleware.handle(i18next),
 ]

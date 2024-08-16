@@ -11,7 +11,7 @@
         "official" : "OFFICIËLE",
         "homepage": "HOMEPAGE",
         "very": "ERG",
-        "subtitle": "Thuishaven voor de ergste wiskunde nerds"        
+        "subtitle": "Hangout voor de ergste wiskunde nerds"        
     },
     "error" : {
         "panic": "Oh nee!! Je hebt Math Thingy&#39;s officiële pagina compleet kapot gemaakt!",
@@ -46,6 +46,20 @@
         "contactTitle": "Heb je nog iets wat je kwijt moet?",
         "contactText": "Als je een fout hebt gezien (onmogelijk), verbeterpunten hebt (lijkt ons sterk), even wil doorgeven dat de site en de app fantastisch zijn (altijd doen) of als je een vraag hebt (maakt niet uit waarover)...waarom dan niet even doorgeven aan één van de devs die deze site gebouwd hebben? \n\n Misschien krijg je nog wel een antwoord ook!", 
         "hometext": "Ik heb genoeg gezien, ik ben weg! 😒"
-    }    
+    },
+    "contact": {
+        "hometext": "Ik heb genoeg gezien, ik ben weg! 😒",
+        "title": "Voel je vrij om om on the spammen!",
+        "namePlaceholder": "Zodat we weten hoe we je moeten noemen...",
+        "emailPlaceholder": "Zodat we je een antwoord kunnen sturen...",
+        "messagePlaceholder": "Schrijf je gedachten, vragen, opmerkingen of wat dan ook hier...",        
+        "nameValidation": "Een naam zou toch wel mooi zijn denken wij... 😉",
+        "emailValidation": "Een geldig e-mail adres is handig als je ooit antwoord wil hebben",
+        "messageValidation": "Een bericht zonder tekst...is dat handig?",
+        "labelName": "Naam",
+        "labelEmail" : "E-mail",
+        "labelMessage" : "Wat je ook wilt delen...",
+        "buttonSend" : "Verzenden"              
+    }                
 }
   

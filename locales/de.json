@@ -11,7 +11,7 @@
         "official" : "OFFIZIELLE",
         "homepage": "HOMEPAGE",
         "very": "SEHR",
-        "subtitle": "Die Heimat der wahren Mathe-Magier"        
+        "subtitle": "Treffpunkt der wahren Mathe-Magier"        
     },
     "error" : {
         "panic": "Oh nein!! Du hast die offizielle Homepage von Math Thingy zerstört!",
@@ -46,6 +46,19 @@
         "contactTitle": "Musst du dir etwas von der Seele reden?",
         "contactText": "Wenn du einen Fehler entdeckt hast (unmöglich), Verbesserungsvorschläge hast (sehr unwahrscheinlich), einfach nur sagen willst, dass die Seite und die App großartig sind (immer), oder wenn du eine Frage hast (egal zu welchem Thema)... warum gibst du sie nicht an einen der Entwickler weiter, die diese Seite erstellt haben? \n\n Vielleicht bekommst du sogar eine Antwort!", 
         "hometext": "Ich habe genug gesehen, ich bin raus! 😒"
+    },
+    "contact": {
+        "hometext": "Ich habe genug gesehen, ich bin raus! 😒",
+        "title": "Du kannst uns immer spammen!",
+        "namePlaceholder": "Damit wir wissen, wie wir dich nennen solte...",
+        "emailPlaceholder": "Damit wir dir eine Antwort schicken können...",
+        "messagePlaceholder": "Schreibe hier deine Gedanken, Fragen, Bemerkungen oder was auch immer...  ",
+        "nameValidation": "Ein Name wäre sicher nett, finden wir... 😉",
+        "emailValidation": "Eine gültige E-Mail-Adresse ist praktisch, falls du mal eine Antwort willst",
+        "messageValidation": "Eine Nachricht ohne Text... ist das wirklich so praktisch?",
+        "labelName" : "Name",
+        "labelEmail" : "E-Mail",
+        "labelMessage" : "Was auch immer du teilen möchtest...",
+        "buttonSend" : "Senden"           
     }
 }
-  

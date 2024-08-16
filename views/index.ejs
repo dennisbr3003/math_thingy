@@ -8,7 +8,7 @@
                      and that max is the size of the surrounding div element. You can downsize the webp. h-[100%] means it will grow in height to the
                      the dimensions of the surrounding div, which is the toolbar div -->
                 <div class="md:flex md:flex-row md:items-center">
-                    <div class="w-[70vw] md:w-[20vw] h-fit max-md:mx-auto pt-2">
+                    <div class="w-[70vw] md:w-[20vw] h-fit max-md:mx-auto pt-2 max-md:scale-90">
                         <img src="/img/math-book.webp" width="300px" height="150px" class="mx-auto" />
                         <div class="_thingy">
                             THINGY
@@ -34,12 +34,27 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-row items-center mt-[10px] md:mt-[20px] max-md:fixed max-md:top-0 max-md:right-0">
-                    <a href="/about">
-                        <img id="abc" src="/img/icons/info.webp" width="35px" height="20px"
-                            class="cursor-pointer mr-[10px]" />
-                    </a>
-                    <%- include('./partials/languageswitcher.ejs') %>
+                <div
+                    class="grid grid-cols-1 md:grid-cols-[35px,40px,40px] gap-[8px] md:gap-[15px] mt-[20px] fixed top-0 right-0 mr-[20px] md:mr-[40px]">
+                    <div class="flex flex-row justify-center">
+                        <a href="/about">
+                            <img id="abc" src="/img/icons/info.webp" width="35px" height="20px"
+                                class="cursor-pointer" />
+                        </a>
+                    </div>
+                    <!-- https://stackoverflow.com/questions/2941189/how-to-overlay-one-div-over-another-div -->
+                    <div class="relative -z-50 flex flex-row justify-center">
+                        <a href=" /messages">
+                            <img id="abcd" src="/img/icons/mail.webp" width="35px" height="20px"
+                                class="cursor-pointer scale-90 absolute top-[5px] left-0" />
+                        </a>
+                        <div class="absolute text-white rounded-full bg-red-700 flex items-center justify-center right-[-8px] top-[-6px] md:right-[-5px] md:top-[-5px]"
+                            style="height: 22px; width: 22px; font-size: 14px;">9+</div>
+                    </div>
+
+                    <div class="max-md:order-first md:pl-[5px] flex flex-row justify-center">
+                        <%- include('./partials/languageswitcher.ejs') %>
+                    </div>
                 </div>
             </div>
 

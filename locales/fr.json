@@ -11,7 +11,7 @@
         "official" : "OFFICIELLE",
         "homepage": "D'ACCUEIL",
         "very": "",
-        "subtitle": "La maison des magiciens des maths"
+        "subtitle": "Le rendez-vous des magiciens des maths"
     },
     "error" : {
         "panic": "Oh non ! Tu as totalement cassé la page d&#39;accueil officielle de Math Thingy !",
@@ -46,5 +46,18 @@
         "contactTitle": "Tu as besoin de t'épancher sur quelque chose ?",
         "contactText": "Si tu as vu une erreur (impossible), si tu as des suggestions d'amélioration (très improbable), si tu veux simplement dire que le site et l'application sont géniaux (c'est toujours le cas) ou si tu as une question (peu importe sur quoi)... pourquoi ne pas la transmettre à l'un des développeurs qui ont construit ce site ? \n\n Tu auras peut-être une réponse !", 
         "hometext": "J'en ai vu assez, je me retire ! 😒"
-    }    
+    },
+    "contact": {
+        "hometext": "J'en ai vu assez, je me retire ! 😒",
+        "title": "N'hésite pas à nous spammer !",
+        "namePlaceholder": "Que nous sachions comment t'appeler...",
+        "emailPlaceholder": "Que nous puissions t'envoyer une réponse...",
+        "messagePlaceholder": "Écris ici tes pensées, tes questions, tes remarques ou autres...",
+        "nameValidation": "C'est sûr qu'un nom serait sympa on se dit... 😉",
+        "emailValidation": "Une adresse électronique valide est pratique si jamais tu veux une réponse",
+        "messageValidation": "Un message sans texte...c'est vraiment si pratique ?",
+        "labelName" : "Nom",
+        "labelEmail" : "E-mail",
+        "labelMessage" : "Tout ce que vous voulez partager...",
+        "buttonSend" : "Envoyer"    }            
 }
