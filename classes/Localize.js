@@ -13,7 +13,7 @@ class Localize {
 
         // 0 = device
         // 1 = name
-        let playerName = player.length===2?player[1]!==''?player[1]:i18next.t('index.stranger'):i18next.t('index.stranger')
+        let playerName = player.length===3?player[1]!==''?player[1]:i18next.t('index.stranger'):i18next.t('index.stranger')
 
         // above statement replaces the snippet below
         // device = ''

@@ -56,9 +56,13 @@
         "nameValidation": "Ein Name wäre sicher nett, finden wir... 😉",
         "emailValidation": "Eine gültige E-Mail-Adresse ist praktisch, falls du mal eine Antwort willst",
         "messageValidation": "Eine Nachricht ohne Text... ist das wirklich so praktisch?",
+        "subjectPlaceholder": "Worum es geht...",
+        "subjectValidation" : "Wenn du ein Thema hast, bekommst du schneller eine Antwort!",
         "labelName" : "Name",
         "labelEmail" : "E-Mail",
         "labelMessage" : "Was auch immer du teilen möchtest...",
-        "buttonSend" : "Senden"           
+        "labelSubject" : "Betreff",
+        "buttonSend" : "Senden",
+        "updateRegistration": "Ich habe kein Problem damit, dass \"The Official Math Thingy\" meine E-Mail oder meinen Namen benutzt, um die Spielregistrierung zu aktualisieren.👍"           
     }
 }

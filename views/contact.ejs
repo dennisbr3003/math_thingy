@@ -15,19 +15,52 @@
                         <%= t('contact.labelName') %>
                     </label>
                     <input type="text" id="name" name="name" required title="<%= t('contact.nameValidation') %>"
-                        placeholder="<%= t('contact.namePlaceholder') %>" class="_input name">
+                        placeholder="<%= t('contact.namePlaceholder') %>" value="<%= displayName %>"
+                        class="_input name">
                     <label for="email" class="_label">
                         <%= t('contact.labelEmail') %>
                     </label>
                     <input type="email" id="email" name="email" required title="<%= t('contact.emailValidation') %>"
-                        placeholder="<%= t('contact.emailPlaceholder') %>" class="_input email">
+                        placeholder="<%= t('contact.emailPlaceholder') %>" value="<%= email %>" class="_input email">
                     <label for="body" class="_label">
+                        <%= t('contact.labelSubject') %>
+                    </label>
+                    <input type="text" id="subject" name="subject" required
+                        title="<%= t('contact.subjectValidation') %>"
+                        placeholder="<%= t('contact.subjectPlaceholder') %>" class="_input subject">
+                    <label for="subject" class="_label">
                         <%= t('contact.labelMessage') %>
                     </label>
-                    <textarea id="message" name="message" rows="7" required title=""
+                    <textarea id="text" name="text" rows="6" required title=""
                         placeholder="<%= t('contact.messagePlaceholder') %>"
-                        class="_input resize-none message"></textarea>
-                    <!-- This button will autotrigger the action and method of the form -->
+                        class="_input resize-none text mb-2"></textarea>
+                    <div class="inline-flex items-start">
+                        <!-- add padding here to create a low opacity circle here 'p-3 -mt-5 rounded-full' -->
+                        <!-- https://www.material-tailwind.com/docs/html/checkbox -->
+                        <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#checked -->
+                        <label class="relative flex items-center cursor-pointer mt-1" htmlFor="updateRegistration">
+                            <input type="checkbox" class="before:content[''] peer relative h-[25px] md:h-[30px] w-[25px] md:w-[30px] cursor-pointer appearance-none bg-gray-50
+                                       rounded-md outline outline-1 outline-gray-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block 
+                                       before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 
+                                       before:opacity-0 before:transition-opacity checked:border-[#4070f4] checked:bg-[#4070f4] checked:hover:bg-[#034bf1] 
+                                       checked:before:bg-[#4070f4] hover:before:opacity-25" id="updateRegistration"
+                                name="updateRegistration" value="true" checked />
+                            <span class="absolute text-white transition-opacity opacity-0 pointer-events-none 
+                                       top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    class="h-[20px] md:h-[25px] w-[20px] md:w-[25px]" viewBox="0 0 20 20"
+                                    fill="currentColor" stroke="currentColor" stroke-width="1.2">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </span>
+                        </label>
+                        <div class="_label px-1 pl-2 md:pl-[30px]">
+                            <%= t('contact.updateRegistration') %>
+                        </div>
+                    </div>
+
                     <button class="send ml-auto _button mt-2">
                         <div class="flex flex-row items-center gap-3">
                             <div class="_label">
@@ -36,6 +69,7 @@
                             <img src="/img/icons/send0.svg" width="25" height="25" />
                         </div>
                     </button>
+
                 </form>
             </div>
         </div>
@@ -69,9 +103,14 @@
                             element.setCustomValidity("<%- t('contact.emailValidation') %>")
                         } else element.setCustomValidity('')
                     }
-                    if (element.classList.contains('message')) {
+                    if (element.classList.contains('text')) {
                         if (element.value === '' || typeof element.value === 'undefined') {
                             element.setCustomValidity("<%- t('contact.messageValidation') %>")
+                        } else element.setCustomValidity('')
+                    }
+                    if (element.classList.contains('subject')) {
+                        if (element.value === '' || typeof element.value === 'undefined') {
+                            element.setCustomValidity("<%- t('contact.subjectValidation') %>")
                         } else element.setCustomValidity('')
                     }
                 })

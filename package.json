@@ -25,6 +25,7 @@
     "i18next": "^23.11.5",
     "i18next-fs-backend": "^2.3.1",
     "i18next-http-middleware": "^3.6.0",
+    "is-base64": "^1.1.0",
     "nodemon": "^3.1.0",
     "path": "^0.12.7",
     "postcss": "^8.4.38",

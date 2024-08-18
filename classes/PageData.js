@@ -20,10 +20,12 @@ class PageData {
     }
 
     getPageData(page, lang, playerArray, pnonce){
+
         const player = playerArray ?? []
         const nonce = pnonce ?? ''
         this.localize.setLanguage(lang)
         this.data.selectedLanguage = {language: lang, description: 'not important'}    
+
         this.data.languages = [            
             {language: 'nl', description: 'Nederlands'},
             {language: 'en', description: 'English'},
@@ -76,6 +78,7 @@ class PageData {
         this.data.versions.push({name: 'Compression for Node', version: this.#getVersion('compression'), img: 'gzip-black.webp'})
         this.data.versions.push({name: 'Tailwind CSS', version: this.#getVersion('tailwindcss'), img: 'tailwind_logo.svg'})
         this.data.versions.push({name: 'URL safe Base64', version: this.#getVersion('url-safe-base64'), img: 'base64.webp'})
+        this.data.versions.push({name: 'isBase64', version: this.#getVersion('is-base64'), img: 'cartwheel_small.webp'})
         this.data.versions.push({name: 'Cryptr', version: this.#getVersion('cryptr'), img: 'encryption.webp'})
         this.data.versions.push({name: 'i18next (internationalization)', version: this.#getVersion('i18next'), img: 'i18next.svg'})
         this.data.versions.push({name: 'Cookie Parser', version: this.#getVersion('cookie-parser'), img: 'cookieparser-border.webp'})
@@ -87,7 +90,8 @@ class PageData {
     }
 
     async #createContactData(player) {
-        console.log('player', player)
+        this.data.displayName = player[1]===null?'':player[1]
+        this.data.email = player[2]===null?'':player[2]
     }    
 
     #getVersion(module){

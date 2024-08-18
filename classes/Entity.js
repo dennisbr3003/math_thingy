@@ -1,7 +1,8 @@
 const Log = require('../classes/Log')
 const axioslib = require('axios')
-const Cryptr = require('cryptr');
-
+const Cryptr = require('cryptr')
+const { encode } = require("url-safe-base64")
+const { isBase64 }= require('is-base64')
 require('dotenv').config()
 
 axios = axioslib.create({
@@ -20,19 +21,28 @@ class Entity {
         this.config = {}
     }
 
-    async getPlayerByAxios(deviceId) {
+    async getPlayer(deviceId) {
+        if(!isBase64(deviceId)) deviceId = encode(btoa(deviceId))
         try{
-            this.#createHash()
-            const result = await axios.get(`/player/${deviceId}`, this.config)        
-            return result.data
-        } catch (err) {          
-            console.log(err.response)
-            if(typeof err.response==='undefined'){
-                this.log.write('', `Entity: getPlayerByAxios failed. Message: API may not be reachable (${err.code})`)
-            } else {
-                this.log.write('', `Entity: getPlayerByAxios failed. Message: ${err.response.data.message} (${err.response.data.type})`)
-            }    
+            this.#createHash() // password hash for the API
+            const player = await axios.get(`/player/${deviceId}`, this.config)
+            return player.data
+        } catch (err) {      
+            if(typeof err.response==='undefined') this.log.write('', `Entity: getPlayer failed. Message: API may not be reachable (${err.code})`)
+            else this.log.write('', `Entity: getPlayer failed. Message: ${err.response.data.message} (${err.response.data.type})`)
             return null
+        }
+    }
+
+    async postMessage(message){
+        try{
+            this.#createHash() // password hash for the API
+            const msg = await axios.post(`/message`, message, this.config)        
+            return msg.data
+        } catch (err) {
+            if(typeof err.response==='undefined') this.log.write('', `Entity: postMessage failed. Message: API may not be reachable (${err.code})`)
+            else this.log.write('', `Entity: postMessage failed. Message: ${err.response.data.message} (${err.response.data.type})`) 
+            return null            
         }
     }
 

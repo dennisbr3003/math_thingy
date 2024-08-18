@@ -49,17 +49,21 @@
     },
     "contact": {
         "hometext": "Ik heb genoeg gezien, ik ben weg! 😒",
-        "title": "Voel je vrij om om on the spammen!",
+        "title": "Voel je vrij om ons the spammen!",
         "namePlaceholder": "Zodat we weten hoe we je moeten noemen...",
         "emailPlaceholder": "Zodat we je een antwoord kunnen sturen...",
         "messagePlaceholder": "Schrijf je gedachten, vragen, opmerkingen of wat dan ook hier...",        
         "nameValidation": "Een naam zou toch wel mooi zijn denken wij... 😉",
         "emailValidation": "Een geldig e-mail adres is handig als je ooit antwoord wil hebben",
         "messageValidation": "Een bericht zonder tekst...is dat handig?",
+        "subjectPlaceholder": "Waar het ongeveer over gaat...",
+        "subjectValidation" : "Met een onderwerp heb je sneller antwoord!",
         "labelName": "Naam",
         "labelEmail" : "E-mail",
         "labelMessage" : "Wat je ook wilt delen...",
-        "buttonSend" : "Verzenden"              
+        "labelSubject" : "Onderwerp",
+        "buttonSend" : "Verzenden",
+        "updateRegistration": "Ik vind het prima als \"The Official Math Thingy\" mijn e-mail of de naam gebruikt om de spelregistratie bij te werken.👍"              
     }                
 }
   

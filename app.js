@@ -33,16 +33,8 @@ app.get('/', async (req, res) => {
 app.get('/signin/:deviceId', async (req, res) => {
   if(req.params.deviceId!=='') {
     res.clearCookie("player") // reset cookie  
-    const player = await entity.getPlayerByAxios(req.params.deviceId) // get player data with deviceId
-    if(player!==null){
-      if(reqData.getCookiePermission(req.cookies)){ // longterm cookie 
-          res.cookie('player', JSON.stringify([player.device, player.displayname]), { maxAge: (30 * 24 * 60 * 60 * 1000), secure: true, sameSite: 'strict'})
-      } else { 
-          // short term cookie = session cookie
-          // https://stackoverflow.com/questions/10617954/chrome-doesnt-delete-session-cookies
-          res.cookie('player', JSON.stringify([player.device, player.displayname]), { secure: true, sameSite: 'strict'})
-      }
-    }
+    const player = await entity.getPlayer(req.params.deviceId) // get player data with deviceId
+    if(player!==null) res.cookie('player', reqData.getPlayerCookie(player), reqData.getPlayerCookieOptions(reqData.getCookiePermission(req.cookies)))
   }
   res.redirect('/start')
 })
@@ -65,19 +57,26 @@ app.get('/about/contact', (req, res) => {
   res.render('contact', pageData.getPageData('contact', req.i18n.resolvedLanguage, reqData.getPlayer(req.cookies), req.nonce))
 })
 
-app.post('/about/contact', (req, res) => {
-  console.log('player', reqData.getPlayer(req.cookies))
-  // formData
-  console.log('formData', req.body)
+app.post('/about/contact', async (req, res) => {
+  
+  req.body.deviceId = reqData.getPlayer(req.cookies)[0] // returns an array, deviceId is element 0, extend the body
+  req.body.language = req.i18n.resolvedLanguage // is not being saved with the message, but is used for player update
+  const response = await entity.postMessage(req.body) // get player data with deviceId  
+  if(response.resultCode!==0){
 
-  /*
-    player [ '56191af4-60a4-4b9b-be51-91056dd32f1e', '' ]
-    formData {
-      name: 'Dennis Brink',
-      email: 'dennis.brink@villaforyou.com',
-      message: 'ededseswd'
+    console.log(response)
+    
+  } else {
+    // player has been updated possibly
+    if(response.updateRegistration){  // can be done asynchroneously
+      const player = await entity.getPlayer(reqData.getPlayer(req.cookies)[0]) // base64 encode url safe deviceId
+      if(player!==null){
+          res.clearCookie("player") // reset cookie 
+          if(player!==null) res.cookie('player', reqData.getPlayerCookie(player), reqData.getPlayerCookieOptions(reqData.getCookiePermission(req.cookies)))
+      }
     }
-  */
+    res.redirect('/about')
+  }
 
 })
 

@@ -55,11 +55,15 @@
         "messagePlaceholder": "Write your thoughts, questions, remarks or whatever here...",
         "nameValidation": "Surely a name would be nice we think... 😉",
         "emailValidation": "A valid email address is handy if you ever want a reply",
-        "messageValidation": "A message with no text...is that helpful?",      
+        "messageValidation": "A message with no text...is that helpful?",    
+        "subjectPlaceholder": "What it's about, sort of...",
+        "subjectValidation" : "Having a topic will give you a quicker answer!",  
         "labelName" : "Name",
         "labelEmail" : "E-mail",
         "labelMessage" : "Whatever you want to share...",
-        "buttonSend" : "Send"
+        "labelSubject" : "Subject",
+        "buttonSend" : "Send",
+        "updateRegistration": "I'm totally cool with \"The Official Math Thingy\" using my email or name to update the game registration.👍"
     }        
 }
   
