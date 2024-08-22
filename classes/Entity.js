@@ -46,6 +46,18 @@ class Entity {
         }
     }
 
+    async getUnreadMessageCount(deviceId){
+        try{
+            this.#createHash() // password hash for the API
+            const msgCount = await axios.get(`/message/unread/${deviceId}`, this.config)        
+            return msgCount.data.unreadMessages
+        } catch (err) {
+            if(typeof err.response==='undefined') this.log.write('', `Entity: postMessage failed. Message: API may not be reachable (${err.code})`)
+            else this.log.write('', `Entity: postMessage failed. Message: ${err.response.data.message} (${err.response.data.type})`) 
+            return null            
+        }        
+    }
+
     #createHash() {
         this.config = {
             headers: {

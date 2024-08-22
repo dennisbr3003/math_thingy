@@ -39,8 +39,8 @@ app.get('/signin/:deviceId', async (req, res) => {
   res.redirect('/start')
 })
 
-app.get('/start', (req, res) => {
-  res.render('index', pageData.getPageData('index', req.i18n.resolvedLanguage, reqData.getPlayer(req.cookies), req.nonce))
+app.get('/start', async (req, res) => {
+  res.render('index', await pageData.getPageData('index', req.i18n.resolvedLanguage, reqData.getPlayer(req.cookies), req.nonce))
 })
 
 app.get('/switch/:lng', async (req, res) => {
@@ -49,17 +49,18 @@ app.get('/switch/:lng', async (req, res) => {
     res.redirect('back'); // Redirect back to the previous page, this reloads the page the request came from
 });
 
-app.get('/about', (req, res) => {
-  res.render('about', pageData.getPageData('about', req.i18n.resolvedLanguage, reqData.getPlayer(req.cookies), req.nonce))
+app.get('/about', async (req, res) => {
+  res.render('about', await pageData.getPageData('about', req.i18n.resolvedLanguage, reqData.getPlayer(req.cookies), req.nonce))
 })
 
-app.get('/about/contact', (req, res) => {
-  res.render('contact', pageData.getPageData('contact', req.i18n.resolvedLanguage, reqData.getPlayer(req.cookies), req.nonce))
+app.get('/about/contact', async (req, res) => {
+  res.render('contact', await pageData.getPageData('contact', req.i18n.resolvedLanguage, reqData.getPlayer(req.cookies), req.nonce))
 })
 
 app.post('/about/contact', async (req, res) => {
   
   req.body.deviceId = reqData.getPlayer(req.cookies)[0] // returns an array, deviceId is element 0, extend the body
+  req.body.senderId = reqData.getPlayer(req.cookies)[0] // sender is the player here
   req.body.language = req.i18n.resolvedLanguage // is not being saved with the message, but is used for player update
   const response = await entity.postMessage(req.body) // get player data with deviceId  
   if(response.resultCode!==0){
@@ -81,5 +82,5 @@ app.post('/about/contact', async (req, res) => {
 })
 
 app.use(async (req, res) => {
-    res.status(404).render('error', pageData.getPageData('error', req.i18n.resolvedLanguage))
+    res.status(404).render('error', await pageData.getPageData('error', req.i18n.resolvedLanguage))
 })

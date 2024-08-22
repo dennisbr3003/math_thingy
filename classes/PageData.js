@@ -1,6 +1,7 @@
 const DateTime = require('./DateTime')
 const Localize = require('./Localize')
 const Log = require('../classes/Log')
+const Entity = require('../classes/Entity')
 const lib = require('../lib/uuid')
 
 const fs = require('fs')
@@ -14,12 +15,13 @@ class PageData {
         this.datetime = new DateTime()
         this.localize = new Localize()
         this.log = new Log(this.root)
+        this.entity = new Entity(this.root)
         this.log.prepare() // quick init
         this.dependencies = this.#readPackageJson()
         this.lastModified = this.#getLastModificationDateTime(path.join(this.root, 'package.json'))
     }
 
-    getPageData(page, lang, playerArray, pnonce){
+    async getPageData(page, lang, playerArray, pnonce){
 
         const player = playerArray ?? []
         const nonce = pnonce ?? ''
@@ -35,6 +37,7 @@ class PageData {
         switch(page){
             case 'index':
                 this.data.translations = this.localize.getIndexTranslations(player)
+                this.data.unreadMessages = await this.entity.getUnreadMessageCount(player[0])                             
                 break;
             case 'error':
                 // do nothing for now
