@@ -9,6 +9,16 @@ class Localize {
       i18next.changeLanguage(lang)
     }
 
+
+    getErrorPageTranslations(trtype) {
+        let translations = new Object()
+        translations.apology = i18next.t(`500.${trtype}.apology`) 
+        translations.possibility = i18next.t(`500.${trtype}.possibility`) 
+        translations.again = i18next.t(`500.${trtype}.again`) 
+        translations.forget = i18next.t(`500.${trtype}.forget`) 
+        return translations
+    }
+
     getIndexTranslations(player) {
 
         // 0 = device

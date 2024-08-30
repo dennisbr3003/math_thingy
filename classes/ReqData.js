@@ -23,10 +23,20 @@ class ReqData {
         return playerArray
     }
 
+    getMessage(cookieCollection){
+        let message = null
+        for (let key in cookieCollection){ // naar class
+            if (cookieCollection.hasOwnProperty(key) && key==='message'){
+              message = JSON.parse(cookieCollection[key])
+            }
+        }
+        return message
+    }
+
     getPlayerCookie(player){
         return JSON.stringify([player.deviceId, player.displayName, player.email])
     }
-    getPlayerCookieOptions(permission){
+    getCookieOptions(permission){
         // short term cookie = session cookie (but could act as a longterm or permanent cookie). Changed to 4-hour cookie
         // https://stackoverflow.com/questions/10617954/chrome-doesnt-delete-session-cookies
         return permission?{ maxAge: (30 * 24 * 60 * 60 * 1000), secure: true, sameSite: 'strict'}:{ maxAge: (4 * 60 * 60 * 1000), secure: true, sameSite: 'strict'}

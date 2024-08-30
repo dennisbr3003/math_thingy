@@ -21,10 +21,13 @@ class PageData {
         this.lastModified = this.#getLastModificationDateTime(path.join(this.root, 'package.json'))
     }
 
-    async getPageData(page, lang, playerArray, pnonce){
+    async getPageData(page, lang, playerArray, pnonce, response, transtype){
 
         const player = playerArray ?? []
         const nonce = pnonce ?? ''
+        const resp = response ?? null
+        const trtype = transtype ?? ''
+
         this.localize.setLanguage(lang)
         this.data.selectedLanguage = {language: lang, description: 'not important'}    
 
@@ -39,14 +42,20 @@ class PageData {
                 this.data.translations = this.localize.getIndexTranslations(player)
                 this.data.unreadMessages = await this.entity.getUnreadMessageCount(player[0])                             
                 break;
-            case 'error':
+            case '404':
                 // do nothing for now
                 break
+            case '500':
+                // do nothing for now
+                this.data.errorCode = response.type
+                this.data.errorMessage = response.message
+                this.data.translations = this.localize.getErrorPageTranslations(trtype)
+                break                
             case 'about':
                 this.#createAboutData(player)                
                 break
             case 'contact':
-                this.#createContactData(player)                
+                this.#createContactData(player, response)                
                 break                
         }
         // always do this
@@ -92,9 +101,23 @@ class PageData {
         this.data.lastModified = `${this.datetime.getDate(new Date(this.lastModified), 'd,m,y')} ${this.datetime.getTime(new Date(this.lastModified))}`               
     }
 
-    async #createContactData(player) {
+    async #createContactData(player, message) {
+
+        console.log(message)
+
         this.data.displayName = player[1]===null?'':player[1]
         this.data.email = player[2]===null?'':player[2]
+        this.data.subject = ''
+        this.data.text = '' 
+        this.data.updateRegistration = true
+
+        if(message!==null){
+            this.data.displayName = message.name
+            this.data.email = message.email
+            this.data.subject = message.subject 
+            this.data.text = message.text
+            this.data.updateRegistration = message.updateRegistration
+        }
     }    
 
     #getVersion(module){
