@@ -13,10 +13,20 @@
         "very": "SEHR",
         "subtitle": "Treffpunkt der wahren Mathe-Magier"        
     },
-    "error" : {
+    "404" : {
         "panic": "Oh nein!! Du hast die offizielle Homepage von Math Thingy zerstört!",
         "hometext": "Klicke hier für einen Neuanfang!"
     },
+    "500" : {
+        "title": "Ok, ok, das hat also nicht ganz geklappt...",
+        "hometext": "Klicke hier für einen Neuanfang!",
+        "contact": {
+            "apology": "Statt „alles in Ordnung“, bekamen wir das hier zurück: ",            
+            "possibility": "'Sieht aus, als ob deine Nachricht nicht gesendet wurde 😒. Wir können es noch einmal versuchen. Dein Anruf...",
+            "again": "Nochmal versuchen 🤞",
+            "forget": "Vergiss es 💔"
+        }   
+    },    
     "metrics": {
         "day": "Tag",
         "days": "Tage",

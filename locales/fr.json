@@ -13,10 +13,20 @@
         "very": "",
         "subtitle": "Le rendez-vous des magiciens des maths"
     },
-    "error" : {
+    "404" : {
         "panic": "Oh non ! Tu as totalement cassé la page d&#39;accueil officielle de Math Thingy !",
         "hometext": "Clique ici pour prendre un nouveau départ !"
     },
+    "500" : {
+        "title": "Ok, ok, ça n'a pas vraiment marché...",
+        "hometext": "Clique ici pour prendre un nouveau départ !",
+        "contact": {
+            "apology": "Au lieu de « tout va bien », nous avons reçu ceci en retour :",            
+            "possibility": "On dirait que ton message n'a pas été envoyé 😒. Nous pouvons réessayer. Ton appel...",
+            "again": "Essaie encore 🤞",
+            "forget": "N'y pense plus 💔"             
+        }
+    },    
     "metrics": {
         "day": "jour",
         "days": "jours",

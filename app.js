@@ -34,7 +34,7 @@ app.get('/signin/:deviceId', async (req, res) => {
   if(req.params.deviceId!=='') {
     res.clearCookie("player") // reset cookie  
     const player = await entity.getPlayer(req.params.deviceId) // get player data with deviceId
-    if(player!==null) res.cookie('player', reqData.getPlayerCookie(player), reqData.getPlayerCookieOptions(reqData.getCookiePermission(req.cookies)))
+    if(player!==null) res.cookie('player', reqData.getPlayerCookie(player), reqData.getCookieOptions(reqData.getCookiePermission(req.cookies)))
   }
   res.redirect('/start')
 })
@@ -54,26 +54,44 @@ app.get('/about', async (req, res) => {
 })
 
 app.get('/about/contact', async (req, res) => {
-  res.render('contact', await pageData.getPageData('contact', req.i18n.resolvedLanguage, reqData.getPlayer(req.cookies), req.nonce))
+  res.render('contact', await pageData.getPageData('contact', req.i18n.resolvedLanguage, reqData.getPlayer(req.cookies), req.nonce, reqData.getMessage(req.cookies)))
 })
+
+app.get('/about/contact/forget', async (req, res) => {
+    res.clearCookie('message') // reset cookie 'message'
+    res.redirect('/about')
+})
+
 
 app.post('/about/contact', async (req, res) => {
   
+  res.clearCookie('message') // reset cookie 'message'
+
   req.body.deviceId = reqData.getPlayer(req.cookies)[0] // returns an array, deviceId is element 0, extend the body
   req.body.senderId = reqData.getPlayer(req.cookies)[0] // sender is the player here
   req.body.language = req.i18n.resolvedLanguage // is not being saved with the message, but is used for player update
-  const response = await entity.postMessage(req.body) // get player data with deviceId  
-  if(response.resultCode!==0){
 
-    console.log(response)
+  const response = await entity.postMessage(req.body) // get player data with deviceId  
+
+  console.log('response', response) 
+
+  if(response.type!==200){
+
+    // set a cookie if we are allowed to, otherwise we will not save the message
+    if(reqData.getCookiePermission(req.cookies)){
+      res.cookie('message', JSON.stringify(req.body), reqData.getCookieOptions(true))
+    }
+    //console.log(response)
+    res.status(response.type).render('500', await pageData.getPageData('500', req.i18n.resolvedLanguage, null, req.nonce, response, 'contact'))
+    return
     
   } else {
     // player has been updated possibly
-    if(response.updateRegistration){  // can be done asynchroneously
+    if(req.body.updateRegistration){  // can be done asynchroneously, no need to wait for it
       const player = await entity.getPlayer(reqData.getPlayer(req.cookies)[0]) // base64 encode url safe deviceId
       if(player!==null){
           res.clearCookie("player") // reset cookie 
-          if(player!==null) res.cookie('player', reqData.getPlayerCookie(player), reqData.getPlayerCookieOptions(reqData.getCookiePermission(req.cookies)))
+          if(player!==null) res.cookie('player', reqData.getPlayerCookie(player), reqData.getCookieOptions(reqData.getCookiePermission(req.cookies)))
       }
     }
     res.redirect('/about')
@@ -82,5 +100,5 @@ app.post('/about/contact', async (req, res) => {
 })
 
 app.use(async (req, res) => {
-    res.status(404).render('error', await pageData.getPageData('error', req.i18n.resolvedLanguage))
+    res.status(404).render('404', await pageData.getPageData('404', req.i18n.resolvedLanguage))
 })

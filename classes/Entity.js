@@ -37,12 +37,19 @@ class Entity {
     async postMessage(message){
         try{
             this.#createHash() // password hash for the API
-            const msg = await axios.post(`/message`, message, this.config)        
-            return msg.data
+            const msg = await axios.post(`/message`, message, this.config)      
+            return msg.data // in case of a 200, this will return
         } catch (err) {
-            if(typeof err.response==='undefined') this.log.write('', `Entity: postMessage failed. Message: API may not be reachable (${err.code})`)
-            else this.log.write('', `Entity: postMessage failed. Message: ${err.response.data.message} (${err.response.data.type})`) 
-            return null            
+            // this will be an axios error
+            // console.log('err', err)
+            if(typeof err.response==='undefined') {
+                this.log.write('', `Entity: postMessage failed. Message: API may not be reachable (${err.code})`)
+                return {type: 503, message: `API may not be reachable (${err.code})`}
+            }
+            else {                
+                this.log.write('', `Entity: postMessage failed. Message: ${err.response.data.message} (${err.response.data.type})`) 
+                return err.response.data       
+            }
         }
     }
 
@@ -54,7 +61,7 @@ class Entity {
         } catch (err) {
             if(typeof err.response==='undefined') this.log.write('', `Entity: postMessage failed. Message: API may not be reachable (${err.code})`)
             else this.log.write('', `Entity: postMessage failed. Message: ${err.response.data.message} (${err.response.data.type})`) 
-            return null            
+            return '?'            
         }        
     }
 

@@ -27,13 +27,14 @@
                     </label>
                     <input type="text" id="subject" name="subject" required
                         title="<%= t('contact.subjectValidation') %>"
-                        placeholder="<%= t('contact.subjectPlaceholder') %>" class="_input subject">
+                        placeholder="<%= t('contact.subjectPlaceholder') %>" value="<%= subject %>"
+                        class="_input subject">
                     <label for="subject" class="_label">
                         <%= t('contact.labelMessage') %>
                     </label>
                     <textarea id="text" name="text" rows="6" required title=""
                         placeholder="<%= t('contact.messagePlaceholder') %>"
-                        class="_input resize-none text mb-2"></textarea>
+                        class="_input resize-none text mb-2"><%= text %></textarea>
                     <div class="inline-flex items-start">
                         <!-- add padding here to create a low opacity circle here 'p-3 -mt-5 rounded-full' -->
                         <!-- https://www.material-tailwind.com/docs/html/checkbox -->
@@ -44,7 +45,7 @@
                                        before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 
                                        before:opacity-0 before:transition-opacity checked:border-[#4070f4] checked:bg-[#4070f4] checked:hover:bg-[#034bf1] 
                                        checked:before:bg-[#4070f4] hover:before:opacity-25" id="updateRegistration"
-                                name="updateRegistration" value="true" checked />
+                                name="updateRegistration" value="<%= updateRegistration %>" checked />
                             <span class="absolute text-white transition-opacity opacity-0 pointer-events-none 
                                        top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                                 <svg xmlns="http://www.w3.org/2000/svg"

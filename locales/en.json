@@ -13,10 +13,20 @@
         "very": "VERY",
         "subtitle": "Hangout for the true math magicians"
     },
-    "error" : {
+    "404" : {
         "panic": "Oh no!! You totally broke Math Thingy&#39;s official home page!",
         "hometext": "Click here to get a fresh start!"
     },
+    "500" : {
+        "title": "Ok, ok, so that didn't quite work out...",
+        "hometext": "Click here to get a fresh start!",
+        "contact": {
+            "apology": "Instead of “everything ok” we got this back:          ",            
+            "possibility": "Looks like your message was not sent, sort of 😒. We can try again. Your call...", 
+            "again": "Try again 🤞",       
+            "forget": "Never mind 💔"
+        }
+    },    
     "metrics": {
         "day": "day",
         "days": "days",

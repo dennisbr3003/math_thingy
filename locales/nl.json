@@ -13,10 +13,20 @@
         "very": "ERG",
         "subtitle": "Hangout voor de ergste wiskunde nerds"        
     },
-    "error" : {
+    "404" : {
         "panic": "Oh nee!! Je hebt Math Thingy&#39;s officiële pagina compleet kapot gemaakt!",
         "hometext": "Klik hier voor een frisse start!"
     },
+    "500" : {
+        "title": "Ok, ok, dat ging dus niet helemaal lekker...",
+        "hometext": "Klik hier voor een frisse start!",
+        "contact": {
+            "apology": "In plaats van \"alles ok\" kregen we dit terug:",            
+            "possibility": "Komt er een beetje op neer dat je bericht niet is verstuurd 😒. We kunnen het nog een keer proberen. Jij mag het zeggen...",
+            "again": "Oké dan 🤞",
+            "forget": "Laat maar 💔"                   
+        }
+    },    
     "metrics": {
         "day": "dag",
         "days": "dagen",

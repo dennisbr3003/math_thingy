@@ -1,0 +1,66 @@
+<html lang="en">
+<%- include('./partials/header.ejs') %>
+
+    <body>
+        <div class="md:hidden _error-gradient">
+            <div class="grid grid-cols-12 pt-4">
+                <img src="/img/smiley-oops.webp" width="120" height="120" class="m-auto col-span-6 col-start-4 ">
+            </div>
+            <div class="text-center px-2 font-PermanentMarker-Regular text-[1.5em] !text-gray-500">
+                <%- t('500.title') %>
+            </div>
+        </div>
+        <div class="max-md:hidden flex flex-row items-center justify-center _error-gradient pt-4">
+            <img src="/img/smiley-oops.webp" width="250" height="250">
+            <div class="font-PermanentMarker-Regular text-[2.5em] text-center !text-gray-600 max-w-[45%]">
+                <%- t('500.title') %>
+            </div>
+        </div>
+        <div class="mx-auto text-center mt-[20px] mb-[10px] text-[14pt] md:text-[18pt] 
+                   font-Atma-Regular font-medium w-fit max-w-[80vw] md:max-w-[60vw]">
+            <%= translations.apology %>
+        </div>
+        <div class="mx-auto flex flex-row items-center justify-center 
+                   text-[48pt] md:text-[60pt] text-red-700 font-extrabold">
+            <%= errorCode %>
+        </div>
+        <div
+            class="mx-auto my-[20px] text-center w-fit max-w-[80vw] md:max-w-[60vw] 
+                   border-[2px] rounded-lg text-red-700 bg-red-700 bg-opacity-10 border-red-700 px-6 py-4 font-semibold">
+            <%= errorMessage %>
+        </div>
+        <div class="mx-auto text-center mt-[40px] text-[14pt] md:text-[18pt] 
+                   font-Atma-Regular font-medium w-fit max-w-[80vw] md:max-w-[60vw]">
+            <!-- <%- t('500.possibility') %> -->
+            <%= translations.possibility %>
+        </div>
+        <div class="mt-[30px] w-fit mx-auto flex flex-row gap-[40px]">
+            <!-- <a href="/about/contact"> -->
+            <button class="_button mt-2 again">
+                <div class="_label">
+                    <%= translations.again %>
+                </div>
+            </button>
+            <!-- </a> -->
+            <!-- <a href="/about"> -->
+            <button class="_button mt-2 forget">
+                <div class="_label">
+                    <%= translations.forget %>
+                </div>
+            </button>
+            <!-- </a> -->
+        </div>
+        <script nonce='<%= nonce %>'>
+
+            const forgetButton = document.querySelector('.forget').addEventListener('click', e => {
+                window.location.href = "/about/contact/forget"
+            })
+
+            const againButton = document.querySelector('.again').addEventListener('click', e => {
+                window.location.href = "/about/contact"
+            })
+
+        </script>
+    </body>
+
+</html>
